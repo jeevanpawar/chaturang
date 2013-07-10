@@ -1,0 +1,94 @@
+.add
+{
+	border:1px solid #000;
+	width:520px;
+}
+.no
+{
+	border:1px solid #000;
+	width:200px;
+	height:70px;
+	margin-left:510px;
+	margin-top:-100px;
+	position:absolute;
+}
+.detail table
+{
+	margin-top:5px;
+	width:725px;
+	border:1px solid #000;
+}
+.heading
+{
+	font-size:36px;
+	font-family:"MS Serif", "New York", serif;
+	text-decoration:underline;
+}
+.sub_heading
+{
+	font-size:20px;
+	font-family:"MS Serif", "New York", serif;
+}
+.quotation
+{
+	font-size:24px;
+	font-weight:bold;
+	text-decoration:underline;
+}
+.date
+{	
+	margin-left:80%;
+}
+.description ul
+{
+	border:1px solid #000; 
+}
+.description ul li
+{	
+	list-style:none;
+	display:inline;
+	padding:20px;
+}
+.report
+{
+	width:720px;
+	margin-top:15px;
+}
+.report td
+{
+		border:1px solid #000;
+		text-align:center;
+		height:25px;
+}
+.advance
+{
+	width:615px;
+	margin-left:310px;
+}
+.advance td
+{
+	border:1px solid #000;
+	text-align:center;
+	height:25px;
+}
+.total
+{
+	width:720px;
+}
+.total td
+{
+	
+}
+
+.texta
+{
+	width:20px;
+
+	border:1px solid #000;
+}
+.tab
+{
+	margin-top:5px;
+	width:725px;
+	border:1px solid #000;	
+}
