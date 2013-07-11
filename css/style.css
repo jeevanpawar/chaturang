@@ -133,7 +133,7 @@ display:block;
 } /* show submenu on hover */
 
 #nav li ul li,#nav li ul li a {
-background-color:#333;
+background-color:#CCC;
 float:none;
 height: 35px; /* submenu item height */
 min-width: 150px; /* submenu item minimal width */
@@ -143,6 +143,7 @@ text-shadow: none;
 display:block;
 font-size:13px;
 font-weight:400;
+color:#000;
 text-transform:inherit;
 } /* Submenu item */
 

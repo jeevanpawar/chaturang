@@ -62,10 +62,12 @@ body {
 	width:200px;
 	margin-left:10px;
 	border-radius:5px;
-	background-color:#CCC;
-
 	border:none;
-	font-size:22px;
+	background-color:#FFF;
+box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);	font-size:22px;
 	text-align:center;
 }
 .go
@@ -665,6 +667,36 @@ div#footer-links p {
 	color:#000
 
 }
+.s_in
+{
+	width:700px;
+	height:35px;
+	border:1px solid #999;
+	background-color:#FFF;
+	font-size:18px;
+	color:#000
+
+}
+.s_i
+{
+	width:780px;
+	height:35px;
+	border:1px solid #999;
+	background-color:#FFF;
+	font-size:18px;
+	color:#000
+
+}
+.s_s
+{
+	width:50px;
+	height:35px;
+	border:1px solid #999;
+	background-color:#FFF;
+	font-size:18px;
+	color:#000
+
+}
 .i_in
 {
 	width:375px;
@@ -702,6 +734,17 @@ div#footer-links p {
 	margin-left:15px;
 	margin-top:-27px;
 	position:absolute;
+}
+.adddels
+{
+	margin-left:220px;
+	margin-top:-27px;
+	position:absolute;
+}
+.adddels input
+{
+	background-color:#333;
+	color:#FFF;
 }
 .adddelin
 {
@@ -845,11 +888,10 @@ div#footer-links p {
 {
 	width:375px;
 	height:80px;
-	background-color:#666;
-	opacity:0.5;
+	background-color:#FFF;
 	font-size:18px;
-	border:none;
-	color:#fff;
+	border:1px solid #999;
+	color:#000;
 }
 
 .q_term
@@ -1322,7 +1364,32 @@ option
    -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
    -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);	
 }
-
+.h_tab1
+{
+	margin-top:20px;
+	height:300px;
+	width:500px;
+	margin-left:150px;
+	color:#000;
+	letter-spacing:1px;
+	font-size:18px;
+}
+.service
+{
+	margin-left:150px;
+	width:900px;
+	font-size:18px;
+}
+.h_tab2
+{
+	height:300px;
+	width:400px;
+	margin-left:780px;
+	margin-top:-300px;
+	color:#000;
+	letter-spacing:1px;
+	font-size:18px;
+}
 .tab_1
 {
 	margin-top:20px;
