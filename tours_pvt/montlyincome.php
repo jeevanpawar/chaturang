@@ -232,7 +232,7 @@ $('.info8').fadeIn(200);
     <div class="page">
 			<div class="menu">
 			<table class="menuTable">
-            <tr>
+            <tr class="menu_header">
             <td id="link">Jan</td>
             <td id="link2">Feb</td>
             <td id="link3">March</td>

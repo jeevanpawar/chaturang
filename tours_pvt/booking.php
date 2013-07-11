@@ -150,13 +150,16 @@ cursor: pointer;
 			
 			echo "<table class='emp_tab'>";
 			echo "<tr class='menu_header'>";
-        	echo "<td width='150'>B.No</td>";
-        	echo "<td width='150'>B.Date</td>";
-        	echo "<td>SE</td>";
+        	echo "<td width='110'>B.No</td>";
+        	echo "<td width='110'>B.Date</td>";
+        	echo "<td width='150'>SE</td>";
         	echo "<td>Office</td>";
-        	echo "<td width='70'>Pax</td>";
-        	echo "<td width='70'>Adult</td>";
-        	echo "<td width='70'>Child</td>";
+        	echo "<td width='50'>Pax</td>";
+        	echo "<td width='50'>Adult</td>";
+        	echo "<td width='50'>Child</td>";
+			echo "<td width='70'>Passenger</td>";
+			echo "<td width='85'>Hotel</td>";
+			echo "<td width='85'>Vehicle</td>";
         	echo "<td width='115'>View Details</td>";
         	echo "</tr>";
 			echo "<tr class='pagi'>";
@@ -181,19 +184,56 @@ cursor: pointer;
 			echo "<td>";
 			echo $row[7];
 			echo "</td>";
+			if($row[9]==1)
+			{
+			echo "<td class='print'>";
+			echo "<a href='passenger.php?id_p=$row_u[0]'>&nbsp;Update&nbsp;</a>";
+			echo "</td>";
+			}
+			else
+			{
+			echo "<td class='insert'>";
+			echo "<a href='passenger.php?id_p=$row_u[0]'>&nbsp;&nbsp;Insert&nbsp;&nbsp;</a>";
+			echo "</td>";
+			}
+			if($row[10]==1)
+			{
+			echo "<td class='print'>";
+			echo "<a href='accommodation.php?id_a=$row_u[0]'>&nbsp;Update&nbsp;</a>";
+			echo "</td>";
+			}
+			else
+			{
+			echo "<td class='insert'>";
+			echo "<a href='accommodation.php?id_a=$row_u[0]'>&nbsp;&nbsp;Insert&nbsp;&nbsp;</a>";
+			echo "</td>";
+			
+			}
+			if($row[11]==1)
+			{
+			echo "<td class='print'>";
+			echo "<a href='vehicle_trans.php?id_v=$row_u[0]'>&nbsp;Update&nbsp;</a>";
+			echo "</td>";
+			}
+			else
+			{
+			echo "<td class='insert'>";
+			echo "<a href='vehicle_trans.php?id_v=$row_u[0]'>&nbsp;&nbsp;Insert&nbsp;&nbsp;</a>";
+			echo "</td>";
+			}
 			echo "<td class='print'>";
 			echo "<a href='viewdetail.php?id=$row[0]'>View Details</a>";
 			echo "</td>";
 			echo "</tr>";
 			echo "</table>";
 			echo "<br>";
-        }
-		}
-		?>
-        <div id="loading" ></div>
-		<div id="content" ></div>
-        <table width="800px">
-		<tr><Td>
+        	}
+			}
+			?>
+       		<div id="loading" ></div>
+			<div id="content" ></div>
+        	<table width="800px">
+			<tr><Td>
 			<ul id="pagination">
 				<?php
 				//Show page links

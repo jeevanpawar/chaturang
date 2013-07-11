@@ -60,7 +60,7 @@ $row_a=mysql_fetch_array($res_a);
 		if($row_u[9]==1)
 		{
 			echo "<td class='print'>";
-			echo "<a href='passenger.php?id_p=$row_u[0]'>&nbsp;Update&nbsp;</a>";
+			echo "<a href='uppassenger.php?id_p=$row_u[0]'>&nbsp;Update&nbsp;</a>";
 			echo "</td>";
 		}
 		else

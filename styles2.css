@@ -101,6 +101,7 @@ body {
 }
 .print a
 {
+	
 	background-color:#00a1d2;
 	padding:2px 4px 2px 4px;
 	color:#000;
@@ -334,6 +335,13 @@ h2 {
 	font-weight: normal;
 }
 
+.to
+{
+	color:#FFF;
+	width:310px;
+	font-size:18px;
+	margin-left:990px;
+}
 h3 {
 	color: #555;
 	font-size: 18px;
@@ -511,7 +519,6 @@ div#sub-header h2 {
 
 #footer {
 	margin:0 auto;
-	background: #000 url('images/footer.jpg') repeat-x scroll bottom left;
 	padding: 30px 5px 0;
 }
 
@@ -957,6 +964,7 @@ div#footer-links p {
 {
 	margin-left:12px;
 	width:1290px;
+	
 	
 }
 .emp_tab1
