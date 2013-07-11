@@ -1,6 +1,6 @@
 <?php
-error_reporting(0);
 session_start();
+error_reporting(0);
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 include("../include/database.php");

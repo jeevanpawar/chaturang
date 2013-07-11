@@ -6,12 +6,32 @@ body {
 	font-size: 13px;
 	color: #000;
 }
+.add
+{
+	width:20px;
+	background-color:#CCC;
+	padding:2px;
+}
+.add:hover
+{
+	background-color:#09C;
+	border:none;
+}
+.ch
+{
+	border:none;
+	color:#FFF;
+	width:100%;
+
+}
+
 .mf
 {
 	background-color:#333;
 	border:none;
 	color:#FFF;
-	width:100px;
+	width:100%;
+	height:30px;
 	text-align:center;
 }
 .Hotel
@@ -19,7 +39,8 @@ body {
 	background-color:#333;
 	border:none;
 	color:#FFF;
-	width:200px;
+	width:100%;
+	height:30px;
 	text-align:center;
 }
 
@@ -92,6 +113,27 @@ body {
    -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
    -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
 	
+}
+.insert a
+{
+	width:100%;
+	padding:2px 4px 2px 4px;
+	color:#000;
+	text-decoration:none;
+	font-size:15px;
+	border: 1px solid rgba(0,0,0,0.5);
+   background:#09C;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+	
+}
+.insert a:hover
+{
+	background-color:#FFF;
+	text-decoration:none;
+	color:#000;
 }
 .print1 a
 {
@@ -640,9 +682,15 @@ div#footer-links p {
 	border:none;
 
 }
+.adddel
+{
+	margin-left:15px;
+	margin-top:-27px;
+	position:absolute;
+}
 .name
 {
-	width:370px;
+	width:100%;
 	height:30px;
 	background-color:#333;
 	font-size:18px;
@@ -652,7 +700,7 @@ div#footer-links p {
 }
 .dob
 {
-	width:160px;
+	width:100%;
 	height:30px;
 	background-color:#333;
 	font-size:18px;
@@ -661,7 +709,7 @@ div#footer-links p {
 
 }
 .contact{
-	width:160px;
+	width:100%;
 	height:30px;
 	background-color:#333;
 	font-size:18px;
@@ -671,7 +719,7 @@ div#footer-links p {
 }
 .email
 {
-	width:295px;
+	width:100%;
 	height:30px;
 	background-color:#333;
 	font-size:18px;
@@ -690,7 +738,7 @@ div#footer-links p {
 }
 .amt
 {
-	width:115px;
+	width:100%;
 	height:30px;
 	background-color:#333;
 	font-size:18px;
@@ -699,7 +747,7 @@ div#footer-links p {
 }
 .from
 {
-	width:285px;
+	width:100%;
 	height:30px;
 	background-color:#333;
 	font-size:18px;
@@ -718,7 +766,7 @@ div#footer-links p {
 
 .ci
 {
-	width:115px;
+	width:100%;
 	height:30px;
 	background-color:#333;
 	font-size:18px;
@@ -974,10 +1022,11 @@ div#footer-links p {
 }
 .tab1
 {
+	margin-top:40px;
 	margin-left:200px;
 	width:700px;
 	color:#FFF;
-	height:200px;
+	height:400px;
 	
 }
 .tab2
@@ -985,8 +1034,8 @@ div#footer-links p {
 	margin-left:800px;
 	width:400px;
 	color:#FFF;
-	height:200px;
-	margin-top:-200px;
+	height:400px;
+	margin-top:-400px;
 }
 
 .addemp_tab
@@ -1110,6 +1159,12 @@ div#footer-links p {
 {
 	margin-top:30px;
 	margin-left:1065px;
+	
+}
+.booking
+{
+	margin-top:30px;
+	margin-left:898px;
 	
 }
 .update

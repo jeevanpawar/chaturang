@@ -4,6 +4,9 @@
 					<ul id="nav">
 						<li class="selected"><a href="home.php">Home</a></li>
             <li ><a href="booking.php">Booking Form</a>
+            	<ul>
+                    <li><a href="newbooking.php">New Booking</a></li>
+                </ul>
             
             </li>
             <li><a class="has_submenu" href="payment.php">Payments</a>

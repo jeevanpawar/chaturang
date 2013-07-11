@@ -4,60 +4,45 @@ error_reporting(0);
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 include("../include/database.php");
+
 ?>
 <?php
 	if(isset($_REQUEST['add']))
 	{
-		$i=$_REQUEST['id_a'];
+		$i=$_REQUEST['id_p'];
 		$o='1';
-		$qry_up="update booking_form SET b_hotel='".$o."' where b_id='$i'";
+		$qry_up="update booking_form SET b_pass='".$o."' where b_id='$i'";
 		$res_up=mysql_query($qry_up);
-		
-		$d=$_POST['v_name'];
+				
+		$d=$_POST['p_name'];
 		$b = count($d);
 		for($i=0; $i<$b; $i++)
 		{
-			$id=$_REQUEST['id_a'];
-		    $h1=$_POST['v_name'][$i];
-			$h2=$_POST['h_name'][$i];
-			$h3=$_POST['place1'][$i];
-			$h4=$_POST['room1'][$i];
-			$h5=$_POST['meal1'][$i];
-			$h6=$_POST['cin1'][$i];
-			$d6=date('Y-m-d', strtotime($h6));
-			$h7=$_POST['cout1'][$i];
-			$d7=date('Y-m-d', strtotime($h7));
-			$qry_hotel="insert into hotel_acomodation(c_id,b_id,h_vendor,h_hotel,h_place,h_room,h_meal,h_cin,h_cout) values('".$c."','".$id."','".$h1."','".$h2."','".$h3."','".$h4."','".$h5."','".$d6."','".$d7."')";
-			$res_hotel=mysql_query($qry_hotel);
-		
-			if($res_hotel)
-			{
-				header("location:booking.php");
-			}
-			else
-			{
-				echo "error";
-			}
-		}		
+			$id=$_REQUEST['id_p'];
+		    $p1=$_POST['p_name'][$i];
+			$p2=$_POST['p_mf'][$i];
+			$p3=$_POST['p_age'][$i];
+			$p4=$_POST['p_bdate'][$i];
+			$bdate=date('Y-m-d', strtotime($p4));
+			$p5=$_POST['p_contact'][$i];
+			$p6=$_POST['p_email'][$i];
+	     	$qry_p="insert into pass_info(c_id,b_id,p_name,p_mf,p_age,p_bdate,p_contact,p_email) values('".$c."','".$id."','".$p1."','".$p2."','".$p3."','".$bdate."','".$p5."','".$p6."')";
+			$res_p=mysql_query($qry_p);
+		}
+		if($res_p)
+		{
+			header("location:booking.php");
+		}
+		else
+		{
+			echo "error";
+		}
 	}
-	
 	if(isset($_REQUEST['can']))
 	{
 		header("location:booking.php");
 	}
 ?>
-<?php
-$res=mysql_query("select * from hotel");
-$ress=mysql_query("select * from hotel");
-
-$res_r=mysql_query("select * from room_type");
-$res_rs=mysql_query("select * from room_type");
-
-$res_m=mysql_query("select * from meal");
-$res_ms=mysql_query("select * from meal");
-
-?>
-
 <html>
 <head>
 <title>Chaturang Tours Pvt Ltd</title>
@@ -120,77 +105,42 @@ function addRow(tableID) {
 </head>
 <body>
 <div id="container">
-<div id="sub-header">
+	<div id="sub-header">
     <?php
 		include("include/p_header.php");	
 	?>
-    <br />
-	<div class="quotation"><center>Hotel Accommodation Detail</center></div>
+    	<br />
+        <div>
+        <form action="" method="post">
+  	    
+         <div class="quotation"><center>Passenger Information</center></div>
 		 <div class="adddel">
          <input type="button" value="+" class="add" onClick="addRow('dataTable')" >&nbsp;
 		 <input type="button" value="-" class="add" onClick="deleteRow('dataTable')" >
          </div>
-
-        <div>
-        <form action="" method="post">
          <table class="emp_tab">
          <tr class="menu_header">
          <td width="2%">S</td>
-         <td width="25%">Vendor's Name</td>
-         <td width="23%">Hotel Name</td>
-         <td width="10%">Place</td>
-         <td width="10%">Room</td>
-         <td width="10%">Meal PLN</td>
-         <td width="10%">C/I</td>
-         <td width="10%">C/O</td>
+         <td width="30%">Tourists Name</td>
+         <td width="10%">M/F</td>
+         <td width="10%">DOB</td>
+         <td width="10%">Age</td>
+         <td width="15%">Contact No</td>
+         <td width="23%">Email</td>
          </tr>
          </table>
          <table class="emp_tab" id="dataTable">
          <tr>
          <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
-         <td width="25%"><input class="from" name="v_name[]" type="text"></td>
-         <td width="23%">
-         <select name="h_name[]" class="hotel">
-         <?php
-		 while($row=mysql_fetch_array($res))
-		 {
-         echo "<option>";
-         echo $row[2];
-         echo "</option>";
-		 }
-		 ?>
-         </select>
-         </td>
-         <td width="10%"><input class="ci" name="place1[]" type="text"></td>
-         <td width="10%">
-         <select name="room1[]" class="hotel">
-         <?php
-		 while($row_r=mysql_fetch_array($res_r))
-		 {
-         echo "<option>";
-         echo $row_r[1];
-         echo "</option>";
-		 }
-		 ?>
-         </select>
-         </td>
-         <td width="10%">
-         <select name="meal1[]" class="hotel">
-         <?php
-		 while($row_m=mysql_fetch_array($res_m))
-		 {
-         echo "<option>";
-         echo $row_m[1];
-         echo "</option>";
-		 }
-		 ?>
-         </select>
-         </td>
-         <td width="10%"><input class="ci" name="cin1[]" type="text"></td>
-         <td width="10%"><input class="ci" name="cout1[]" type="text"></td>
+         <td width="30%"><input class="name" name="p_name[]" type="text"></td>
+         <td width="10%"><select name="p_mf[]" class="mf"><option>Male</option><option>Female</option></select></td>
+         <td width="10%"><input class="amt" name="p_bdate[]" type="text"></td>
+         <td width="10%"><input class="amt" name="p_age[]" type="text"></td>
+         <td width="15%"><input class="contact" name="p_contact[]" type="text"></td>
+         <td width="23%"><input class="email" name="p_email[]" type="text"></td>
          </tr>
          </table>
-         <div class="addclients_b">
+        <div class="addclients_b">
          <input name="add" class="formbutton" value=" Add " type="submit" />
          <input name="can" class="formbutton" value="Cancel" type="submit" />
         </div>
