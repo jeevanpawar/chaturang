@@ -1,140 +1,180 @@
-function print_today() {
-  // ***********************************************
-  // AUTHOR: WWW.CGISCRIPT.NET, LLC
-  // URL: http://www.cgiscript.net
-  // Use the script, just leave this message intact.
-  // Download your FREE CGI/Perl Scripts today!
-  // ( http://www.cgiscript.net/scripts.htm )
-  // ***********************************************
-  var now = new Date();
-  var months = new Array('January','February','March','April','May','June','July','August','September','October','November','December');
-  var date = ((now.getDate()<10) ? "0" : "")+ now.getDate();
-  function fourdigits(number) {
-    return (number < 1000) ? number + 1900 : number;
+<?php
+session_start();
+
+$a=$_SESSION['user'];
+$c=$_SESSION['com'];
+include("../include/database.php");
+$qry_i="select * from invoice where c_id='$c' order by i_no desc";
+$res_i=mysql_query($qry_i);
+$row=mysql_fetch_array($res_i);
+$count=$row[1]+1;
+echo $count;
+?>
+
+<?php
+
+if(isset($_REQUEST['submit']))
+{	
+	$t1=$_REQUEST['i_no'];
+	$t2=$_REQUEST['i_name'];
+	$t3=$_REQUEST['i_address'];
+	$t4=$_REQUEST['i_word'];
+	$t5=$_REQUEST['i_advance'];
+	$t6=$_REQUEST['i_tax'];
+	$qry="insert into invoice(i_id,c_id,i_name,i_address,i_word,i_advance,i_tax) values('".$t1."','".$c."','".$t2."','".$t3."','".$t4."','".$t5."','".$t6."')";
+	$res=mysql_query($qry);
+	
+	$h=$_POST['s'];
+	$d = count($h);
+	for($i=0; $i<$d; $i++)
+	{
+		
+		$q_s=$_POST['s'][$i];
+		$q_d=$_POST['d'][$i];
+		$q_r=$_POST['r'][$i];
+		$q_a=$_POST['a'][$i];
+			
+	$quo="insert into sub_invoice(i_id,c_id,s_no,des,rate,amt) values('".$t1."','".$c."','".$q_s."','".$q_d."','".$q_r."','".$q_a."')";
+	$quo_res=mysql_query($quo);
+
+	}
+	
+	if($res)
+	{
+		header("location:invoicedetails.php");
+	}
+	else
+	{
+		echo"error";
+	}
+	
+}
+if(isset($_REQUEST['cancel']))
+{
+	header("location:invoicedetails.php");
+}
+
+
+?>
+<html>
+<head>
+<title>Chaturang Tours Pvt Ltd</title>
+<link rel="stylesheet" href="../styles2.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+
+<script>
+ var counter = 1;
+ function add_phone_field()
+ {
+  var obj = document.getElementById("phone");
+  var data = obj.innerHTML;
+  data += "<table class='des'><tr><td><input class='des_sr' type='text' name='s["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='des_in' type='text' name='d["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='des_cap' type='text' name='r["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='des_q' type='text' name='a["+counter+"]' id='person_phone"+counter+"' /></td></tr></table>";
+  obj.innerHTML = data;
+  counter++;
   }
-  var today =  months[now.getMonth()] + " " + date + ", " + (fourdigits(now.getYear()));
-  return today;
-}
-
-// from http://www.mediacollege.com/internet/javascript/number/round.html
-function roundNumber(number,decimals) {
-  var newString;// The new rounded number
-  decimals = Number(decimals);
-  if (decimals < 1) {
-    newString = (Math.round(number)).toString();
-  } else {
-    var numString = number.toString();
-    if (numString.lastIndexOf(".") == -1) {// If there is no decimal point
-      numString += ".";// give it one at the end
-    }
-    var cutoff = numString.lastIndexOf(".") + decimals;// The point at which to truncate the number
-    var d1 = Number(numString.substring(cutoff,cutoff+1));// The value of the last decimal place that we'll end up with
-    var d2 = Number(numString.substring(cutoff+1,cutoff+2));// The next decimal, after the last one we want
-    if (d2 >= 5) {// Do we need to round up at all? If not, the string will just be truncated
-      if (d1 == 9 && cutoff > 0) {// If the last digit is 9, find a new cutoff point
-        while (cutoff > 0 && (d1 == 9 || isNaN(d1))) {
-          if (d1 != ".") {
-            cutoff -= 1;
-            d1 = Number(numString.substring(cutoff,cutoff+1));
-          } else {
-            cutoff -= 1;
-          }
-        }
-      }
-      d1 += 1;
-    } 
-    if (d1 == 10) {
-      numString = numString.substring(0, numString.lastIndexOf("."));
-      var roundedNum = Number(numString) + 1;
-      newString = roundedNum.toString() + '.';
-    } else {
-      newString = numString.substring(0,cutoff) + d1.toString();
-    }
-  }
-  if (newString.lastIndexOf(".") == -1) {// Do this again, to the new string
-    newString += ".";
-  }
-  var decs = (newString.substring(newString.lastIndexOf(".")+1)).length;
-  for(var i=0;i<decimals-decs;i++) newString += "0";
-  //var newNumber = Number(newString);// make it a number if you like
-  return newString; // Output the result to the form field (change for your purposes)
-}
-
-function update_total() {
-  var total = 0;
-  $('.price').each(function(i){
-    price = $(this).html().replace("Rs ","");
-    if (!isNaN(price)) total += Number(price);
-  });
-
-  total = roundNumber(total,2);
-
-  $('#subtotal').html("Rs "+total);
-  $('#total').html("Rs "+total);
+ </script>
   
-  update_balance();
-}
+</head>
 
-function update_balance() {
-  var due = $("#total").html().replace("Rs ","") - $("#paid").val().replace("Rs ","");
-  due = roundNumber(due,2);
-  
-  $('.due').html("Rs "+due);
-}
-
-function update_price() {
-  var row = $(this).parents('.item-row');
-  var price = row.find('.cost').val().replace("Rs ","") * row.find('.qty').val();
-  price = roundNumber(price,2);
-  isNaN(price) ? row.find('.price').html("N/A") : row.find('.price').html("Rs "+price);
-  
-  update_total();
-}
-
-function bind() {
-  $(".cost").blur(update_price);
-  $(".qty").blur(update_price);
-}
-
-$(document).ready(function() {
-
-  $('input').click(function(){
-    $(this).select();
-  });
-
-  $("#paid").blur(update_balance);
-   $id=1;
-  $("#addrow").click(function(){
-    $(".item-row:last").after('<tr class="item-row"><td class="item-name"><div class="delete-wpr"><textarea name="r[]" >Item Name</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td><td class="description"><textarea>Description</textarea></td><td><textarea class="cost">Rs 0</textarea></td><td><textarea class="qty">0</textarea></td><td><span class="price">Rs 0</span></td></tr>');
-    $id++;
-	if ($(".delete").length > 0) $(".delete").show();
-    bind();
-  });
-  
-  bind();
-  
-  $(".delete").live('click',function(){
-    $(this).parents('.item-row').remove();
-    update_total();
-    if ($(".delete").length < 2) $(".delete").hide();
-  });
-  
-  $("#cancel-logo").click(function(){
-    $("#logo").removeClass('edit');
-  });
-  $("#delete-logo").click(function(){
-    $("#logo").remove();
-  });
-  $("#change-logo").click(function(){
-    $("#logo").addClass('edit');
-    $("#imageloc").val($("#image").attr('src'));
-    $("#image").select();
-  });
-  $("#save-logo").click(function(){
-    $("#image").attr('src',$("#imageloc").val());
-    $("#logo").removeClass('edit');
-  });
-  
-  $("#date").val(print_today());
-  
-});
+<body>
+<div id="container">
+	
+    
+    <div id="sub-header">
+    			
+                <div class="quo">
+                
+                
+                <form name="form5" action="" method="post" enctype="multipart/form-data">
+                <br />
+                <div class="quotationI"><center>INVOICE</center></div>
+                <br />
+                <table class="invoice">
+                <tr><td class="l_form">Invoce No:</td>
+                <td>
+                <input type="text" class="q_in" name="i_no" readonly value="<?php echo $count; ?>">
+				</td>
+                <tr><td class="l_form">Client Name:</td>
+                <td>
+                <input type="text" class="q_in" name="i_name">
+				</td>
+                </tr>
+                <tr>
+                <td class="l_form">Address:</td><td><textarea class="q_add" name="i_address"></textarea></td></tr>
+                </table>
+                <table class="invoice1">
+                <tr><td class="l_form">&nbsp;</td>
+                <td>&nbsp;
+                
+				</td>
+                </tr>
+                <tr>
+                <td class="l_form">Advance:</td>
+                <td>
+                <input type="text" class="q_in" name="i_advance" >
+				</td>
+                </tr>
+                <tr>
+                <td class="l_form">S.Tax:</td>
+                <td>
+                <input type="text" class="q_in" name="i_tax">
+				</td>
+                </tr>
+                </table>
+                <table class="des">
+                <tr class="menu_header">
+                <td>Sr.No.</td>
+                <td>Particulars</td>
+                <td width="100">Rate</td>
+                <td width="100">Amount</td>
+                </tr>
+                <span style="color:#00f;font-size:20px; margin-left:100px;font-weight:bold;cursor:pointer;" onClick="add_phone_field()">[+]</span>
+                <tr>
+                <td>
+                 <input class="des_sr" type="text" name="s[]" id="0"><br>
+                </td>
+                <td>
+                 <input class="des_in" type="text" name="d[]" id="0"><br>
+                </td>
+                <td>
+                 <input class="des_cap" type="text" name="r[]" id="0"><br>
+                </td>
+                <td>
+                 <input class="des_q" type="text" name="a[]" id="0"><br>
+                </td>
+                
+                </tr>
+                
+                </table>
+                
+                 <div id="phone">
+                
+                </div>
+                <table class="word">
+                <tr>
+                <td>Amount In a Word</td>
+              
+                <td><input type="text" class="i_in" name="i_word"></td>
+                </tr>
+                </table>
+                <div class="invoice_b">
+            	<input name="submit" class="formbutton" value=" Submit " type="submit"/>
+                <input name="cancel" class="formbutton" value="Cancel" type="submit"/>
+                </div>
+                
+                </form>
+  				</div>
+                
+                </div>
+                
+        
+    
+    	<div class="clear"></div>
+    
+</div>
+ <div id="footer">
+     <div class="clear"></div> 
+    </div>
+    </div>
+</body>
+</html>
