@@ -1135,10 +1135,7 @@ div#footer-links p {
 	margin-top:30px;
 	margin-left:250px;
 	font-size:18px;
-	border:2px solid #333;
 	color:#000;
-	border: 5px solid #333;
-
 	box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.3), 
              0px 20px 15px 0px rgba(0, 0, 0, 0.6); 
 }
