@@ -225,11 +225,11 @@ function addRow1(tableID) {
 				</td>
                 </tr>
                 </table>
-                <table class="emp_tab">
+                <table class="service">
                 <tr>
-                <td>Booked to Stay with You from</td>
-                <td><input type="text" class="q_in"></td>
+                <td width="310">Booked to Stay with You from</td><td><input type="text" class="s_i"></td>
                 </tr>
+                
                 </table>
                 <table class="service" id="service">
                 <tr>
@@ -241,7 +241,7 @@ function addRow1(tableID) {
                 </td>
                 </tr>
                 </table>
-                <table class="service" id="dataTable">
+                <table class="service1" id="dataTable">
                 <tr>
                 <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
                 <td><input type="text" class="s_s"></td>
@@ -258,7 +258,7 @@ function addRow1(tableID) {
                 </td>
                 </tr>
                 </table>
-                <table class="service" id="dataTable1">
+                <table class="service1" id="dataTable1">
                 <tr>
                 <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
                 <td><input type="text" class="s_s"></td>
@@ -267,17 +267,24 @@ function addRow1(tableID) {
                 </table>
                 <table class="service" id="service">
                 <tr>
-                <td>Billing Instructions
+                <td width="310">Billing Instructions
                 </td>
-                </tr>
-                <tr>
                 <td><input type="text" class="s_i">
                 </td>
                 </tr>
                 </table>
+                <table class="service" id="service">
+                <tr>
+                <td width="310">Remarks
+                </td>
+                <td><input type="text" class="s_i">
+                </td>
+                </tr>
+                
+                </table>
                 
                 
-                <div class="invoice_b">
+                <div class="service_b">
             	<input name="submit" class="formbutton" value=" Submit " type="submit" onClick="javascript:return validateMyForm();" />
                 <input name="cancel" class="formbutton" value="Cancel" type="submit" />
                 </div>

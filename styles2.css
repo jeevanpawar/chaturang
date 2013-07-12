@@ -669,7 +669,7 @@ div#footer-links p {
 }
 .s_in
 {
-	width:700px;
+	width:640px;
 	height:35px;
 	border:1px solid #999;
 	background-color:#FFF;
@@ -679,7 +679,7 @@ div#footer-links p {
 }
 .s_i
 {
-	width:780px;
+	width:695px;
 	height:35px;
 	border:1px solid #999;
 	background-color:#FFF;
@@ -917,6 +917,11 @@ div#footer-links p {
 .invoice_b
 {
 	margin-left:872px;
+	margin-top:10px;
+}
+.service_b
+{
+	margin-left:925px;
 	margin-top:10px;
 }
 .des_sr
@@ -1366,8 +1371,8 @@ option
 }
 .h_tab1
 {
-	margin-top:20px;
-	height:300px;
+	margin-top:5px;
+	height:250px;
 	width:500px;
 	margin-left:150px;
 	color:#000;
@@ -1377,15 +1382,19 @@ option
 .service
 {
 	margin-left:150px;
-	width:900px;
+	font-size:18px;
+}
+.service1
+{
+	margin-left:450px;
 	font-size:18px;
 }
 .h_tab2
 {
-	height:300px;
+	height:250px;
 	width:400px;
 	margin-left:780px;
-	margin-top:-300px;
+	margin-top:-250px;
 	color:#000;
 	letter-spacing:1px;
 	font-size:18px;
