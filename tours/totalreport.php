@@ -1,6 +1,10 @@
 <?php
+session_start();
 error_reporting(0);
-include("include/database.php");
+include("../include/database.php");
+$a=$_SESSION['user'];
+$c=$_SESSION['com'];
+
 ?>
 <html>
 <head>
@@ -16,15 +20,11 @@ include("include/database.php");
     <?php
 	include("include/p_header.php");
 	?>
-    
-    
-   
-    	<br />
+       	<br />
 		<div class="quotation"><center>Total Income & Expense Report Of This Year</center></div>
         <div>
-        
         <table class="emp_tab">
-        <tr class="emp_header">
+        <tr class="menu_header">
         <td>Month</td>
         <td>Income</td>
         <td>Expense</td>
@@ -264,7 +264,6 @@ include("include/database.php");
 		
 		$bal=$row_yi[0]-$row_ye[0];
 		?>
-        
         <div class="to">Total Income&nbsp;&nbsp;:&nbsp;<?php echo $row_yi[0].'&nbsp;'.'Rs'.'/-'; ?></div>
         <div class="to">Total Expense&nbsp;:&nbsp;<?php echo $row_ye[0].'&nbsp;'.'Rs'.'/-'; ?></div>
         <div class="to">Total Balance&nbsp;&nbsp;:&nbsp;<?php echo $bal.'&nbsp;'.'Rs'.'/-'; ?></div>

@@ -109,7 +109,14 @@ function addRow(tableID) {
    getValues();
 }
 </script>
-
+<script type="text/javascript">
+$('#pdate').change(function () {
+    var date1 = new Date($(this).val());
+    var date2 = new Date();
+    var diffDays = date2.getDate() - date1.getDate();
+    $('body').append('<div id="' + diffDays + '">' + diffDays + '</div>');
+});
+</script>
 </head>
 <body>
 <div id="container">
@@ -156,20 +163,18 @@ function addRow(tableID) {
          </select>
 
          </td>
-         <td width="15%"><input class="ci" name="p_date[]"type="text"></td>
-         <td width="10%"><input class="ci" name="p_point[]" type="text"></td>
-         <td width="15%"><input class="ci" name="d_date[]" type="text"></td>
+         <td width="15%"><input class="ci" name="p_date[]" type="date" id="pdate"></td>
+         <td width="10%"><input class="ci" name="p_point[]" ></td>
+         <td width="15%"><input class="ci" name="d_date[]" type="date" id="ddate"></td>
          <td width="10%"><input class="ci" name="d_point[]" type="text"></td>
-         <td width="8%"><input class="ci" name="days[]" type="text"></td>
+         <td width="8%"><input class="ci" name="days[]" id="day" type="text"></td>
          </tr>
          </table>
-              
         <div class="addclients_b">
          <input name="add" class="formbutton" value=" Add " type="submit" />
          <input name="can" class="formbutton" value="Cancel" type="submit" />
         </div>
-        
-        </form>
+         </form>
     </div>
     </div>
            

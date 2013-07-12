@@ -4,16 +4,10 @@ error_reporting(0);
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 include("../include/database.php");
-
 ?>
 <?php
 	if(isset($_REQUEST['add']))
 	{
-		$i=$_REQUEST['id_p'];
-		$o='1';
-		$qry_up="update booking_form SET b_pass='".$o."' where b_id='$i'";
-		$res_up=mysql_query($qry_up);
-				
 		$d=$_POST['p_name'];
 		$b = count($d);
 		for($i=0; $i<$b; $i++)
@@ -121,9 +115,9 @@ function addRow(tableID) {
          <table class="emp_tab">
          <tr class="menu_header">
          <td width="2%">S</td>
-         <td width="24%">Tourists Name</td>
+         <td width="30%">Tourists Name</td>
          <td width="10%">M/F</td>
-         <td width="16%">DOB</td>
+         <td width="10%">DOB</td>
          <td width="10%">Age</td>
          <td width="15%">Contact No</td>
          <td width="23%">Email</td>
@@ -132,9 +126,9 @@ function addRow(tableID) {
          <table class="emp_tab" id="dataTable">
          <tr>
          <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
-         <td width="24%"><input class="name" name="p_name[]" type="text"></td>
+         <td width="30%"><input class="name" name="p_name[]" type="text"></td>
          <td width="10%"><select name="p_mf[]" class="mf"><option>Male</option><option>Female</option></select></td>
-         <td width="16%"><input class="amt" name="p_bdate[]" type="date"></td>
+         <td width="10%"><input class="amt" name="p_bdate[]" type="text"></td>
          <td width="10%"><input class="amt" name="p_age[]" type="text"></td>
          <td width="15%"><input class="contact" name="p_contact[]" type="text"></td>
          <td width="23%"><input class="email" name="p_email[]" type="text"></td>

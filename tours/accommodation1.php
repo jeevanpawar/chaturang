@@ -48,6 +48,14 @@ if(isset($_REQUEST['id']))
 		header("location:home.php");
 	}
 ?>
+<?php
+$res=mysql_query("select * from hotel");
+$ress=mysql_query("select * from hotel");
+
+$res_r=mysql_query("select * from room_type");
+$res_rs=mysql_query("select * from root_type");
+
+?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -62,7 +70,7 @@ if(isset($_REQUEST['id']))
  {
   var obj = document.getElementById("phone");
   var data = obj.innerHTML;
-  data += "<table class='emp_tab'><tr class='emp_header'><td><input class='from' type='text' name='v_name["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='dob' type='text' name='h_name["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='place["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='room["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='meal["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='cin["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='cout["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='pax' type='text' name='amt["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='pax' type='text' name='pay["+counter+"]' id='person_phone"+counter+"' /></td></tr></table>";
+  data += "<table class='emp_tab'><tr class='emp_header'><td><select><?php while($row=mysql_fetch_array($res)){ echo '<option>'; echo $row[2]; echo '</option>';} ?></select></td><td><input class='dob' type='text' name='h_name["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='place["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='room["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='meal["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='cin["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='cout["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='pax' type='text' name='amt["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='pax' type='text' name='pay["+counter+"]' id='person_phone"+counter+"' /></td></tr></table>";
   obj.innerHTML = data;
   counter++;
   }
@@ -95,8 +103,29 @@ if(isset($_REQUEST['id']))
          <td>Payment</td>
          </tr>
          <tr class="emp_header">
-         <td><input class="from" name="v_name[]" type="text"></td>
-         <td><input class="dob" name="h_name[]" type="text"></td>
+         <td><select>
+         <?php
+		 while($rows=mysql_fetch_array($ress))
+		 {
+         echo "<option>";
+         echo $rows[2];
+         echo "</option>";
+		 }
+		 ?>
+         </select></td>
+         <td>
+         
+         <select>
+         <?php
+		 while($row=mysql_fetch_array($res))
+		 {
+         echo "<option>";
+         echo $row[2];
+         echo "</option>";
+		 }
+		 ?>
+         </select>
+         </td>
          <td><input class="ci" name="place1[]" type="text"></td>
          <td><input class="ci" name="room1[]" type="text"></td>
          <td><input class="ci" name="meal1[]" type="text"></td>

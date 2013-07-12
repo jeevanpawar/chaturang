@@ -2,17 +2,18 @@
 session_start();
 error_reporting(0);
 include("../include/database.php");
-
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
+
 $per_page = 25; 
 if($_GET)
 {
  $page=$_GET['page'];
 }
+include("../include/database.php");
 	
 $start = ($page-1)*$per_page;
-$qry_u="select * from booking_form order by bkg_date desc where c_id='$c' limit $start,$per_page";
+$qry_u="select * from booking_form where c_id='$c' order by bkg_date desc limit $start,$per_page";
 $res_u=mysql_query($qry_u);
 		
 ?>

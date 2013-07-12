@@ -23,11 +23,7 @@
                 </ul>
             </li>
             
-            <li><a href="clients.php">Clients</a>
-            		<ul>
-                    <li><a href="addclients.php">Add New Clients</a></li>
-                    </ul>
-            </li>
+            
             
             <li><a class="has_submenu" href="invoicedetails.php">Invoice</a>
             		<ul>
@@ -35,12 +31,7 @@
                 
                     </ul>
             </li>
-            <li><a class="has_submenu" href="quotation.php">Quotation</a>
-            		<ul>
-                    <li><a href="addquo.php">Generate Quotation</a></li>
-                	
-                    </ul>
-            </li>
+           
             
             <li><a class="has_submenu"  href="term.php">T & C</a>
             <ul>

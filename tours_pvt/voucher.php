@@ -17,14 +17,20 @@ $c_row=mysql_fetch_array($c_res);
 
 if(isset($_REQUEST['submit']))
 {	
-	$t2=$_REQUEST['i_name'];
-	$t3=$_REQUEST['i_address'];
-	$t4=$_REQUEST['i_word'];
-	$t5=$_REQUEST['i_advance'];
-	$t6=$_REQUEST['i_tax'];
-	$qry="insert into invoice(c_id,i_name,i_address,i_word,i_advance,i_tax) values('".$c."','".$t2."','".$t3."','".$t4."','".$t5."','".$t6."')";
+	$t1=$_POST['t1'];
+	$t2=$_POST['t2'];
+	$t3=$_POST['t3'];
+	$t4=$_POST['t4'];
+	$t5=date('Y-m-d', strtotime($_POST['t5']));
+	$t6=$_POST['t6'];
+	$t7=$_POST['t7'];
+	$t8=$_POST['t8'];
+	$t9=$_POST['t9'];
+	$t10=$_POST['t10'];
+	$t11=$_POST['t11'];
+	$qry="insert into hotel_confirmation(c_id,b_id,hc_add,hc_date,hc_service,hc_cin) values('".$c."','".$t1."','".$t2."','".$t5."','".$t6."')";
 	$res=mysql_query($qry);
-	
+	$insert=mysql_insert_id();
 	
 	if($res)
 	{
@@ -40,10 +46,6 @@ if(isset($_REQUEST['cancel']))
 {
 	header("location:invoicedetails.php");
 }
-$qry_i="select * from invoice";
-$res_i=mysql_query($qry_i);
-$count=mysql_num_rows($res_i);
-$i_no=$count+1;
 
 ?>
 <html>
@@ -158,17 +160,10 @@ function addRow1(tableID) {
 }
 </script>
 </head>
-
 <body>
 <div id="container">
-	
-    
     <div id="sub-header">
-    			
-                <?php
-		   include("include/p_header.php");
-		?>
-                               
+        <?php  include("include/p_header.php");	?>
                 <form name="form5" action="" method="post" enctype="multipart/form-data">
                 <br />
                 <div class="quotation"><center>Hotel Confirmation Form</center></div>
@@ -177,57 +172,53 @@ function addRow1(tableID) {
                 
                 <tr><td class="l_form">Ref No:</td>
                 <td>
-                <input type="text" class="q_in" name="i_no" value="<?php echo date('d-m-Y'); ?>">
+                <input type="text" class="q_in" name="t1" value="<?php echo $c_row[2]; ?>">
 				</td>
                 </tr>
                 <tr>
-                <td class="l_form">Hotel Address:</td><td><textarea class="q_add" name="i_address"><?php echo $c_row[4]; ?></textarea></td></tr>
+                <td class="l_form">Hotel Address:</td><td><textarea class="q_add" name="t2"><?php echo $c_row[4]; ?></textarea></td></tr>
                 
                 <tr>
                 <tr><td class="l_form">C_In</td>
                 <td>
-                <input type="text" class="q_in" name="i_no" value="<?php echo $c_row[2]; ?>">
+                <input type="text" class="q_in" name="t3">
 				</td>
                 </tr>
                 
                
                 <tr><td class="l_form">Reservation Confirmation By:</td>
                 <td>
-                <input type="text" class="q_in" name="i_no" value="<?php echo date('d-m-Y'); ?>">
+                <input type="text" class="q_in" name="t4">
 				</td>
                 </tr>
-                
-                
-                
-                
-                
+                                          
                 </table>
                 <table class="h_tab2">
                 <tr><td class="l_form">Date:</td>
                 <td>
-                <input type="text" class="q_in" name="i_no" value="<?php echo date('d-m-Y'); ?>">
+                <input type="text" class="q_in" name="t5" value="<?php echo date('d-m-Y'); ?>">
 				</td>
                 </tr>
-                <tr><td class="l_form">Provide the<br> Following Service:</td>
+                <tr><td class="l_form">Service To:</td>
                 <td>
-                <input type="text" class="q_in" name="i_no" value="<?php echo date('d-m-Y'); ?>">
+                <input type="text" class="q_in" name="t6">
 				</td>
                 </tr>
                 <tr>
                 <tr><td class="l_form">C_Out</td>
                 <td>
-                <input type="text" class="q_in" name="i_no" value="<?php echo $c_row[2]; ?>">
+                <input type="text" class="q_in" name="t7">
 				</td>
                 </tr>
                 <tr><td class="l_form">Confirmed by:</td>
                 <td>
-                <input type="text" class="q_in" name="i_no" value="<?php echo date('d-m-Y'); ?>">
+                <input type="text" class="q_in" name="t8">
 				</td>
                 </tr>
                 </table>
                 <table class="service">
                 <tr>
-                <td width="310">Booked to Stay with You from</td><td><input type="text" class="s_i"></td>
+                <td width="310">Booked to Stay with You from</td><td><input type="text" class="s_i" name="t9"></td>
                 </tr>
                 
                 </table>
@@ -269,7 +260,7 @@ function addRow1(tableID) {
                 <tr>
                 <td width="310">Billing Instructions
                 </td>
-                <td><input type="text" class="s_i">
+                <td><input type="text" class="s_i" name="t10">
                 </td>
                 </tr>
                 </table>
@@ -277,7 +268,7 @@ function addRow1(tableID) {
                 <tr>
                 <td width="310">Remarks
                 </td>
-                <td><input type="text" class="s_i">
+                <td><input type="text" class="s_i" name="t11">
                 </td>
                 </tr>
                 

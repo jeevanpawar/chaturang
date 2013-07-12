@@ -116,10 +116,10 @@ body
 }
 .tour
 {
-	letter-spacing:5px;
+	letter-spacing:1px;
 	font-size:30px;
-	margin-left:35px;
-			text-shadow: 1px 3px 2px #666;
+	margin-left:31px;
+	text-shadow: 1px 3px 2px #666;
 
 }
 .all

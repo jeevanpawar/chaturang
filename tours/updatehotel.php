@@ -34,8 +34,10 @@ if(isset($_REQUEST['uid']))
 		$t7=$_POST['h_ph'];
 		$t8=$_POST['h_email'];
 		$t9=$_POST['h_pin'];
+		$t10=$_POST['b_name'];
+		$t11=$_POST['b_ac'];
 		
-	$up_qry="update hotel SET h_date='".$t1."', h_name='".$t2."', h_address='".$t3."', h_reg='".$t4."' ,h_pname='".$t5."', h_mob='".$t6."', h_ph='".$t7."', h_email='".$t8."', h_pin='".$t9."' where h_id='$updhotel'";
+	$up_qry="update hotel SET h_date='".$t1."', h_name='".$t2."', h_address='".$t3."', h_reg='".$t4."' ,h_pname='".$t5."', h_mob='".$t6."', h_ph='".$t7."', h_email='".$t8."', h_pin='".$t9."', h_bank='".$t10."', h_ac='".$t11."' where h_id='$updhotel'";
 	
 	$up_res=mysql_query($up_qry);
 	
@@ -78,6 +80,7 @@ if(isset($_REQUEST['uid']))
                 <tr><td class="l_form">Hotel Name:</td><td><input class="q_in" type="text" name="h_name" value="<?php  echo $update_hotel[2]; ?>" /></td></tr>
  	            <tr><td class="l_form">Address:</td><td><textarea class="q_add" name="h_address"><?php  echo $update_hotel[3]; ?></textarea></td></tr>
                 <tr><td class="l_form">Registration No:</td><td><input class="q_in" type="text" name="h_reg" value="<?php  echo $update_hotel[4]; ?>"/></td></tr>
+                <tr><td class="l_form">Bank Name:</td><td><input class="q_in" type="text" name="b_name" value="<?php  echo $update_hotel[10]; ?>"/></td></tr>
                 </table>
                 
                 
@@ -85,7 +88,9 @@ if(isset($_REQUEST['uid']))
                 <tr><td class="l_form">Concern Person:</td><td><input class="q_in" type="text" name="h_pname" value="<?php  echo $update_hotel[5]; ?>" /></td></tr>
                 <tr><td class="l_form">Mobile No:</td><td><input class="q_in" type="text" name="h_mob" value="<?php  echo $update_hotel[6]; ?>" ></td></tr>
                 <tr><td class="l_form">Phone No:</td><td><input class="q_in" type="text" name="h_ph" value="<?php  echo $update_hotel[7]; ?>"/></td></tr>
- 	             <tr><td class="l_form">E-Mail:</td><td><input class="q_in" type="text" name="h_email" value="<?php  echo $update_hotel[8]; ?>"/></td></tr>              		<tr><td class="l_form">Pin Code:</td><td><input class="q_in" type="text" name="h_pin" value="<?php  echo $update_hotel[9]; ?>"/></td></tr>
+ 	             <tr><td class="l_form">E-Mail:</td><td><input class="q_in" type="text" name="h_email" value="<?php  echo $update_hotel[8]; ?>"/></td></tr>              		
+                 <tr><td class="l_form">Pin Code:</td><td><input class="q_in" type="text" name="h_pin" value="<?php  echo $update_hotel[9]; ?>"/></td></tr>
+                 <tr><td class="l_form">Bank Account No:</td><td><input class="q_in" type="text" name="b_ac" value="<?php  echo $update_hotel[11]; ?>"/></td></tr>
                 </table>
                 
         <div class="add_h">

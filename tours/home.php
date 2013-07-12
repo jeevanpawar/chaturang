@@ -1,13 +1,12 @@
 <?php
 session_start();
 error_reporting(0);
-
 include("../include/database.php");
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 $per_page = 25;
 
-$sql = "select * from booking_form where b_id=".$c;
+$sql = "select * from booking_form";
 $rsd = mysql_query($sql);
 $count = mysql_num_rows($rsd);
 $pages = ceil($count/$per_page);
@@ -111,6 +110,10 @@ padding:5px;3
 color:#FFF;
 margin-left:2px;
 background-color:#00a1d2;
+box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
 
 }
 #pagination li:hover
@@ -133,7 +136,9 @@ cursor: pointer;
         <form action="" method="post">
        	<table class="emp_tab">
         <tr class="search_res">
-        <td>
+        <td class="info">Booking Information</td>
+        
+        <td width="305">
         <input class="result" name="result" type="text">
         <input class="go" name="go" type="submit" value="Search">
         </td>

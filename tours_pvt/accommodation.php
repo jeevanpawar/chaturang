@@ -136,20 +136,20 @@ function addRow(tableID) {
          <table class="emp_tab">
          <tr class="menu_header">
          <td width="2%">S</td>
-         <td width="25%">Vendor's Name</td>
-         <td width="23%">Hotel Name</td>
+         <td width="22%">Vendor's Name</td>
+         <td width="15%">Hotel Name</td>
          <td width="10%">Place</td>
          <td width="10%">Room</td>
          <td width="10%">Meal PLN</td>
-         <td width="10%">C/I</td>
-         <td width="10%">C/O</td>
+         <td width="15%">C/I</td>
+         <td width="15%">C/O</td>
          </tr>
          </table>
          <table class="emp_tab" id="dataTable">
          <tr>
          <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
-         <td width="25%"><input class="from" name="v_name[]" type="text"></td>
-         <td width="23%">
+         <td width="22%"><input class="from" name="v_name[]" type="text"></td>
+         <td width="15%">
          <select name="h_name[]" class="hotel">
          <?php
 		 while($row=mysql_fetch_array($res))
@@ -186,8 +186,8 @@ function addRow(tableID) {
 		 ?>
          </select>
          </td>
-         <td width="10%"><input class="ci" name="cin1[]" type="text"></td>
-         <td width="10%"><input class="ci" name="cout1[]" type="text"></td>
+         <td width="15%"><input class="ci" name="cin1[]" type="date"></td>
+         <td width="15%"><input class="ci" name="cout1[]" type="date"></td>
          </tr>
          </table>
          <div class="addclients_b">

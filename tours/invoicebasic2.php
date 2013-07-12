@@ -62,59 +62,17 @@ if(isset($_REQUEST['cancel']))
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
-<script type="text/javascript">
-function addRow(tableID) {
-            var table = document.getElementById(tableID);
-            var rowCount = table.rows.length;
-            var row = table.insertRow(rowCount);
-            var colCount = table.rows[0].cells.length;
-            for(var i=0; i<colCount; i++) {
-                var newcell = row.insertCell(i);
-                newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-                //alert(newcell.childNodes);
-                switch(newcell.childNodes[0].type) {
-                    case "text":
-                            newcell.childNodes[0].value = "";
-                            break;
-                    case "checkbox":
-                            newcell.childNodes[0].checked = false;
-                            break;
-                    case "select-one":
-                            newcell.childNodes[0].selectedIndex = 0;
-                            break;
-                }
-            }
-        }
-		
-				function deleteRow(tableID)
-{
-            try
-                 {
-                var table = document.getElementById(tableID);
-                var rowCount = table.rows.length;
-                    for(var i=0; i<rowCount; i++)
-                        {
-                        var row = table.rows[i];
-                        var chkbox = row.cells[0].childNodes[0];
-                        if (null != chkbox && true == chkbox.checked)
-                            {
-                            if (rowCount <= 1)
-                                {
-                                alert("Cannot delete all the rows.");
-                                break;
-                                }
-                            table.deleteRow(i);
-                            rowCount--;
-                            i--;
-                            }
-                        }
-                    } catch(e)
-                        {
-                        alert(e);
-                        }
-   getValues();
-}
-</script>
+<script>
+ var counter = 1;
+ function add_phone_field()
+ {
+  var obj = document.getElementById("phone");
+  var data = obj.innerHTML;
+  data += "<table class='des'><tr><td><input class='des_sr' type='text' name='s["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='des_in' type='text' name='d["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='des_cap' type='text' name='r["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='des_q' type='text' name='a["+counter+"]' id='person_phone"+counter+"' /></td></tr></table>";
+  obj.innerHTML = data;
+  counter++;
+  }
+ </script>
   
 </head>
 
@@ -125,7 +83,8 @@ function addRow(tableID) {
     <div id="sub-header">
     			
                 <div class="quo">
-                  
+                
+                
                 <form name="form5" action="" method="post" enctype="multipart/form-data">
                 <br />
                 <div class="quotationI"><center>INVOICE</center></div>
@@ -164,30 +123,23 @@ function addRow(tableID) {
                 </table>
                 <table class="des">
                 <tr class="menu_header">
-                <td width="2%">S</td>
-                <td width="7%">Sr.No.</td>
-                <td width="61%">Particulars</td>
-                <td width="15%">Rate</td>
-                <td width="15%">Amount</td>
+                <td>Sr.No.</td>
+                <td>Particulars</td>
+                <td width="100">Rate</td>
+                <td width="100">Amount</td>
                 </tr>
-                <div class="adddelin">
-         		<input type="button" value="+" class="add" onClick="addRow('dataTable')" >&nbsp;
-		 		<input type="button" value="-" class="add" onClick="deleteRow('dataTable')" >
-         		</div>
-                </table>
-                <table class="des" id="dataTable">
+                <span style="color:#00f;font-size:20px; margin-left:100px;font-weight:bold;cursor:pointer;" onClick="add_phone_field()">[+]</span>
                 <tr>
-                <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
-                <td width="7%">
+                <td>
                  <input class="des_sr" type="text" name="s[]" id="0"><br>
                 </td>
-                <td width="61%">
+                <td>
                  <input class="des_in" type="text" name="d[]" id="0"><br>
                 </td>
-                <td width="15%">
+                <td>
                  <input class="des_cap" type="text" name="r[]" id="0"><br>
                 </td>
-                <td width="15%">
+                <td>
                  <input class="des_q" type="text" name="a[]" id="0"><br>
                 </td>
                 

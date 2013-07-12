@@ -17,7 +17,7 @@ if(isset($_REQUEST['go']))
 	
 	if($b==1)
 	{
-		header("location:tours/tours.php");
+		header("location:tours/home.php");
 	}
 	else if($b==2)
 	{
@@ -64,7 +64,7 @@ if(isset($_REQUEST['go']))
 
 <div id="login-box">
 
-<H2 align="left"><span class="main">CHATURANG</span><br /><span class="tour">TOURS PVT LTD</span></H2>
+<H2 align="left"><span class="main">CHATURANG</span><br /><span class="tour">Group of Companies</span></H2>
 <div class="welcome">
 <?php
 echo "Welcome:$a";

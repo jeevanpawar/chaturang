@@ -29,9 +29,9 @@ if(isset($_REQUEST['id']))
 		$t7=$_POST['h_ph'];
 		$t8=$_POST['h_email'];
 		$t9=$_POST['h_pin'];
-
-	
-		$c_qry="insert into hotel(h_date,h_name,h_address,h_reg,h_pname,h_mob,h_ph,h_email,h_pin) values('".$t1."','".$t2."','".$t3."','".$t4."','".$t5."','".$t6."','".$t7."','".$t8."','".$t9."')";
+		$t10=$_POST['b_name'];
+		$t11=$_POST['b_ac'];
+		$c_qry="insert into hotel(h_date,h_name,h_address,h_reg,h_pname,h_mob,h_ph,h_email,h_pin,h_bank,h_ac) values('".$t1."','".$t2."','".$t3."','".$t4."','".$t5."','".$t6."','".$t7."','".$t8."','".$t9."','".$t10."','".$t11."')";
 		$c_res=mysql_query($c_qry);
 		if($c_res)
 		{
@@ -72,6 +72,7 @@ if(isset($_REQUEST['id']))
                 <tr><td class="l_form">Hotel Name:</td><td><input class="q_in" type="text" name="h_name" /></td></tr>
  	            <tr><td class="l_form">Address:</td><td><textarea class="q_add" name="h_address"></textarea></td></tr>
                 <tr><td class="l_form">Registration No:</td><td><input class="q_in" type="text" name="h_reg"/></td></tr>
+                <tr><td class="l_form">Bank Name:</td><td><input class="q_in" type="text" name="b_name"/></td></tr>
                 </table>
                 
                 
@@ -80,6 +81,8 @@ if(isset($_REQUEST['id']))
                 <tr><td class="l_form">Mobile No:</td><td><input class="q_in" type="text" name="h_mob" ></td></tr>
                 <tr><td class="l_form">Phone No:</td><td><input class="q_in" type="text" name="h_ph"/></td></tr>
  	             <tr><td class="l_form">E-Mail:</td><td><input class="q_in" type="text" name="h_email"/></td></tr>              		<tr><td class="l_form">Pin Code:</td><td><input class="q_in" type="text" name="h_pin"/></td></tr>
+                 <tr><td class="l_form">Bank Account No:</td><td><input class="q_in" type="text" name="b_ac"/></td></tr>
+     
                 </table>
                 
         <div class="add_h">

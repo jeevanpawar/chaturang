@@ -67,29 +67,6 @@ include("../include/database.php");
 	?>
         <div>
 		<br>
-        <div class="quotation"><center>Profit/Expense Details</center></div>
-        <table class="emp_tab">
-        <tr class="menu_header">
-        <td width="150">Booking Amount</td>
-        <td width="150">Client Payment</td>
-        <td width="150">Client Balance</td>
-        <td>Hotel/Vendor Payment</td>
-        <td>Transportation Payment</td>
-        <td width="150">Total Expense</td>
-        <td width="150">Total Profit</td>
-       
-        </tr>
-        <tr class="pagi">
-        <td width="150"><b><?php echo $row[8].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="150"><b><?php echo $row_cpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td><b><?php echo $balance.'&nbsp;'.'Rs/-'; ?></b></td>
-        <td><b><?php echo $row_hpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="70"><b><?php echo $row_tpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="70"><b><?php echo $expense.'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="70"><b><?php echo $profit.'&nbsp;'.'Rs/-'; ?></b></td>
-        </tr>
-        </table>
-        <br>
         <div class="quotation"><center>Booking Information</center></div>
 
 		<table class="emp_tab">
@@ -97,7 +74,7 @@ include("../include/database.php");
         <td width="150">B.No</td>
         <td width="150">B.Date</td>
         <td>SE</td>
-        <td>Office</td>
+        <td>Client Name</td>
         <td width="70">Pax</td>
         <td width="70">Adult</td>
         <td width="70">Child</td>
@@ -105,7 +82,7 @@ include("../include/database.php");
         </tr>
         <tr class="pagi">
         <td width="150"><?php echo $row[0]; ?></td>
-        <td width="150"><?php echo $row[2]; ?></td>
+        <td width="150"><?php echo date('d-m-Y', strtotime ($row[2])); ?></td>
         <td><?php echo $row[3]; ?></td>
         <td><?php echo $row[4]; ?></td>
         <td width="70"><?php echo $row[5]; ?></td>
@@ -114,18 +91,22 @@ include("../include/database.php");
         <td width="50"><?php echo $row[8]; ?></td>
         </tr>
         </table>
-        <br>
-        
-         <table class="emp_tab">
-         <tr class="menu_header">
-         <td>Tourists Name</td>
-         <td>M/F</td>
-         <td>Age</td>
-         <td>DOB</td>
-         <td>Contact No</td>
-         <td>Email</td>
-         </tr>
+       
          <?php
+		 
+		 if(($count=mysql_num_rows($res_p))>0)
+		 { 
+		 echo "<br>";
+         echo "<table class='emp_tab'>";
+         echo "<tr class='menu_header'>";
+         echo "<td>Tourists Name</td>";
+         echo "<td>M/F</td>";
+         echo "<td>DOB</td>";
+         echo "<td>Age</td>";
+		 echo "<td>Contact No</td>";
+         echo "<td>Email</td>";
+         echo "</tr>";
+         
          while($row_p=mysql_fetch_array($res_p))
          {
 			 echo "<tr class='pagi'>";
@@ -136,10 +117,10 @@ include("../include/database.php");
 			 echo $row_p[4];
 			 echo "</td>";
 			 echo "<td>";
-			 echo $row_p[5];
+			 echo date('d-m-Y', strtotime ($row_p[6]));
 			 echo "</td>";
 			 echo "<td>";
-			 echo $row_p[6];
+			 echo $row_p[5];
 			 echo "</td>";
 			 echo "<td>";
 			 echo $row_p[7];
@@ -149,21 +130,26 @@ include("../include/database.php");
 			 echo "</td>";
 			 echo "</tr>";
          }
+		 }
 		 ?>
          </table>
-         <br>
-             <table class="emp_tab">
-         <tr class="menu_header">
-        
-         <td>Vendor's Name</td>
-         <td>Hotel Name</td>
-         <td>Place</td>
-         <td>Room</td>
-         <td>Meal PLN</td>
-         <td>C/I</td>
-         <td>C/O</td>
-         </tr>
+         
          <?php
+		
+		 if(($count=mysql_num_rows($res_h))>0)
+		 {
+			  echo "<br>";
+         echo "<table class='emp_tab'>";
+         echo "<tr class='menu_header'>";
+         echo "<td>Vendor's Name</td>";
+         echo "<td>Hotel Name</td>";
+         echo "<td>Place</td>";
+         echo "<td>Room</td>";
+         echo "<td>Meal PLN</td>";
+         echo "<td>C/I</td>";
+         echo "<td>C/O</td>";
+         echo "</tr>";
+         
          while($row_h=mysql_fetch_array($res_h))
          {
 			 echo "<tr class='pagi'>";
@@ -183,28 +169,33 @@ include("../include/database.php");
 			 echo $row_h[7];
 			 echo "</td>";
 			 echo "<td>";
-			 echo $row_h[8];
+			 echo date('d-m-Y', strtotime ($row_h[8]));
 			 echo "</td>";
 			 echo "<td>";
-			 echo $row_h[9];
+			 echo date('d-m-Y', strtotime ($row_h[9]));
 			 echo "</td>";
 			 echo "</tr>";
          }
+		 }
 		 ?>
          
          </table>
-         <br>
-         <table class="emp_tab">
-         <tr class="menu_header">
-         <td>Vendor's Name</td>
-         <td>Vehicle Type</td>
-         <td>Pick Up</td>
-         <td>point</td>
-         <td>Drop</td>
-         <td>Point</td>
-         <td>Days</td>
-		 </tr>
+         
          <?php
+		 if(($count=mysql_num_rows($res_v)))
+		 {
+		 echo "<br>";
+         echo "<table class='emp_tab'>";
+         echo "<tr class='menu_header'>";
+         echo "<td>Vendor's Name</td>";
+         echo "<td>Vehicle Type</td>";
+         echo "<td>Pick Up</td>";
+         echo "<td>point</td>";
+         echo "<td>Drop</td>";
+         echo "<td>Point</td>";
+         echo "<td>Days</td>";
+		 echo "</tr>";
+         
          while($row_v=mysql_fetch_array($res_v))
          {
 			 echo "<tr class='pagi'>";
@@ -215,13 +206,13 @@ include("../include/database.php");
 			 echo $row_v[4];
 			 echo "</td>";
 			 echo "<td>";
-			 echo $row_v[5];
+			 echo date('d-m-Y', strtotime ($row_v[5]));
 			 echo "</td>";
 			 echo "<td>";
 			 echo $row_v[6];
 			 echo "</td>";
 			 echo "<td>";
-			 echo $row_V[7];
+			 echo date('d-m-Y', strtotime ($row_v[7]));
 			 echo "</td>";
 			 echo "<td>";
 			 echo $row_v[8];
@@ -231,10 +222,32 @@ include("../include/database.php");
 			 echo "</td>";
 			 echo "</tr>";
          }
+		 }
 		 ?>
-         
-
          </table>	 
+         <br>
+         <div class="quotation"><center>Profit/Expense Details</center></div>
+        <table class="emp_tab">
+        <tr class="menu_header">
+        <td width="150">Package Cost</td>
+        <td width="150">Client Payment</td>
+        <td width="150">Client Balance</td>
+        <td>Hotel/Vendor Payment</td>
+        <td>Transportation Payment</td>
+        <td width="150">Total Expense</td>
+        <td width="150">Gross Profit</td>
+       
+        </tr>
+        <tr class="pagi">
+        <td width="150"><b><?php echo $row[8].'&nbsp;'.'Rs/-'; ?></b></td>
+        <td width="150"><b><?php echo $row_cpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
+        <td><b><?php echo $balance.'&nbsp;'.'Rs/-'; ?></b></td>
+        <td><b><?php echo $row_hpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
+        <td width="70"><b><?php echo $row_tpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
+        <td width="70"><b><?php echo $expense.'&nbsp;'.'Rs/-'; ?></b></td>
+        <td width="70"><b><?php echo $profit.'&nbsp;'.'Rs/-'; ?></b></td>
+        </tr>
+        </table>
          <div id="phone">
                 
          </div>     

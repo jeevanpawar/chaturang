@@ -153,8 +153,8 @@ $res_r=mysql_query($qry_r);
         <td class="l_form">Payment Mode:</td>
         <td>
         <select class="a" name="t3">
-        <option>By Check</option>
-        <option>By Cash</option>
+        <option>Cheque</option>
+        <option>Cash</option>
         <option>Online Transfer</option>
         </select>
         </td>
