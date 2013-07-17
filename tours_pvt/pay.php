@@ -53,6 +53,12 @@ $res_r=mysql_query($qry_r);
 <title>Chaturang Tours Pvt Ltd</title>
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+
+<script type="text/javascript">
+function showDiv( ){ document.getElementById('optionalBox').style.display = 'block'; }
+function hideDiv( ){ document.getElementById('optionalBox').style.display = 'none'; } 
+</script>
+
 </head>
 <body>
 <div id="container">
@@ -153,13 +159,23 @@ $res_r=mysql_query($qry_r);
         <td class="l_form">Payment Mode:</td>
         <td>
         <select class="a" name="t3">
-        <option>Cheque</option>
-        <option>Cash</option>
-        <option>Online Transfer</option>
+        <option name="A" on click="javascript:showDiv();">Cheque</option>
+        <option name="B" on click="javascript:hideDiv();">Cash</option>
+        <option name="C" on click="javascript:hideDiv();">Online Transfer</option>
         </select>
         </td>
         </tr>
-        <tr>
+       
+		
+        <tr id="optionalBox" >
+        <td class="l_form">Check No:</td>
+        <td><input id="contact" type="text" class="q_in" name="t4"></td>
+        </tr>
+        <tr id="optionalBox" style="display:none">
+        <td class="l_form">No:</td>
+        <td><input id="contact" type="text" class="q_in" name="t4"></td>
+        </tr>
+        <tr id="optionalBox" style="display:none">
         <td class="l_form">Check No:</td>
         <td><input id="contact" type="text" class="q_in" name="t4"></td>
         </tr>

@@ -30,6 +30,7 @@ $row_a=mysql_fetch_array($res_a);
         <td width="50">Adult</td>
         <td width="50">Child</td>
         <td width="50">Pax</td>
+        <td width="50">Room</td>
         <td width="90">Passenger</td>
         <td width="85">Hotel</td>
         <td width="85">Vehicle</td>
@@ -60,6 +61,9 @@ $row_a=mysql_fetch_array($res_a);
 		echo "</td>";
 		echo "<td>";
 		echo $row_u[5];
+		echo "</td>";
+		echo "<td>";
+		echo $row_u[12];
 		echo "</td>";
 		if($row_u[9]==1)
 		{

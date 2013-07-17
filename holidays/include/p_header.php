@@ -1,10 +1,20 @@
+<?php
+if(isset($_REQUEST['id']))
+{
+	session_destroy();
+	header("location:../index.php");
+}
+?>
 <div id="menu_div">
-<div id="navigation">
-<div id="menu">
-	<ul id="nav">
-        	
-        	<li class="selected"><a href="holiday.php">Home</a></li>
-            <li ><a href="holidaybooking.php">Booking Form</a>
+			<div id="navigation">
+				<div id="menu">
+					<ul id="nav">
+						<li class="selected"><a href="home.php">Home</a></li>
+            <li ><a href="booking.php">Booking Form</a>
+            	<ul>
+                    <li><a href="newbooking.php">New Booking</a></li>
+                </ul>
+            
             </li>
             <li><a class="has_submenu" href="payment.php">Payments</a>
             		<ul>
@@ -20,11 +30,7 @@
                 </ul>
             </li>
             
-            <li><a href="clients.php">Clients</a>
-            		<ul>
-                    <li><a href="addclients.php">Add New Clients</a></li>
-                    </ul>
-            </li>
+            
             
             <li><a class="has_submenu" href="invoicedetails.php">Invoice</a>
             		<ul>
@@ -32,22 +38,25 @@
                 
                     </ul>
             </li>
-            <li><a class="has_submenu" href="quotation.php">Quotation</a>
-            		<ul>
-                    <li><a href="addquo.php">Generate Quotation</a></li>
-                	
-                    </ul>
-            </li>
+           
             
-            <li><a class="has_submenu"  href="term.php">Terms & Conditions</a>
+            <li><a class="has_submenu"  href="term.php">T & C</a>
             <ul>
               	<li><a href="addterm.php">Add Terms</a></li>
             </ul>
            </li>
-           <li><a href="">LogOut</a>
+           <li><a class="has_submenu"  href="term.php">Other</a>
+            <ul>
+              	<li><a href="addroom.php">Room Type</a></li>
+                <li><a href="addmeal.php">Meal Plan</a></li>
+                <li><a href="addvehicle.php">Vehicle Type</a></li>
+            </ul>
            </li>
-			
-	</ul><!-- #nav END-->
-</div><!-- #menu END-->
-</div><!-- #navigation END-->
-</div>
+           <li><a href="?id">LogOut</a>
+           </li>
+					</ul><!-- #nav END-->
+					
+										 
+				</div><!-- #menu END-->
+			</div><!-- #navigation END-->
+		</div>

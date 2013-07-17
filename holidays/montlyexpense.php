@@ -1,3 +1,11 @@
+<?php
+session_start();
+error_reporting(0);
+include("../include/database.php");
+$a=$_SESSION['user'];
+$c=$_SESSION['com'];
+
+?>
 <html>
 <head>
 <title>Chaturang Tours Pvt Ltd</title>
@@ -228,7 +236,7 @@ $('.info8').fadeIn(200);
     <div class="page">
 			<div class="menu">
 			<table class="menuTable">
-            <tr>
+            <tr class="menu_header">
             <td id="link">Jan</td>
             <td id="link2">Feb</td>
             <td id="link3">March</td>

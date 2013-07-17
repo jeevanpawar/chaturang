@@ -5,6 +5,7 @@ $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 include("../include/database.php");
 ?>
+
 <?php
 	if(isset($_REQUEST['add']))
 	{
@@ -12,7 +13,6 @@ include("../include/database.php");
 		$o='1';
 		$qry_up="update booking_form SET b_hotel='".$o."' where b_id='$i'";
 		$res_up=mysql_query($qry_up);
-		
 		$d=$_POST['v_name'];
 		$b = count($d);
 		for($i=0; $i<$b; $i++)
@@ -40,7 +40,6 @@ include("../include/database.php");
 			}
 		}		
 	}
-	
 	if(isset($_REQUEST['can']))
 	{
 		header("location:booking.php");
@@ -154,9 +153,9 @@ function addRow(tableID) {
          <?php
 		 while($row=mysql_fetch_array($res))
 		 {
-         echo "<option>";
-         echo $row[2];
-         echo "</option>";
+			 echo "<option>";
+			 echo $row[2];
+			 echo "</option>";
 		 }
 		 ?>
          </select>
@@ -167,9 +166,9 @@ function addRow(tableID) {
          <?php
 		 while($row_r=mysql_fetch_array($res_r))
 		 {
-         echo "<option>";
-         echo $row_r[1];
-         echo "</option>";
+			 echo "<option>";
+			 echo $row_r[1];
+			 echo "</option>";
 		 }
 		 ?>
          </select>
@@ -179,9 +178,9 @@ function addRow(tableID) {
          <?php
 		 while($row_m=mysql_fetch_array($res_m))
 		 {
-         echo "<option>";
-         echo $row_m[1];
-         echo "</option>";
+			 echo "<option>";
+			 echo $row_m[1];
+			 echo "</option>";
 		 }
 		 ?>
          </select>

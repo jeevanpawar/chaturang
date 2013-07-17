@@ -1,3 +1,10 @@
+<?php
+if(isset($_REQUEST['id']))
+{
+	session_destroy();
+	header("location:../index.php");
+}
+?>
 <div id="menu_div">
 			<div id="navigation">
 				<div id="menu">
@@ -45,7 +52,7 @@
                 <li><a href="addvehicle.php">Vehicle Type</a></li>
             </ul>
            </li>
-           <li><a href="">LogOut</a>
+           <li><a href="?id">LogOut</a>
            </li>
 					</ul><!-- #nav END-->
 					

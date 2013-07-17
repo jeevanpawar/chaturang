@@ -1,13 +1,16 @@
 <?php
 session_start();
 error_reporting(0);
-
 include("../include/database.php");
+$a=$_SESSION['user'];
+$c=$_SESSION['com'];
+error_reporting(0);
+
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 $per_page = 25;
 
-$sql = "select * from booking_form";
+$sql = "select * from booking_form where c_id='$c'";
 $rsd = mysql_query($sql);
 $count = mysql_num_rows($rsd);
 $pages = ceil($count/$per_page);

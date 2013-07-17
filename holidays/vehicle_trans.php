@@ -1,23 +1,23 @@
 <?php
 session_start(0);
+error_reporting(0);
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
-error_reporting(0);
 include("../include/database.php");
-if(isset($_REQUEST['id']))
-{
-	session_destroy();
-	header("location:../index.php");
-}
 ?>
 <?php
 	if(isset($_REQUEST['add']))
 	{
-		$a=$_POST['v_name'];
-		$b = count($a);
+		$i=$_REQUEST['id_v'];
+		$o='1';
+		$qry_up="update booking_form SET b_vehicle='".$o."' where b_id='$i'";
+		$res_up=mysql_query($qry_up);
+		
+		$d=$_POST['v_name'];
+		$b = count($d);
 		for($i=0; $i<$b; $i++)
 		{
-			$d=$_SESSION['booking'];
+			$id=$_REQUEST['id_v'];
 			$v1=$_POST['v_name'][$i];
 			$v2=$_POST['v_type'][$i];
 			$v3=$_POST['p_date'][$i];
@@ -27,13 +27,13 @@ if(isset($_REQUEST['id']))
 			$d5=date('Y-m-d', strtotime($v5));
 			$v6=$_POST['d_point'][$i];
 			$v7=$_POST['days'][$i];
-			$qry_v="insert into vehicle_transportation(c_id,b_id,v_name,v_type,v_pdate,v_ppoint,v_ddate,v_dpoint,v_days) values('".$c."','".$d."','".$v1."','".$v2."','".$d3."','".$v4."','".$d5."','".$v6."','".$v7."')";
+			$qry_v="insert into vehicle_transportation(c_id,b_id,v_name,v_type,v_pdate,v_ppoint,v_ddate,v_dpoint,v_days) values('".$c."','".$id."','".$v1."','".$v2."','".$d3."','".$v4."','".$d5."','".$v6."','".$v7."')";
 			
 			$res_v=mysql_query($qry_v);
 		
 		if($res_v)
 		{
-		 header("location:home.php");
+		 header("location:booking.php");
 		}
 		else
 		{
@@ -43,8 +43,11 @@ if(isset($_REQUEST['id']))
 	}
 	if(isset($_REQUEST['can']))
 	{
-		header("location:home.php");
+		header("location:booking.php");
 	}
+$res_v=mysql_query("select * from vehicle");
+$res_vs=mysql_query("select * from vehicle");
+
 ?>
 <html>
 <head>
@@ -53,18 +56,67 @@ if(isset($_REQUEST['id']))
 
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
-
-<script>
- var counter = 1;
- function add_phone_field()
- {
-  var obj = document.getElementById("phone");
-  var data = obj.innerHTML;
-  data += "<table class='emp_tab'><tr class='emp_header'><td><input class='from' type='text' name='v_name["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='dob' type='text' name='v_type["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='p_date["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='p_point["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='d_date["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='d_point["+counter+"]' id='person_phone"+counter+"' /></td><td><input class='ci' type='text' name='days["+counter+"]' id='person_phone"+counter+"' /></td></tr></table>";
-  obj.innerHTML = data;
-  counter++;
-  }
- </script>
+<script type="text/javascript">
+function addRow(tableID) {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+            var colCount = table.rows[0].cells.length;
+            for(var i=0; i<colCount; i++) {
+                var newcell = row.insertCell(i);
+                newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+                //alert(newcell.childNodes);
+                switch(newcell.childNodes[0].type) {
+                    case "text":
+                            newcell.childNodes[0].value = "";
+                            break;
+                    case "checkbox":
+                            newcell.childNodes[0].checked = false;
+                            break;
+                    case "select-one":
+                            newcell.childNodes[0].selectedIndex = 0;
+                            break;
+                }
+            }
+        }
+		
+				function deleteRow(tableID)
+{
+            try
+                 {
+                var table = document.getElementById(tableID);
+                var rowCount = table.rows.length;
+                    for(var i=0; i<rowCount; i++)
+                        {
+                        var row = table.rows[i];
+                        var chkbox = row.cells[0].childNodes[0];
+                        if (null != chkbox && true == chkbox.checked)
+                            {
+                            if (rowCount <= 1)
+                                {
+                                alert("Cannot delete all the rows.");
+                                break;
+                                }
+                            table.deleteRow(i);
+                            rowCount--;
+                            i--;
+                            }
+                        }
+                    } catch(e)
+                        {
+                        alert(e);
+                        }
+   getValues();
+}
+</script>
+<script type="text/javascript">
+$('#pdate').change(function () {
+    var date1 = new Date($(this).val());
+    var date2 = new Date();
+    var diffDays = date2.getDate() - date1.getDate();
+    $('body').append('<div id="' + diffDays + '">' + diffDays + '</div>');
+});
+</script>
 </head>
 <body>
 <div id="container">
@@ -74,38 +126,55 @@ if(isset($_REQUEST['id']))
 	?>
        	<br />
  		<div class="quotation"><center>Vehicle Transportation Detail</center></div>
+		 <div class="adddel">
+         <input type="button" value="+" class="add" onClick="addRow('dataTable')" >&nbsp;
+		 <input type="button" value="-" class="add" onClick="deleteRow('dataTable')" >
+         </div>
+
         <div>
         <form action="" method="post">
-         <span style=" margin-left:12px; color:#09F;font-size:15px;font-weight:bold;cursor:pointer;" onClick="add_phone_field()">[+]</span>
+
          <table class="emp_tab">
          <tr class="menu_header">
-         <td>Vendor's Name</td>
-         <td>Vehicle Type</td>
-         <td>Pick Up</td>
-         <td>point</td>
-         <td>Drop</td>
-         <td>Point</td>
-         <td>Days</td>
-         </tr>
-         <tr class="emp_header">
-         <td><input class="from" name="v_name[]" type="text"></td>
-         <td><input class="dob" name="v_type[]" type="text"></td>
-         <td><input class="ci" name="p_date[]"type="text"></td>
-         <td><input class="ci" name="p_point[]" type="text"></td>
-         <td><input class="ci" name="d_date[]" type="text"></td>
-         <td><input class="ci" name="d_point[]" type="text"></td>
-         <td><input class="ci" name="days[]" type="text"></td>
+         <td width="2%">S</td>
+         <td width="25%">Vendor's Name</td>
+         <td width="15%">Vehicle Type</td>
+         <td width="15%">Pick Up Date</td>
+         <td width="10%">P.Point</td>
+         <td width="15%">Drop Date</td>
+         <td width="10%">D.Point</td>
+         <td width="8%">Days</td>
          </tr>
          </table>
-         <div id="phone">
-                
-         </div>     
+         <table class="emp_tab" id="dataTable">
+         <tr>
+         <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
+         <td width="25%"><input class="from" name="v_name[]" type="text"></td>
+         <td width="15%">
+        <select name="v_type[]" class="hotel">
+         <?php
+		 while($row_v=mysql_fetch_array($res_v))
+		 {
+         echo "<option>";
+         echo $row_v[1];
+         echo "</option>";
+		 }
+		 ?>
+         </select>
+
+         </td>
+         <td width="15%"><input class="ci" name="p_date[]" type="date" id="pdate"></td>
+         <td width="10%"><input class="ci" name="p_point[]" ></td>
+         <td width="15%"><input class="ci" name="d_date[]" type="date" id="ddate"></td>
+         <td width="10%"><input class="ci" name="d_point[]" type="text"></td>
+         <td width="8%"><input class="ci" name="days[]" id="day" type="text"></td>
+         </tr>
+         </table>
         <div class="addclients_b">
          <input name="add" class="formbutton" value=" Add " type="submit" />
          <input name="can" class="formbutton" value="Cancel" type="submit" />
         </div>
-        
-        </form>
+         </form>
     </div>
     </div>
            

@@ -1,15 +1,9 @@
 <?php
-session_start(0);
+session_start();
 $a=$_SESSION['user'];
+$c=$_SESSION['com'];
 error_reporting(0);
 include("../include/database.php");
-
-
-if(isset($_REQUEST['id']))
-{
-	session_destroy();
-	header("location:index.php");
-}
 ?>
 <?php
 if(isset($_REQUEST['uid']))

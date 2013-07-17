@@ -12,21 +12,8 @@ $res=mysql_query($qry);
 if(isset($_REQUEST['go']))
 {
 	$b=$_POST['t1'];
-	
 	$_SESSION['com']=$b;
-	
-	if($b==1)
-	{
-		header("location:tours/home.php");
-	}
-	else if($b==2)
-	{
-		header("location:tours_pvt/home.php");
-	}
-	else if($b==3)
-	{
-		header("location:holidays/holiday.php");
-	}
+	header("location:tours_pvt/home.php");
 }
 
 ?>

@@ -64,7 +64,9 @@ else
         <form action="" method="post">
        	<table class="emp_tab">
         <tr class="search_res">
-        <td>
+        <td class="info">Hotel Information</td>
+        
+        <td width="305">
         <input class="result" name="result" type="text">
         <input class="go" name="go" type="submit" value="Search">
         </td>

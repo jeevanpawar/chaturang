@@ -48,6 +48,7 @@ include("../include/database.php");
 <title>Chaturang Tours Pvt Ltd</title>
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+<script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 function addRow(tableID) {
             var table = document.getElementById(tableID);
@@ -101,7 +102,38 @@ function addRow(tableID) {
    getValues();
 }
 </script>
+<script type="text/javascript">
+$(document).ready(function() {
 
+$('#dob_b').change(function(){
+
+var today = new Date();
+var dd = Number(today.getDate());
+var mm = Number(today.getMonth()+1);
+
+var yyyy = Number(today.getFullYear()); 
+
+var myBD = $('#dob_b').val();
+var myBDM = Number(myBD.split("/")[0])
+var myBDD = Number(myBD.split("/")[1])
+var myBDY = Number(myBD.split("/")[2])
+var age = yyyy - myBDY;
+//$('#age input').attr("disabled","disabled")
+
+        if(mm < myBDM)
+        {
+        age = age - 1;      
+        }
+        else if(mm == myBDM && dd < myBDD)
+        {
+        age = age - 1
+        };
+
+        $('#age_d').val(age);
+    });
+
+});
+</script>
 </head>
 <body>
 <div id="container">
@@ -134,8 +166,8 @@ function addRow(tableID) {
          <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
          <td width="24%"><input class="name" name="p_name[]" type="text"></td>
          <td width="10%"><select name="p_mf[]" class="mf"><option>Male</option><option>Female</option></select></td>
-         <td width="16%"><input class="amt" name="p_bdate[]" type="date"></td>
-         <td width="10%"><input class="amt" name="p_age[]" type="text"></td>
+         <td width="16%"><input class="amt" name="p_bdate[]" type="date" id="dob_b" ></td>
+         <td width="10%"><input class="amt" name="p_age[]" type="text" id="age_d" value=""></td>
          <td width="15%"><input class="contact" name="p_contact[]" type="text"></td>
          <td width="23%"><input class="email" name="p_email[]" type="text"></td>
          </tr>

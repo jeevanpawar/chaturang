@@ -56,9 +56,7 @@ include("../include/database.php");
 <title>Chaturang Tours Pvt Ltd</title>
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
-
 </head>
-
 <body>
 <div id="container">
 	<div id="sub-header">
@@ -78,7 +76,7 @@ include("../include/database.php");
         <td width="70">Pax</td>
         <td width="70">Adult</td>
         <td width="70">Child</td>
-        <td width="50">Amount</td>
+        <td width="50">Room's</td>
         </tr>
         <tr class="pagi">
         <td width="150"><?php echo $row[0]; ?></td>
@@ -88,7 +86,7 @@ include("../include/database.php");
         <td width="70"><?php echo $row[5]; ?></td>
         <td width="70"><?php echo $row[6]; ?></td>
         <td width="70"><?php echo $row[7]; ?></td>
-        <td width="50"><?php echo $row[8]; ?></td>
+        <td width="50"><?php echo $row[12]; ?></td>
         </tr>
         </table>
        

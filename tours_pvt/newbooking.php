@@ -4,8 +4,8 @@ error_reporting(0);
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 include("../include/database.php");
-
 ?>
+
 <?php
 if(isset($_REQUEST['b']))
 {
@@ -75,7 +75,8 @@ if($cur_date == $year) {   //if current year equal to last year in transaction
 		$t5=$_POST['adult'];
 		$t6=$_POST['child'];
 		$t7=$_POST['amt']; 
-		$qry_b="insert into booking_form(b_id,c_id,bkg_date,b_se,b_office,b_pax,b_adult,b_child,b_total_amt) values('".$t0."','".$c."','".$t1."','".$t2."','".$t3."','".$t4."','".$t5."','".$t6."','".$t7."')";
+		$t8=$_POST['room']; 
+		$qry_b="insert into booking_form(b_id,c_id,bkg_date,b_se,b_office,b_pax,b_adult,b_child,b_total_amt,b_room) values('".$t0."','".$c."','".$t1."','".$t2."','".$t3."','".$t4."','".$t5."','".$t6."','".$t7."','".$t8."')";
 		$res_b=mysql_query($qry_b);
 			
 		if($res_b)
@@ -95,22 +96,23 @@ if($cur_date == $year) {   //if current year equal to last year in transaction
 <html>
 <head>
 <title>Chaturang Tours Pvt Ltd</title>
+
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="../css/jsDatePick_ltr.min.css" />
-<script type="text/javascript" src="js/jsDatePick.min.1.3.js"></script>
-<script type="text/javascript">
-	window.onload = function(){
-		new JsDatePick({
-			useMode:2,
-			target:"inputField",
-			dateFormat:"%d-%m-%Y"
-			
-		});
-	};
-</script>
-</head>
 
+<script language="javascript">
+function getValues(val){
+
+var numVal1=parseInt(document.getElementById("one").value);
+var numVal2=parseInt(document.getElementById("two").value);
+
+var totalValue = numVal1 + numVal2;
+
+document.getElementById("main").value = totalValue;
+}
+</script>
+
+</head>
 <body>
 <div id="container">
 	<div id="sub-header">
@@ -119,42 +121,46 @@ if($cur_date == $year) {   //if current year equal to last year in transaction
 	?>
     	<br />
         <div>
+        
         <div class="quotation"><center>Booking Form</center></div>
         <form action="" method="post">
   		 <table class="tab1">
          <tr>
-         <td><input type="submit" name="b" value="Booking No"></td>
-         <td><input class="q_in" name="b_no" readonly type="text" value="<?php echo 'CH'.$year3.'0'.$inc_number; ?>">
-         </td>
+         <td><input type="submit" name="b" value="Booking No"/></td>
+         <td><input class="q_in" name="b_no" readonly type="text" value="<?php echo 'CH'.$year3.'0'.$inc_number; ?>"/>     </td>
          </tr>
          <td>Bkg Date:-</td>
-         <td><input class="q_in" name="b_date" type="date"></td>
+         <td><input class="q_in" name="b_date" type="date"/></td>
          </tr>
          <tr>
          <td>SE:-</td>
-         <td><input class="q_in" name="se" type="text" ></td>
+         <td><input class="q_in" name="se" type="text" /></td>
          </tr>
          <tr>
          <td>Client Name:-</td>
-         <td><input class="q_in" name="office" type="text" ></td>
+         <td><input class="q_in" name="office" type="text" /></td>
+         </tr>
+         <tr>
+         <td>No. Rooms:-</td>
+         <td><input class="q_in" name="room" type="text" /></td>
          </tr>
          </table>
          <table class="tab2">
          <tr>
-         <td>PAX:-</td>
-         <td><input class="q_in" name="pax" type="text" ></td>
-         </tr>
-         <tr>
          <td>Adult:-</td>
-         <td><input class="q_in" name="adult" type="text" ></td>
+         <td><input id="one" value="0" onkeyup="getValues(1)" type="text" class="q_in" name="adult" /></td>
          </tr>
          <tr>
          <td>Child:-</td>
-          <td><input class="q_in" name="child" type="text" ></td>
+          <td><input id="two" value="0" onkeyup="getValues(2)" type="text" class="q_in" name="child" /></td>
+         </tr>
+         <tr>
+         <td>PAX:-</td>
+         <td><input id="main" value="" type="text" class="q_in" name="pax" /></td>
          </tr>
          <tr>
          <td>Bkg Amount:-</td>
-          <td><input class="q_in" name="amt" type="text" ></td>
+          <td><input class="q_in" name="amt" type="text" /></td>
          </tr>
          </table>
          

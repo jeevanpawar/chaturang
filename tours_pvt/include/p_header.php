@@ -1,3 +1,10 @@
+<?php
+if(isset($_REQUEST['logout']))
+{
+	session_destroy();
+	header("location:../index.php");
+}
+?>
 <div id="menu_div">
 			<div id="navigation">
 				<div id="menu">
@@ -43,9 +50,10 @@
               	<li><a href="addroom.php">Room Type</a></li>
                 <li><a href="addmeal.php">Meal Plan</a></li>
                 <li><a href="addvehicle.php">Vehicle Type</a></li>
+                <li><a href="addbank.php">Bank Info</a></li>
             </ul>
            </li>
-           <li><a href="">LogOut</a>
+           <li><a href="?logout">LogOut</a>
            </li>
 					</ul><!-- #nav END-->
 					

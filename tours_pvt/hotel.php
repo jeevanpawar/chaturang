@@ -4,7 +4,6 @@
 	$a=$_SESSION['user'];
 	$c=$_SESSION['comp'];
 	include("../include/database.php");
-	
 	$hotel="select * from hotel";
 	$hotel_res=mysql_query($hotel);
 ?>
