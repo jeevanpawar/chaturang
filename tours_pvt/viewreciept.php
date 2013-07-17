@@ -9,11 +9,14 @@ $id=$_REQUEST['id'];
 $qry="select * from reciept where p_id='$id'";
 $res=mysql_query($qry);
 $row=mysql_fetch_array($res);
-
+echo $row[3];
 $qry_d="select * from partial_payment where p_id=".$id;
 $res_d=mysql_query($qry_d);
 $row_d=mysql_fetch_array($res_d);
 
+$qry_name="select * from booking_form where b_id='$row[3]'";
+$res_name=mysql_query($qry_name);
+$row_name=mysql_fetch_array($res_name);
 
 	if(isset($_REQUEST['e_can']))
 	{
@@ -56,7 +59,7 @@ $row_d=mysql_fetch_array($res_d);
         </tr>
         <tr></tr>
         <tr>
-        <td colspan="5">&nbsp;&nbsp;&nbsp;Received with thanks from Mr. Mrs./Ms.&nbsp;&nbsp;<u><?php ?></u></td>
+        <td colspan="5">&nbsp;&nbsp;&nbsp;Received with thanks from Mr. Mrs./Ms.&nbsp;&nbsp;<u><?php echo $row_name[3]; ?></u></td>
         </tr>
         <tr>
         <td colspan="5">&nbsp;&nbsp;&nbsp;Sum Of Rupees:&nbsp;&nbsp;<u><?php echo $row[8]; ?></u></td>

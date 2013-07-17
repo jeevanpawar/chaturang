@@ -102,38 +102,7 @@ function addRow(tableID) {
    getValues();
 }
 </script>
-<script type="text/javascript">
-$(document).ready(function() {
 
-$('#dob_b').change(function(){
-
-var today = new Date();
-var dd = Number(today.getDate());
-var mm = Number(today.getMonth()+1);
-
-var yyyy = Number(today.getFullYear()); 
-
-var myBD = $('#dob_b').val();
-var myBDM = Number(myBD.split("/")[0])
-var myBDD = Number(myBD.split("/")[1])
-var myBDY = Number(myBD.split("/")[2])
-var age = yyyy - myBDY;
-//$('#age input').attr("disabled","disabled")
-
-        if(mm < myBDM)
-        {
-        age = age - 1;      
-        }
-        else if(mm == myBDM && dd < myBDD)
-        {
-        age = age - 1
-        };
-
-        $('#age_d').val(age);
-    });
-
-});
-</script>
 </head>
 <body>
 <div id="container">
@@ -143,13 +112,14 @@ var age = yyyy - myBDY;
 	?>
     	<br />
         <div>
-        <form action="" method="post">
-  	    
-         <div class="quotation"><center>Passenger Information</center></div>
-		 <div class="adddel">
+         <form action="" method="post">
+  	     <div class="quotation"><center>Passenger Information</center></div>
+		 
+         <div class="adddel">
          <input type="button" value="+" class="add" onClick="addRow('dataTable')" >&nbsp;
 		 <input type="button" value="-" class="add" onClick="deleteRow('dataTable')" >
          </div>
+         
          <table class="emp_tab">
          <tr class="menu_header">
          <td width="2%">S</td>
@@ -161,13 +131,14 @@ var age = yyyy - myBDY;
          <td width="23%">Email</td>
          </tr>
          </table>
+         
          <table class="emp_tab" id="dataTable">
          <tr>
          <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
          <td width="24%"><input class="name" name="p_name[]" type="text"></td>
          <td width="10%"><select name="p_mf[]" class="mf"><option>Male</option><option>Female</option></select></td>
-         <td width="16%"><input class="amt" name="p_bdate[]" type="date" id="dob_b" ></td>
-         <td width="10%"><input class="amt" name="p_age[]" type="text" id="age_d" value=""></td>
+         <td width="16%"><input class="amt" name="p_bdate[]" type="date" ></td>
+         <td width="10%"><input class="amt" name="p_age[]" type="text"></td>
          <td width="15%"><input class="contact" name="p_contact[]" type="text"></td>
          <td width="23%"><input class="email" name="p_email[]" type="text"></td>
          </tr>
@@ -176,8 +147,7 @@ var age = yyyy - myBDY;
          <input name="add" class="formbutton" value=" Add " type="submit" />
          <input name="can" class="formbutton" value="Cancel" type="submit" />
         </div>
-        
-        </form>
+         </form>
     </div>
     </div>
            

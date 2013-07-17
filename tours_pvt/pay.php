@@ -31,6 +31,22 @@ $res_r=mysql_query($qry_r);
 		$t5=$_POST['t5'];
 		$pa_qry="insert into partial_payment(c_id,b_id,p_date,p_mode,p_check,p_amt) values('".$c."','".$t1."','".$date."','".$t3."','".$t4."','".$t5."')";
 		$pa_res=mysql_query($pa_qry);
+		$id4 = mysql_insert_id();
+		$m_id='C'.$id4;
+
+		$t1=$_POST['t1'];
+ 		$t2=$_POST['t2'];
+		$date=date('Y-m-d', strtotime($t2));
+		$t3=$_POST['t3'];
+		$t4=$_POST['t4'];
+		$t5=$_POST['t5'];
+
+		$pa_qry="insert into reciept(p_id,c_id,b_id,r_date,r_mode,r_no,r_amt,m_id) values('".$id4."','".$c."','".$t1."','".$date."','".$t3."','".$t4."','".$t5."','".$m_id."')";
+		
+		
+		
+		$pa_res=mysql_query($pa_qry);
+		
 		if($pa_res)
 		{
 			header("location:pay.php?id=$id");
@@ -53,12 +69,6 @@ $res_r=mysql_query($qry_r);
 <title>Chaturang Tours Pvt Ltd</title>
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
-
-<script type="text/javascript">
-function showDiv( ){ document.getElementById('optionalBox').style.display = 'block'; }
-function hideDiv( ){ document.getElementById('optionalBox').style.display = 'none'; } 
-</script>
-
 </head>
 <body>
 <div id="container">
@@ -90,7 +100,7 @@ function hideDiv( ){ document.getElementById('optionalBox').style.display = 'non
 			}
 			else
 			{
-				echo "<a href='addreciept.php?id=$row_d[0]'>Generate</a>";
+				echo "<a href='viewreciept.php?id=$row_d[0]'>&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;</a>";
 			}
 			echo "</td>";
 			echo "<td>";
@@ -158,27 +168,20 @@ function hideDiv( ){ document.getElementById('optionalBox').style.display = 'non
         <tr>
         <td class="l_form">Payment Mode:</td>
         <td>
-        <select class="a" name="t3">
-        <option name="A" on click="javascript:showDiv();">Cheque</option>
-        <option name="B" on click="javascript:hideDiv();">Cash</option>
-        <option name="C" on click="javascript:hideDiv();">Online Transfer</option>
+        <select class="a" name="t3" onChange="display(this,'text','image');">
+        <option name="image">Cheque</option>
+        <option name="text">Cash</option>
+        <option name="invisible">Online Transfer</option>
         </select>
         </td>
         </tr>
        
 		
-        <tr id="optionalBox" >
+        <tr>
         <td class="l_form">Check No:</td>
         <td><input id="contact" type="text" class="q_in" name="t4"></td>
         </tr>
-        <tr id="optionalBox" style="display:none">
-        <td class="l_form">No:</td>
-        <td><input id="contact" type="text" class="q_in" name="t4"></td>
-        </tr>
-        <tr id="optionalBox" style="display:none">
-        <td class="l_form">Check No:</td>
-        <td><input id="contact" type="text" class="q_in" name="t4"></td>
-        </tr>
+        
         <tr>
         <td class="l_form">Booking Amount:</td>
         <td><input id="ename" type="text" readonly class="q_in" value="<?php echo $row[8]; ?>"></td>
