@@ -27,7 +27,7 @@ $res_u=mysql_query($qry_u);
         <td width="70">Pax</td>
         <td width="70">Adult</td>
         <td width="70">Child</td>
-        <td width="115">View Details</td>
+        <td width="130">View Details</td>
         </tr>
 
         <?php

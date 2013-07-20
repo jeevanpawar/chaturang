@@ -34,7 +34,7 @@
         <td width="200">Meal</td>
         <td>C_In</td>
         <td>C_Out</td>
-        <td width="85">Action</td>
+        <td width="95">Action</td>
         </tr>
        
 		<?php

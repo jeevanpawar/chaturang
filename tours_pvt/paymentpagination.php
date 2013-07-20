@@ -20,9 +20,9 @@
         <td width="150">Bkg Date</td>
         <td>SE</td>
         <td width="150">Total Amt</td>
-        <td width="85">Clients</td>
-        <td width="125">Hotel/Vendor</td>
-        <td width="135">Transport</td>
+        <td width="90">Clients</td>
+        <td width="145">Hotel/Vendor</td>
+        <td width="165">Transport</td>
         </tr>
         <?php
 		while($c_row=mysql_fetch_array($c_res_f))

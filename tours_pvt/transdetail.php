@@ -34,7 +34,7 @@
         <td width="200">Drop Date</td>
         <td>Drop Point</td>
         <td>No of Days</td>
-        <td width="85">Action</td>
+        <td width="95">Action</td>
         </tr>
        
 		<?php

@@ -55,8 +55,8 @@ if(isset($_REQUEST['id_d']))
         <table class="detail">
         <tr class="menu_header">
         <td>Room Type</td>
-        <td width="65">Delete</td>
-        <td width="70">Update</td>
+        <td width="75">Delete</td>
+        <td width="80">Update</td>
         </tr>
         <?php
 		while($row_d=mysql_fetch_array($res_d))

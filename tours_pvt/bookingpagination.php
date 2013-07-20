@@ -31,10 +31,10 @@ $row_a=mysql_fetch_array($res_a);
         <td width="50">Child</td>
         <td width="50">Pax</td>
         <td width="50">Room</td>
-        <td width="90">Passenger</td>
-        <td width="85">Hotel</td>
-        <td width="85">Vehicle</td>
-        <td width="115">View Details</td>
+        <td width="95">Passenger</td>
+        <td width="95">Hotel</td>
+        <td width="95">Vehicle</td>
+        <td width="130">View Details</td>
         </tr>
 
         <?php
@@ -74,7 +74,7 @@ $row_a=mysql_fetch_array($res_a);
 		else
 		{
 			echo "<td class='insert'>";
-			echo "<a href='passenger.php?id_p=$row_u[0]'>&nbsp;&nbsp;Insert&nbsp;&nbsp;</a>";
+			echo "<a href='passenger.php?id_p=$row_u[0]'>&nbsp;Insert&nbsp;&nbsp;</a>";
 			echo "</td>";
 		}
 		if($row_u[10]==1)
@@ -86,7 +86,7 @@ $row_a=mysql_fetch_array($res_a);
 		else
 		{
 			echo "<td class='insert'>";
-			echo "<a href='accommodation.php?id_a=$row_u[0]'>&nbsp;&nbsp;Insert&nbsp;&nbsp;</a>";
+			echo "<a href='accommodation.php?id_a=$row_u[0]'>&nbsp;Insert&nbsp;&nbsp;</a>";
 			echo "</td>";
 			
 		}
@@ -99,7 +99,7 @@ $row_a=mysql_fetch_array($res_a);
 		else
 		{
 			echo "<td class='insert'>";
-			echo "<a href='vehicle_trans.php?id_v=$row_u[0]'>&nbsp;&nbsp;Insert&nbsp;&nbsp;</a>";
+			echo "<a href='vehicle_trans.php?id_v=$row_u[0]'>&nbsp;Insert&nbsp;&nbsp;</a>";
 			echo "</td>";
 		}
 		echo "<td class='print'>";

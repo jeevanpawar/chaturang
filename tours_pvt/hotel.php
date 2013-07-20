@@ -40,6 +40,98 @@ if(isset($_REQUEST['go']))
 <title>Chaturang Tours Pvt Ltd</title>
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
+<script>
+$(document).ready(function(){
+
+$('[rel=tooltip]').bind('mouseover', function(){
+	  
+		
+	
+ if ($(this).hasClass('ajax')) {
+	var ajax = $(this).attr('ajax');	
+			
+  $.get(ajax,
+  function(theMessage){
+$('<div class="tooltip">'  + theMessage + '</div>').appendTo('body').fadeIn('fast');});
+
+ 
+ }else{
+			
+	    var theMessage = $(this).attr('content');
+	    $('<div class="tooltip">' + theMessage + '</div>').appendTo('body').fadeIn('fast');
+		}
+		
+		$(this).bind('mousemove', function(e){
+			$('div.tooltip').css({
+				'top': e.pageY - ($('div.tooltip').height() / 2) - 5,
+				'left': e.pageX + 15
+			});
+		});
+	}).bind('mouseout', function(){
+		$('div.tooltip').fadeOut('fast', function(){
+			$(this).remove();
+		});
+	});
+						   });
+
+</script>
+
+<style>
+.tooltip{
+	position:absolute;
+	background-image:url(tip-bg.png);
+	background-color:#09C;
+	background-position:left center;
+	background-repeat:no-repeat;
+	color:#000;
+	padding:5px 18px 5px 18px;
+	font-size:12px;
+	font-family:Verdana, Geneva, sans-serif;
+		box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.3), 
+             0px 20px 15px 0px rgba(0, 0, 0, 0.6); 
+
+	}
+	
+.tooltip-image{
+	float:left;
+	margin-right:5px;
+	margin-bottom:5px;
+	margin-top:3px;}	
+	
+	
+	.tooltip span{font-weight:700;
+color:#ffea00;}
+
+
+
+
+	#imagcon{
+		overflow:hidden;
+		float:left;
+		height:100px;
+		width:100px;
+		margin-right:5px;
+	}
+	#imagcon img{
+		max-width:100px;
+	}
+	#wrapper{
+		margin:0 auto;
+		width:500px;
+		margin-top: 99px;
+	}
+	.tool td
+	{
+		height:30px;
+			
+	}
+	.link a
+	{
+		color:#030303;
+		text-transform:uppercase;
+	}
+</style>
 
 <script type="text/javascript">
 function confirmSubmit()
@@ -125,8 +217,8 @@ else
         <td>Hotel Address</td>
         <td>Contact Person</td>
         <td width="200">Contact No</td>
-        <td width="65">Delete</td>
-        <td width="70">Update</td>
+        <td width="75">Delete</td>
+        <td width="75">Update</td>
         </tr>
        
 		<?php
@@ -137,8 +229,9 @@ else
 				echo "<td>";
 				echo $row_hotel[4];
 				echo "</td>";
-				echo "<td>";
-				echo $row_hotel[2];
+				echo "<td class='link'>";
+				echo '<a href=# alt=Image Tooltip rel=tooltip content="<table class=tool><tr><td id=con>Registration No:</td><td>'.$row_hotel[4].'</td></tr><tr><td id=con>Hotel Name:</td><td>'.$row_hotel[2].'</td></tr><tr><td id=con>Address</td><td>'.$row_hotel[3].'</td></tr><tr><td id=con>Concern Person:</td><td>'.$row_hotel[5].'</td></tr><tr><td id=con>Contact No:</td><td>'.$row_hotel[6].'</td></tr><tr><td id=con>Email:</td><td>'.$row_hotel[8].'</td></tr><tr><td id=con>Bank Name:</td><td>'.$row_hotel[10].'</td></tr><tr><td id=con>Bank Account No:</td><td>'.$row_hotel[11].'</td></tr></table>">'.$row_hotel['2'].'</a>'.'<br>';
+  
 				echo "</td>";
 				echo "<td>";
 				echo $row_hotel[3];

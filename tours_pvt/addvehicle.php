@@ -60,8 +60,8 @@ $count=mysql_num_rows($res_d);
         <table class="detail">
         <tr class="menu_header">
         <td>Vehicle Name</td>
-        <td width="65">Delete</td>
-        <td width="70">Update</td>
+        <td width="75">Delete</td>
+        <td width="80">Update</td>
         </tr>
         <?php
 		while($row_d=mysql_fetch_array($res_d))

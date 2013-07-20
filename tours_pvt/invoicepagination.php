@@ -21,7 +21,7 @@ $rsd = mysql_query($sql);
                 <td width="250">Client Name</td>
                 <td width="160">Date</td>
                 <td> Address</td>
-                <td width="50">Print</td>
+                <td width="60">Print</td>
                 </tr>
                 
         <?php
