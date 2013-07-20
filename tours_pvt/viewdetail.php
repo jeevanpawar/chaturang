@@ -4,8 +4,8 @@ error_reporting(0);
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 include("../include/database.php");
-
 ?>
+
 <?php
 	$id=$_REQUEST['id'];
 	$qry="select * from booking_form where b_id='$id' and c_id=".$c;

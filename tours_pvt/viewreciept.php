@@ -38,7 +38,7 @@ $row_name=mysql_fetch_array($res_name);
 			include("include/p_header.php");
 		?>
         <div>
-        <br />
+        
         <table class="viewreciept">
         <tr>
         <td></td>

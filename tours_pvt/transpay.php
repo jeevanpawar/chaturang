@@ -35,6 +35,21 @@ $res_r=mysql_query($qry_r);
 		$t7=$_POST['t7'];
 		$pa_qry="insert into trans_pay(c_id,b_id,v_id,v_name,v_date,v_mode,v_no,v_amt) values('".$c."','".$t1."','".$id2."','".$t3."','".$date."','".$t5."','".$t6."','".$t7."')";
 		$pa_res=mysql_query($pa_qry);
+		$id4 = mysql_insert_id();
+		$m_id='CT1_'.$id4;
+		
+		$t1=$_POST['t1'];
+ 		$t2=$_POST['t2'];
+		$date=date('Y-m-d', strtotime($t4));
+		$t3=$_POST['t3'];
+		
+		$t5=$_POST['t5'];
+
+		$pa_qry="insert into reciept(p_id,c_id,b_id,r_date,r_mode,r_no,r_amt,m_id) values('".$id4."','".$c."','".$t1."','".$date."','".$t5."','".$t6."','".$t7."','".$m_id."')";
+		
+		$pa_res=mysql_query($pa_qry);
+		
+		
 		if($pa_res)
 		{
 			header("location:transpay.php?id2=$id2&&id=$id");
@@ -89,7 +104,7 @@ $res_r=mysql_query($qry_r);
 			}
 			else
 			{
-				echo "<a href='addtransreciept.php?id=$row_d[0]&&id2=$id2'>Generate</a>";
+				echo "<a href='viewreciept.php?id=$row_d[0]&&id2=$id2'>&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;</a>";
 			}
 			echo "</td>";
 			echo "<td>";

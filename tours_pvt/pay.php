@@ -32,7 +32,7 @@ $res_r=mysql_query($qry_r);
 		$pa_qry="insert into partial_payment(c_id,b_id,p_date,p_mode,p_check,p_amt) values('".$c."','".$t1."','".$date."','".$t3."','".$t4."','".$t5."')";
 		$pa_res=mysql_query($pa_qry);
 		$id4 = mysql_insert_id();
-		$m_id='C'.$id4;
+		$m_id='CP1_'.$id4;
 
 		$t1=$_POST['t1'];
  		$t2=$_POST['t2'];
@@ -42,8 +42,6 @@ $res_r=mysql_query($qry_r);
 		$t5=$_POST['t5'];
 
 		$pa_qry="insert into reciept(p_id,c_id,b_id,r_date,r_mode,r_no,r_amt,m_id) values('".$id4."','".$c."','".$t1."','".$date."','".$t3."','".$t4."','".$t5."','".$m_id."')";
-		
-		
 		
 		$pa_res=mysql_query($pa_qry);
 		

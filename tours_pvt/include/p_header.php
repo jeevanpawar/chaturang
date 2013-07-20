@@ -18,9 +18,9 @@ if(isset($_REQUEST['logout']))
             </li>
             <li><a class="has_submenu" href="payment.php">Payments</a>
             		<ul>
-                    <li><a href="montlyincome.php">Monthy Inc.</a></li>
+                    <!--<li><a href="montlyincome.php">Monthy Inc.</a></li>
                     <li><a href="montlyexpense.php">Monthy Exp.</a></li>
-                    <li><a href="totalreport.php">Reports</a></li>                    
+                    <li><a href="totalreport.php">Reports</a></li>         -->           
                     </ul>
             </li>
             <li><a class="has_submenu" href="hotel.php">Hotels</a>

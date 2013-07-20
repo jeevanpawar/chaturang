@@ -148,11 +148,11 @@ document.getElementById("main").value = totalValue;
          <table class="tab2">
          <tr>
          <td>Adult:-</td>
-         <td><input id="one" value="0" onkeyup="getValues(1)" type="text" class="q_in" name="adult" /></td>
+         <td><input id="one" value="0" onKeyUp="getValues(1)" type="text" class="q_in" name="adult" /></td>
          </tr>
          <tr>
          <td>Child:-</td>
-          <td><input id="two" value="0" onkeyup="getValues(2)" type="text" class="q_in" name="child" /></td>
+          <td><input id="two" value="0" onKeyUp="getValues(2)" type="text" class="q_in" name="child" /></td>
          </tr>
          <tr>
          <td>PAX:-</td>
