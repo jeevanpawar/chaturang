@@ -5,7 +5,7 @@ include("../include/database.php");
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 $per_page = 20; 
-$sql = "select * from clients";
+$sql = "select * from booking_form where c_id=".$c;
 $rsd = mysql_query($sql);
 $count = mysql_num_rows($rsd);
 $pages = ceil($count/$per_page)

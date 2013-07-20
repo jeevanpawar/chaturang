@@ -13,7 +13,19 @@ if(isset($_REQUEST['go']))
 {
 	$b=$_POST['t1'];
 	$_SESSION['com']=$b;
-	header("location:tours_pvt/home.php");
+	if($b == '1')
+	{
+		header("location:tours_pvt/home.php");
+	}
+	else if($b == '2')
+	{
+		header("location:tours_pvt/home.php");
+	}
+	else if($b == '3')
+	{
+		header("location:holidays/home.php");
+	}
+	
 }
 
 ?>
@@ -77,7 +89,7 @@ while($row=mysql_fetch_array($res))
 <span class="login-box-options"></span>
 <br />
 <br />
-<div  ><input class="logcom" name="go" type="submit" value="Go" /></div>
+<div><input class="logcom" name="go" type="submit" value="Go" /></div>
 
 
 

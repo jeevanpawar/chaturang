@@ -6,7 +6,7 @@ $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 $per_page = 25;
 
-$sql = "select * from booking_form";
+$sql = "select * from booking_form where c_id='$c'";
 $rsd = mysql_query($sql);
 $count = mysql_num_rows($rsd);
 $pages = ceil($count/$per_page);
@@ -14,7 +14,7 @@ $pages = ceil($count/$per_page);
 if(isset($_REQUEST['go']))
 {
 	$t1=$_REQUEST['result'];
-	$qry="select * from Booking_form where b_id='$t1'";
+	$qry="select * from Booking_form where b_id='$t1' where c_id='$c'";
 	$res=mysql_query($qry);
 	$count=mysql_num_rows($res);
 }
@@ -162,7 +162,7 @@ cursor: pointer;
         	echo "<td width='70'>Pax</td>";
         	echo "<td width='70'>Adult</td>";
         	echo "<td width='70'>Child</td>";
-        	echo "<td width='115'>View Details</td>";
+        	echo "<td width='130'>View Details</td>";
         	echo "</tr>";
 			echo "<tr class='pagi'>";
 			echo "<td>";

@@ -13,7 +13,7 @@ $page=$_GET['page'];
 }
 	
 	$start = ($page-1)*$per_page;
-	$c_qry_f="select * from booking_form order by b_id desc limit $start,$per_page";
+	$c_qry_f="select * from booking_form where c_id='$c' order by b_id desc limit $start,$per_page";
 	$c_res_f=mysql_query($c_qry_f);
 		
 ?>
@@ -27,7 +27,7 @@ $page=$_GET['page'];
         <td>Adult</td>
         <td>Child</td>
         <td>Amount</td>
-        <td width="90">Action</td>
+        <td width="105">Action</td>
         </tr>
 
         <?php

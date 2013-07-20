@@ -1,9 +1,10 @@
 <?php
 session_start();
 error_reporting(0);
-$a=$_SESSION['user'];
-$c=$_SESSION['comp'];
 include("../include/database.php");
+
+$a=$_SESSION['user'];
+$c=$_SESSION['com'];
 $per_page = 20; 
 $sql = "select * from invoice";
 $rsd = mysql_query($sql);

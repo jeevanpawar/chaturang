@@ -1,9 +1,9 @@
 <?php
 session_start();
 error_reporting(0);
-$a=$_SESSION['user'];
-$c=$_SESSION['comp'];
 include("../include/database.php");
+$a=$_SESSION['user'];
+$c=$_SESSION['com'];
 $per_page = 20; 
 if($_GET)
 {
@@ -11,7 +11,7 @@ $page=$_GET['page'];
 }
 //get table contents
 $start = ($page-1)*$per_page;
-$sql = "select * from invoice order by i_id desc limit $start,$per_page";
+$sql = "select * from invoice where c_id='$c' order by i_id desc limit $start,$per_page";
 $rsd = mysql_query($sql);
 ?>
 
