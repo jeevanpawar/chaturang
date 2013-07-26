@@ -2,6 +2,9 @@
 session_start();
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 error_reporting(0);
 
 include("../include/database.php");
@@ -9,7 +12,7 @@ $id=$_REQUEST['id'];
 $qry="select * from reciept where p_id='$id'";
 $res=mysql_query($qry);
 $row=mysql_fetch_array($res);
-echo $row[3];
+
 $qry_d="select * from partial_payment where p_id=".$id;
 $res_d=mysql_query($qry_d);
 $row_d=mysql_fetch_array($res_d);
@@ -28,80 +31,179 @@ $row_name=mysql_fetch_array($res_name);
 <html>
 <head>
 <title>Chaturang Tours Pvt Ltd</title>
-<link rel="stylesheet" href="../styles2.css" type="text/css" />
-<link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+<style type="text/css">
+.cash
+{
+	border:1px solid #CCC;
+	width:100%;
+	height:500px;
+}
+.cash tr td
+{
+	padding-left:50px;
+	letter-spacing:1px;
+	height:50px;
+}
+</style>
 </head>
 <body>
-<div id="container">
-	 <div id="sub-header">
-    	<?php
-			include("include/p_header.php");
+        <?php
+		$qry_r="select * from partial_payment where p_id='$id'";
+		$res_r=mysql_query($qry_r);
+		$row_r=mysql_fetch_array($res_r);
 		?>
-        <div>
-        
-        <table class="viewreciept">
-        <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>No:</td>
-        <td><?php echo $row[0]; ?></td>
-        </tr>
-        <tr>
-        <td width="300">&nbsp;&nbsp;&nbsp;Chaturang Tours Pvt Ltd</td>
-        <td width="450"></td>
-        <td></td>
-        <td width="50">Date:</td>
-        <td width="50">&nbsp;&nbsp;<?php echo $row[4]; ?></td>
-        </tr>
-        <tr>
-        <td colspan="5" class="high"><center>Reciept</center></td>
-        </tr>
-        <tr></tr>
-        <tr>
-        <td colspan="5">&nbsp;&nbsp;&nbsp;Received with thanks from Mr. Mrs./Ms.&nbsp;&nbsp;<u><?php echo $row_name[3]; ?></u></td>
-        </tr>
-        <tr>
-        <td colspan="5">&nbsp;&nbsp;&nbsp;Sum Of Rupees:&nbsp;&nbsp;<u><?php echo $row[8]; ?></u></td>
-        </tr>
-        <tr>
-        <td colspan="4">&nbsp;&nbsp;&nbsp;By /Cheque/D.D. No.:&nbsp;&nbsp;<u><?php echo $row[6]; ?></u></td><td>Dated</td>
-        </tr>
-        <tr>
-        <td colspan="5">&nbsp;&nbsp;&nbsp;of</td>
-        </tr>
-        <tr>
-        <td colspan="4">&nbsp;&nbsp;&nbsp;in Full/Part Payment against</td><td>Booking Ref. No.:&nbsp;&nbsp;<u><?php echo $row[3]; ?></u></td>
-        </tr>
-        <tr>
-        </tr>
-		<tr>
-        </tr>
-        <tr>
-        <td width="200" class="rs">&nbsp;&nbsp;&nbsp;Rs:<?php echo $row[7].'/-'; ?></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td width="450" align="center">For Chaturang Tours Pvt. Ltd.</td>
-        </tr>
-        <tr></tr>
-        <tr>
-        <td></td>
-        <td colspan="5" class="print1"><a href="">Print</a></td>
-        </tr>
-        </table>
-        
-        
-    </div>
-    </div>
-        
-    
-    	<div class="clear"></div>
-    </div>
-</div>
- <div id="footer">
-     <div class="clear"></div> 
-    </div>
-    </div>
+        <?php
+		if($row_r[3]=='Cash')
+		{
+			echo "<table class='cash'>";
+			echo "<tr>";
+			echo "<td align='center'>";
+			echo "RECIEPT - CLIENT";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Reciept No:$row[0]";
+			echo "</td>";
+			echo "<td>";
+			echo "Date:";echo date('d-m-Y', strtotime ($row[4]));
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Recieved with thanks from Mr/Mrs/Ms $row_name[3]";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Sum of Rs.[By Cash]";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "for the chaturang tours in part/final payment towards Booking Ref. No.";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Chaturang Tours";
+			echo "</td>";
+			echo "</tr>";
+			echo "</table>";
+		}
+		if($row_r[3]=='Cheque')
+		{
+			echo "<table class='cash'>";
+			echo "<tr>";
+			echo "<td align='center'>";
+			echo "RECIEPT - CLIENT";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Reciept No:$row[0]";
+			echo "</td>";
+			echo "<td>";
+			echo "Date:";echo date('d-m-Y', strtotime ($row[4]));
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Recieved with thanks from Mr/Mrs/Ms $row_name[3]";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Sum of Rs";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "By Cheque No:$row[6]";
+			echo "</td>";
+			echo "<td>";
+			echo "Dated:$row[4]";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "on Bank";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "for the chaturang tours in part/final payment towards Booking Ref. No.$row[3]";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Chaturang Tours";
+			echo "</td>";
+			echo "</tr>";
+			echo "</table>";
+		}
+		if($row_r[3]=='Online Transfer')
+		{
+			echo "<table class='cash'>";
+			echo "<tr>";
+			echo "<td align='center'>";
+			echo "RECIEPT - CLIENT";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Reciept No:$row[0]";
+			echo "</td>";
+			echo "<td>";
+			echo "Date:";echo date('d-m-Y', strtotime ($row[4]));
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Recieved with thanks from Mr/Mrs/Ms $row_name[3]";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Sum of Rs";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "through on line transfer effected in bank name";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "on Bank";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "for the chaturang tours in part/final payment towards Booking Ref. No.$row[3]";
+			echo "</td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>";
+			echo "Chaturang Tours";
+			echo "</td>";
+			echo "</tr>";
+			echo "</table>";
+		}
+        ?>      
 </body>
 </html>
+<?php
+$htmlcontent=ob_get_clean();
+
+include("dompdf/dompdf_config.inc.php");
+
+
+  $htmlcontent = stripslashes($htmlcontent);
+  $dompdf = new DOMPDF();
+  $dompdf->load_html($htmlcontent);
+  $dompdf->set_paper("folio", "portrait");
+  $dompdf->render();
+  $dompdf->stream($filename, array("Attachment" => false));	
+  exit(0);
+?>

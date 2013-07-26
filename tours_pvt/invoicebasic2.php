@@ -3,6 +3,9 @@ session_start();
 
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 include("../include/database.php");
 $qry_i="select * from invoice where c_id='$c' order by i_no desc";
 $res_i=mysql_query($qry_i);

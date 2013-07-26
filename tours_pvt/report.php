@@ -4,6 +4,9 @@ error_reporting(0);
 include("../include/database.php");
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 $p=$_REQUEST['id'];
 $d=$_REQUEST['id2'];
 $qry="select * from invoice where i_no=".$p;

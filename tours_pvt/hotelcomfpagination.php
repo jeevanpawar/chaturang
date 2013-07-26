@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 $per_page = 25; 
 if($_GET)
 {
@@ -22,7 +25,7 @@ $res_u=mysql_query($qry_u);
         <td width="70">Pax</td>
         <td width="70">Adult</td>
         <td width="70">Child</td>
-        <td width="90">Form</td>
+        <td width="95">Form</td>
         </tr>
 
         <?php

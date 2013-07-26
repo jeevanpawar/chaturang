@@ -64,7 +64,7 @@
 				echo $row_hotel[9];
 				echo "</td>";
 				echo "<td class='print'>";
-				echo "<a href='voucher.php?id2=$row_hotel[0]&&id=$id'>Payment</a>";
+				echo "<a href='voucher.php?id2=$row_hotel[0]&&id=$id'>Print</a>";
 				echo "</td>";
 				echo "</tr>";
 			}

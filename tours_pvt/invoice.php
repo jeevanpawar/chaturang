@@ -5,7 +5,9 @@ error_reporting(0);
 include("../include/database.php");
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
-
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 $in=$_REQUEST['c_id1'];
 
 $c_query="select * from clients where c_id=".$in;

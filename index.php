@@ -1,6 +1,6 @@
 <?php
-ob_start();
 session_start();
+unset($_SESSION['user']);
 error_reporting(0);
 
 	include("include/database.php");

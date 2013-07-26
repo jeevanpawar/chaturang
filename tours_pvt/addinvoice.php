@@ -4,6 +4,9 @@ error_reporting(0);
 include("../include/database.php");
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 $per_page = 20; 
 $sql = "select * from booking_form where c_id=".$c;
 $rsd = mysql_query($sql);

@@ -5,6 +5,9 @@ include("../include/database.php");
 
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 $per_page = 20; 
 $sql = "select * from invoice";
 $rsd = mysql_query($sql);

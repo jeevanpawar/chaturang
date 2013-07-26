@@ -1,5 +1,8 @@
 <?php
 session_start(0);
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 	include("../include/database.php");
 	error_reporting(0);
 	$a=$_REQUEST['id'];

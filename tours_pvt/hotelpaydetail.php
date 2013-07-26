@@ -1,6 +1,9 @@
 <?php
 	session_start();
 	$a=$_SESSION['user'];
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 	error_reporting(0);
 	include("../include/database.php");
 	if(isset($_REQUEST['id']))

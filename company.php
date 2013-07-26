@@ -2,6 +2,9 @@
 session_start();
 include("include/database.php");
 $a=$_SESSION['user'];
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:index.php");
+	}
 ?>
 
 <?php

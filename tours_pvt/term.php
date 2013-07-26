@@ -6,7 +6,9 @@ include("../include/database.php");
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 
-
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 	$e_qry_f="select * from terms";
 	$e_res_f=mysql_query($e_qry_f);
 		

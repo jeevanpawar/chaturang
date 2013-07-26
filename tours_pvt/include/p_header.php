@@ -53,6 +53,7 @@ if(isset($_REQUEST['logout']))
                 <li><a href="addbank.php">Bank Info</a></li>
             </ul>
            </li>
+           <li><a href="?logout">Reports</a>
            <li><a href="?logout">LogOut</a>
            </li>
 					</ul><!-- #nav END-->

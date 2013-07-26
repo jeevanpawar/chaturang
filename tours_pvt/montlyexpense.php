@@ -4,7 +4,9 @@ error_reporting(0);
 include("../include/database.php");
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
-
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 ?>
 <html>
 <head>

@@ -3,6 +3,9 @@ session_start();
 error_reporting(0);
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 include("../include/database.php");
 ?>
 
@@ -127,7 +130,7 @@ document.getElementById("main").value = totalValue;
   		 <table class="tab1">
          <tr>
          <td><input type="submit" name="b" value="Booking No"/></td>
-         <td><input class="q_in" name="b_no" readonly type="text" value="<?php echo 'CH'.$year3.'0'.$inc_number; ?>"/>     </td>
+         <td><input class="q_in" name="b_no" readonly type="text" value="<?php echo 'CTPL'.$year3.'0'.$inc_number; ?>"/>     </td>
          </tr>
          <td>Bkg Date:-</td>
          <td><input class="q_in" name="b_date" type="date"/></td>

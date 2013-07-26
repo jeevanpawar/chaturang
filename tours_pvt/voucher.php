@@ -3,295 +3,141 @@ session_start();
 error_reporting(0);
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
-
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 include("../include/database.php");
+
 $id=$_REQUEST['id'];
 $id2=$_REQUEST['id2'];
+
+$qry_n="select * from booking_form where b_id='$id'";
+$res_n=mysql_query($qry_n);
+$row_n=mysql_fetch_array($res_n);
+
 $c_query="select * from hotel_acomodation where h_id='$id2' and b_id='$id'";
 $c_res=mysql_query($c_query);
 $c_row=mysql_fetch_array($c_res);
 
+$qry="select * from hotel where h_name='$c_row[4]'";
+$res=mysql_query($qry);
+$row=mysql_fetch_array($res);
+
+$ep=mysql_query("select * from meal where m_sort='$c_row[7]'");
+$r_meal=mysql_fetch_array($ep);
 ?>
 
-<?php
-
-if(isset($_REQUEST['submit']))
-{	
-	$t1=$_POST['t1'];
-	$t2=$_POST['t2'];
-	$t3=$_POST['t3'];
-	$t4=$_POST['t4'];
-	$t5=date('Y-m-d', strtotime($_POST['t5']));
-	$t6=$_POST['t6'];
-	$t7=$_POST['t7'];
-	$t8=$_POST['t8'];
-	$t9=$_POST['t9'];
-	$t10=$_POST['t10'];
-	$t11=$_POST['t11'];
-	$qry="insert into hotel_confirmation(c_id,b_id,hc_add,hc_date,hc_service,hc_cin) values('".$c."','".$t1."','".$t2."','".$t5."','".$t6."')";
-	$res=mysql_query($qry);
-	$insert=mysql_insert_id();
-	
-	if($res)
-	{
-		header("location:invoicedetails.php");
-	}
-	else
-	{
-		echo"error";
-	}
-	
-}
-if(isset($_REQUEST['cancel']))
-{
-	header("location:invoicedetails.php");
-}
-
-?>
 <html>
 <head>
 <title>Chaturang Tours Pvt Ltd</title>
-<link rel="stylesheet" href="../styles2.css" type="text/css" />
-<link rel="stylesheet" type="text/css" href="../css/style.css" />
-<script type="text/javascript">
-function addRow(tableID) {
-            var table = document.getElementById(tableID);
-            var rowCount = table.rows.length;
-            var row = table.insertRow(rowCount);
-            var colCount = table.rows[0].cells.length;
-            for(var i=0; i<colCount; i++) {
-                var newcell = row.insertCell(i);
-                newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-                //alert(newcell.childNodes);
-                switch(newcell.childNodes[0].type) {
-                    case "text":
-                            newcell.childNodes[0].value = "";
-                            break;
-                    case "checkbox":
-                            newcell.childNodes[0].checked = false;
-                            break;
-                    case "select-one":
-                            newcell.childNodes[0].selectedIndex = 0;
-                            break;
-                }
-            }
-        }
-		
-				function deleteRow(tableID)
+<style type="text/css">
+.header
 {
-            try
-                 {
-                var table = document.getElementById(tableID);
-                var rowCount = table.rows.length;
-                    for(var i=0; i<rowCount; i++)
-                        {
-                        var row = table.rows[i];
-                        var chkbox = row.cells[0].childNodes[0];
-                        if (null != chkbox && true == chkbox.checked)
-                            {
-                            if (rowCount <= 1)
-                                {
-                                alert("Cannot delete all the rows.");
-                                break;
-                                }
-                            table.deleteRow(i);
-                            rowCount--;
-                            i--;
-                            }
-                        }
-                    } catch(e)
-                        {
-                        alert(e);
-                        }
-   getValues();
+	font-size:20px;
+	font-weight:bold;
+	letter-spacing:1px;
 }
-</script>
-<script type="text/javascript">
-function addRow1(tableID) {
-            var table = document.getElementById(tableID);
-            var rowCount = table.rows.length;
-            var row = table.insertRow(rowCount);
-            var colCount = table.rows[0].cells.length;
-            for(var i=0; i<colCount; i++) {
-                var newcell = row.insertCell(i);
-                newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-                //alert(newcell.childNodes);
-                switch(newcell.childNodes[0].type) {
-                    case "text":
-                            newcell.childNodes[0].value = "";
-                            break;
-                    case "checkbox":
-                            newcell.childNodes[0].checked = false;
-                            break;
-                    case "select-one":
-                            newcell.childNodes[0].selectedIndex = 0;
-                            break;
-                }
-            }
-        }
-		
-				function deleteRow1(tableID)
+.date
 {
-            try
-                 {
-                var table = document.getElementById(tableID);
-                var rowCount = table.rows.length;
-                    for(var i=0; i<rowCount; i++)
-                        {
-                        var row = table.rows[i];
-                        var chkbox = row.cells[0].childNodes[0];
-                        if (null != chkbox && true == chkbox.checked)
-                            {
-                            if (rowCount <= 1)
-                                {
-                                alert("Cannot delete all the rows.");
-                                break;
-                                }
-                            table.deleteRow(i);
-                            rowCount--;
-                            i--;
-                            }
-                        }
-                    } catch(e)
-                        {
-                        alert(e);
-                        }
-   getValues();
+	margin-left:450px;
 }
-</script>
+.hname
+{
+	font-weight:bold;
+	letter-spacing:1px;
+	text-transform:uppercase;
+}
+.detail
+{
+	margin-left:80px;
+}
+.add
+{
+	width:350px;
+}
+.hotel
+{}
+</style>
 </head>
 <body>
-<div id="container">
-    <div id="sub-header">
-        <?php  include("include/p_header.php");	?>
-                <form name="form5" action="" method="post" enctype="multipart/form-data">
-                <br />
-                <div class="quotation"><center>Hotel Confirmation Form</center></div>
-                <br />
-                <table class="h_tab1">
-                
-                <tr><td class="l_form">Ref No:</td>
-                <td>
-                <input type="text" class="q_in" name="t1" value="<?php echo $c_row[2]; ?>">
-				</td>
-                </tr>
-                <tr>
-                <td class="l_form">Hotel Address:</td><td><textarea class="q_add" name="t2"><?php echo $c_row[4]; ?></textarea></td></tr>
-                
-                <tr>
-                <tr><td class="l_form">C_In</td>
-                <td>
-                <input type="text" class="q_in" name="t3">
-				</td>
-                </tr>
-                
-               
-                <tr><td class="l_form">Reservation Confirmation By:</td>
-                <td>
-                <input type="text" class="q_in" name="t4">
-				</td>
-                </tr>
-                                          
-                </table>
-                <table class="h_tab2">
-                <tr><td class="l_form">Date:</td>
-                <td>
-                <input type="text" class="q_in" name="t5" value="<?php echo date('d-m-Y'); ?>">
-				</td>
-                </tr>
-                <tr><td class="l_form">Service To:</td>
-                <td>
-                <input type="text" class="q_in" name="t6">
-				</td>
-                </tr>
-                <tr>
-                <tr><td class="l_form">C_Out</td>
-                <td>
-                <input type="text" class="q_in" name="t7">
-				</td>
-                </tr>
-                <tr><td class="l_form">Confirmed by:</td>
-                <td>
-                <input type="text" class="q_in" name="t8">
-				</td>
-                </tr>
-                </table>
-                <table class="service">
-                <tr>
-                <td width="310">Booked to Stay with You from</td><td><input type="text" class="s_i" name="t9"></td>
-                </tr>
-                
-                </table>
-                <table class="service" id="service">
-                <tr>
-                <td>Service To Be Provided
-                <div class="adddels">
-         		<input type="button" value="+" class="add" onClick="addRow('dataTable')" >&nbsp;
-		 		<input type="button" value="-" class="add" onClick="deleteRow('dataTable')" >
-         		</div>
-                </td>
-                </tr>
-                </table>
-                <table class="service1" id="dataTable">
-                <tr>
-                <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
-                <td><input type="text" class="s_s"></td>
-                <td><input type="text" class="s_in"></td>
-                </tr>
-                </table>
-                <table class="service" id="service">
-                <tr>
-                <td>Travel Details
-                <div class="adddels">
-         		<input type="button" value="+" class="add" onClick="addRow1('dataTable1')" >&nbsp;
-		 		<input type="button" value="-" class="add" onClick="deleteRow1('dataTable1')" >
-         		</div>
-                </td>
-                </tr>
-                </table>
-                <table class="service1" id="dataTable1">
-                <tr>
-                <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
-                <td><input type="text" class="s_s"></td>
-                <td><input type="text" class="s_in"></td>
-                </tr>
-                </table>
-                <table class="service" id="service">
-                <tr>
-                <td width="310">Billing Instructions
-                </td>
-                <td><input type="text" class="s_i" name="t10">
-                </td>
-                </tr>
-                </table>
-                <table class="service" id="service">
-                <tr>
-                <td width="310">Remarks
-                </td>
-                <td><input type="text" class="s_i" name="t11">
-                </td>
-                </tr>
-                
-                </table>
-                
-                
-                <div class="service_b">
-            	<input name="submit" class="formbutton" value=" Submit " type="submit" onClick="javascript:return validateMyForm();" />
-                <input name="cancel" class="formbutton" value="Cancel" type="submit" />
-                </div>
-                </form>
-  				</div>
-                
-                </div>
-                
-        
-    
-    	<div class="clear"></div>
-    
+<div class="hotel">
+<br><br><br>
+<div class="header" align="center">
+HOTEL CONFIRMATION FORM
 </div>
- <div id="footer">
-     <div class="clear"></div> 
-    </div>
-    </div>
+<br><br><br><br>
+<div><b><u>Ref No:&nbsp;<?php echo $id; ?></u></b>
+<span class="date">Date:&nbsp;<?php echo date('d-m-Y'); ?></span></div>
+<br><br>
+<div>To,
+</div>
+<br><br>
+<div class="hname"><?php echo $c_row[4]; ?>
+</div>
+<div class="add"><?php echo $row[3]; ?>
+</div>
+<br>
+<br><br>
+<div><b><u>Please provide the following services to </u></b> <span>&nbsp;&nbsp;&nbsp;: <?php echo $row_n[3];?></span>
+</div>
+<br>
+<br><br>
+<div><b><u>Booked to stay with you from  </u></b><span class="detail">: C/in on <?php echo $c_row[8];?> to C/ out on C/in on <?php echo $c_row[9];?></span>
+</div>
+<br>
+<br><br>
+<div><b><u>Services to be provided</u></b><br><br>1. Accommodation using  <?php echo $c_row[6];?><br>2. <?php echo $r_meal[2];?>
+</div>
+<br>
+<br><br>
+<div><b><u>Reservation confirmation by</u></b>&nbsp;<b><u>Confirmed by</u></b>
+</div>
+<br>
+<br><br>
+<div><b><u>Billing Instructions</u></b><br><br>
+Prepaid by Chaturang Tours for Accommodation and Selected Services.
+</div>
+<br>
+<br><br>
+<div><b><u>Remarks</u></b>
+</div>
+<br>
+<br><br>
+<div><b>Guest VIP</b>
+</div>
+<br>
+<br><br>
+<div><b>For Chaturang Tours Pvt Ltd-Nasik</b>
+</div>
+<br>
+<br><br>
+<br><br>
+<br><br>
+<div><b>Manager-Admin & Sales</b>
+</div>
+<br>
+<br><br>
+<div>This is an auto generated vouchers.
+</div>
+<br>
+<div>No Signature Needed.
+</div>
+
+
+</div>
 </body>
 </html>
+<?php
+$htmlcontent=ob_get_clean();
+
+include("dompdf/dompdf_config.inc.php");
+
+
+  $htmlcontent = stripslashes($htmlcontent);
+  $dompdf = new DOMPDF();
+  $dompdf->load_html($htmlcontent);
+  $dompdf->set_paper("folio", "portrait");
+  $dompdf->render();
+  $dompdf->stream($filename, array("Attachment" => false));	
+  exit(0);
+?>

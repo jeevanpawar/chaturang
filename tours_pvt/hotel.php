@@ -3,6 +3,9 @@
 	error_reporting(0);
 	$a=$_SESSION['user'];
 	$c=$_SESSION['comp'];
+if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
+	header("location:../index.php");
+	}
 	include("../include/database.php");
 	$hotel="select * from hotel";
 	$hotel_res=mysql_query($hotel);

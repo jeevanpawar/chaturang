@@ -111,18 +111,10 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 
 .print a
 {
 	
-	background-color:#00a1d2;
-	
 	padding:2px 4px 2px 4px;
 	color:#000;
 	text-decoration:none;
 	font-size:15px;
-	border: 1px solid rgba(0,0,0,0.5);
-   background:#CCC;
-   box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
 	
 }
 .insert a
@@ -167,9 +159,14 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 
 
 .print a:hover
 {
-	background-color:#FFF;
+	background-color:#09C;
 	text-decoration:none;
 	color:#000;
+	 box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+
 }
 body.homepage {
 	background: #FFF url('images/body.png') repeat-x scroll top left;
@@ -1119,6 +1116,7 @@ div#footer-links p {
 }
 .pay
 {
+	background-color:#CCC;
 	width:400px;
 	height:450px;
 	position:relative;
@@ -1185,8 +1183,7 @@ div#footer-links p {
 	margin-left:250px;
 	font-size:18px;
 	color:#000;
-	box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.3), 
-             0px 20px 15px 0px rgba(0, 0, 0, 0.6); 
+	border:1px solid #666;
 }
 
 
@@ -1418,4 +1415,12 @@ option
 	color:#000;
 	letter-spacing:1px;
 	font-size:18px;
+}
+.cash
+{
+	margin-left:350px;
+	margin-top:100px;
+	border:1px solid #000;
+	width:600px;
+	height:380px;
 }
