@@ -25,7 +25,7 @@ $page=$_GET['page'];
         <td width="250">Booking No</td>
         <td width="160">Bkg Date.</td>
         <td>SE</td>
-        <td>Office</td>
+        <td>Client Name</td>
         <td>Pax</td>
         <td>Adult</td>
         <td>Child</td>

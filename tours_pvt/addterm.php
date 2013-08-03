@@ -15,10 +15,10 @@ $c=$_SESSION['com'];
 	if(isset($_REQUEST['e_up']))
 	{	
 
-		$t_no=$_POST['t_no'];
-		$t_term=$_POST['term'];
+		$t1=$_POST['title'];
+		$t2=$_POST['term'];
 		
-		$qry_up="insert into terms(t_id,t_term) values('".$t_no."','".$t_term."')";
+		$qry_up="insert into terms(title,des) values('".$t1."','".$t2."')";
 	
 		$res_up=mysql_query($qry_up);
 		
@@ -39,10 +39,6 @@ $c=$_SESSION['com'];
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
 
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/slider.js"></script>
-<script type="text/javascript" src="js/superfish.js"></script>
-<script type="text/javascript" src="js/custom.js"></script>
 
 </head>
 
@@ -59,7 +55,7 @@ $c=$_SESSION['com'];
         <table class="addemp_tab">
         <tr>
         <td class="l_form">Title:</td>
-        <td><input type="text" class="q_in" name="t_no"></td>
+        <td><input type="text" class="q_in" name="title"></td>
         </tr>
         <tr>
         <td class="l_form">Terms & Conditions:</td>

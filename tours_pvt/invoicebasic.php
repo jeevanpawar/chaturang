@@ -7,6 +7,13 @@ if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
 	header("location:../index.php");
 	}
 include("../include/database.php");
+error_reporting(0);
+$id=$_REQUEST['c_id1'];
+
+$qry_info="select * from booking_form where b_id='$id'";
+$res_info=mysql_query($qry_info);
+$row_info=mysql_fetch_array($res_info);
+
 $qry_i="select * from invoice where c_id='$c' order by i_no desc";
 $res_i=mysql_query($qry_i);
 $row=mysql_fetch_array($res_i);
@@ -18,20 +25,20 @@ echo $count;
 
 if(isset($_REQUEST['submit']))
 {	
+	$t0=date('Y-m-d', strtotime($_REQUEST['i_date']));
 	$t1=$_REQUEST['i_no'];
 	$t2=$_REQUEST['i_name'];
 	$t3=$_REQUEST['i_address'];
 	$t4=$_REQUEST['i_word'];
 	$t5=$_REQUEST['i_advance'];
 	$t6=$_REQUEST['i_tax'];
-	$qry="insert into invoice(i_id,c_id,i_name,i_address,i_word,i_advance,i_tax) values('".$t1."','".$c."','".$t2."','".$t3."','".$t4."','".$t5."','".$t6."')";
+	$qry="insert into invoice(i_id,c_id,i_name,i_address,i_word,i_advance,i_tax,i_date) values('".$t1."','".$c."','".$t2."','".$t3."','".$t4."','".$t5."','".$t6."','".$t0."')";
 	$res=mysql_query($qry);
 	
 	$h=$_POST['s'];
 	$d = count($h);
 	for($i=0; $i<$d; $i++)
-	{
-		
+	{		
 		$q_s=$_POST['s'][$i];
 		$q_d=$_POST['d'][$i];
 		$q_r=$_POST['r'][$i];
@@ -120,7 +127,6 @@ function addRow(tableID) {
 </script>
   
 </head>
-
 <body>
 <div id="container">
 	
@@ -140,17 +146,15 @@ function addRow(tableID) {
 				</td>
                 <tr><td class="l_form">Client Name:</td>
                 <td>
-                <input type="text" class="q_in" name="i_name">
+                <input type="text" class="q_in" name="i_name" value="<?php echo $row_info[4]; ?>">
 				</td>
                 </tr>
                 <tr>
                 <td class="l_form">Address:</td><td><textarea class="q_add" name="i_address"></textarea></td></tr>
                 </table>
                 <table class="invoice1">
-                <tr><td class="l_form">&nbsp;</td>
-                <td>&nbsp;
-                
-				</td>
+                <tr><td class="l_form">Date</td>
+                <td><input type="date" class="q_in" name="i_date" ></td>
                 </tr>
                 <tr>
                 <td class="l_form">Advance:</td>
@@ -161,7 +165,10 @@ function addRow(tableID) {
                 <tr>
                 <td class="l_form">S.Tax:</td>
                 <td>
-                <input type="text" class="q_in" name="i_tax">
+                <select name="i_tax">
+                <option>5%</option>
+                <option>5%</option>
+                </select>
 				</td>
                 </tr>
                 </table>

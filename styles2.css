@@ -117,6 +117,22 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 
 	font-size:15px;
 	
 }
+.pdfhead
+{
+	font-size:20px;
+	letter-spacing:1px;
+}
+.print3 a
+{
+	
+	padding:5px 10px 5px 10px;
+	margin-left:10px;
+	background-color:#09C;
+	color:#000;
+	text-decoration:none;
+	font-size:15px;
+	
+}
 .insert a
 {
 	width:100%;
@@ -1019,8 +1035,15 @@ div#footer-links p {
 {
 	margin-left:12px;
 	width:1290px;
-	
-	
+}
+.emp_pdf
+{
+	margin-left:12px;
+	width:1225px;
+}
+.emp_pdf tr td
+{
+	border:1px solid #000;
 }
 .emp_tab1
 {
@@ -1345,6 +1368,20 @@ option
 	text-align:center;
 	color:#FFF;
 }
+.pdf_header
+{
+	background-color:#333;
+	height:30px;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+	color:#000;
+}
+.pdf_header td
+{
+	border:1px solid #000;
+	
+}
 .menu_header td
 {
 	 background:#09C;
@@ -1423,4 +1460,8 @@ option
 	border:1px solid #000;
 	width:600px;
 	height:380px;
+}
+.reciept
+{
+	font-size:25px;
 }

@@ -8,13 +8,12 @@ if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
 	header("location:../index.php");
 	}
 include("../include/database.php");
-
-if(isset($_REQUEST['id2']))
-{
-	header("location:booking.php");
-}
 ?>
-
+<?php
+$qry_c="select * from company where comp_id='$c'";
+$res_c=mysql_query($qry_c);
+$row_c=mysql_fetch_array($res_c);
+?>
 <?php
 	$id=$_REQUEST['id'];
 	$qry="select * from booking_form where b_id='$id' and c_id=".$c;
@@ -60,31 +59,21 @@ if(isset($_REQUEST['id2']))
 		header("location:home.php");
 	}
 ?>
-<?php
-	if(isset($_REQUEST['print']))
-	{
-		header("location:viewpdf.php");
-	}
-
-?>
 <html>
 <head>
 <title>Chaturang Tours Pvt Ltd</title>
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
 </head>
-<body>
-<div id="container">
-	<div id="sub-header">
-    <?php
-		include("include/p_header.php");	
-	?>
+<body bgcolor="#FFF">
+	
         <div>
 		<br>
-        <div class="quotation"><center>Booking Information</center></div>
+        <br>
+        <div class="pdfhead"><center><?php echo $row_c['comp_name']; echo "&nbsp;Booking Form No-$id"; ?></center></div>
 
-		<table class="emp_tab">
-        <tr class="menu_header">
+		<table class="emp_pdf">
+        <tr class="pdf_header">
         <td width="150">B.No</td>
         <td width="150">B.Date</td>
         <td>SE</td>
@@ -111,8 +100,11 @@ if(isset($_REQUEST['id2']))
 		 if(($count=mysql_num_rows($res_p))>0)
 		 { 
 		 echo "<br>";
-         echo "<table class='emp_tab'>";
-         echo "<tr class='menu_header'>";
+         echo "<table class='emp_pdf'>";
+		 echo "<tr class='pdf_header'>";
+		 echo "<td colspan='6'>"; echo "Tourist Information"; echo "</td>";
+		 echo "</tr>";
+         echo "<tr class='pdf_header'>";
          echo "<td>Tourists Name</td>";
          echo "<td>M/F</td>";
          echo "<td>DOB</td>";
@@ -153,8 +145,11 @@ if(isset($_REQUEST['id2']))
 		 if(($count=mysql_num_rows($res_h))>0)
 		 {
 			  echo "<br>";
-         echo "<table class='emp_tab'>";
-         echo "<tr class='menu_header'>";
+         echo "<table class='emp_pdf'>";
+		 echo "<tr class='pdf_header'>";
+		 echo "<td colspan='7'>"; echo "Hotel Accommodation Details"; echo "</td>";
+		 echo "</tr>";
+         echo "<tr class='pdf_header'>";
          echo "<td>Vendor's Name</td>";
          echo "<td>Hotel Name</td>";
          echo "<td>Place</td>";
@@ -199,8 +194,12 @@ if(isset($_REQUEST['id2']))
 		 if(($count=mysql_num_rows($res_v)))
 		 {
 		 echo "<br>";
-         echo "<table class='emp_tab'>";
-         echo "<tr class='menu_header'>";
+         echo "<table class='emp_pdf'>";
+		 echo "<tr class='pdf_header'>";
+		 echo "<td colspan='7'>"; echo "Vehicle Transportation Details"; echo "</td>";
+		 echo "</tr>";
+		 
+         echo "<tr class='pdf_header'>";
          echo "<td>Vendor's Name</td>";
          echo "<td>Vehicle Type</td>";
          echo "<td>Pick Up</td>";
@@ -239,51 +238,43 @@ if(isset($_REQUEST['id2']))
 		 }
 		 ?>
          </table>	 
-         <br>
-         <div class="quotation"><center>Profit/Expense Details</center></div>
-        <table class="emp_tab">
-        <tr class="menu_header">
-        <td width="150">Package Cost</td>
-        <td width="150">Client Payment</td>
-        <td width="150">Client Balance</td>
-        <td>Hotel/Vendor Payment</td>
-        <td>Transportation Payment</td>
+         <br><br>
+        <table class="emp_pdf">
+        <tr class="pdf_header">
+        <td colspan="7">Profit and Expense Details</td>
+        </tr>
+        <tr class="pdf_header">
+        <td width="100">Package Cost</td>
+        <td width="100">Client Payment</td>
+        <td width="100">Client Balance</td>
+        <td width="120">Hotel/Vendor Payment</td>
+        <td width="120">Transportation Payment</td>
         <td width="150">Total Expense</td>
         <td width="150">Gross Profit</td>
-       
         </tr>
         <tr class="pagi">
-        <td width="150"><b><?php echo $row[8].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="150"><b><?php echo $row_cpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
+        <td><b><?php echo $row[8].'&nbsp;'.'Rs/-'; ?></b></td>
+        <td><b><?php echo $row_cpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
         <td><b><?php echo $balance.'&nbsp;'.'Rs/-'; ?></b></td>
         <td><b><?php echo $row_hpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="70"><b><?php echo $row_tpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="70"><b><?php echo $expense.'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="70"><b><?php echo $profit.'&nbsp;'.'Rs/-'; ?></b></td>
+        <td><b><?php echo $row_tpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
+        <td><b><?php echo $expense.'&nbsp;'.'Rs/-'; ?></b></td>
+        <td><b><?php echo $profit.'&nbsp;'.'Rs/-'; ?></b></td>
         </tr>
         </table>
-         <div id="phone">
-                
-         </div>     
-        <div class="addclients_b">
-        <form>
-       	<div class="print3">
-        <?php 
-         echo "<a href='viewpdf.php?id=$id'>Print</a>";
-         echo "<a href='?id2'>Cancel</a>";
-        ?>
-		</div>
-        </form>
-        </div>
-    </div>
-    </div>
-           
-    	<div class="clear"></div>
     </div>
 </div>
- <div id="footer">
-     <div class="clear"></div> 
-    </div>
-    </div>
 </body>
 </html>
+
+<?php
+$htmlcontent=ob_get_clean();
+include("dompdf/dompdf_config.inc.php");
+  $htmlcontent = stripslashes($htmlcontent);
+  $dompdf = new DOMPDF();
+  $dompdf->load_html($htmlcontent);
+  $dompdf->set_paper("folio", "landscape");
+  $dompdf->render();
+  $dompdf->stream($filename, array("Attachment" => false));	
+  exit(0);
+?>

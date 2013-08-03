@@ -39,16 +39,17 @@ $res_r=mysql_query($qry_r);
 		$pa_qry="insert into trans_pay(c_id,b_id,v_id,v_name,v_date,v_mode,v_no,v_amt) values('".$c."','".$t1."','".$id2."','".$t3."','".$date."','".$t5."','".$t6."','".$t7."')";
 		$pa_res=mysql_query($pa_qry);
 		$id4 = mysql_insert_id();
-		$m_id='CT1_'.$id4;
+		$p_id='CT'.$c.'_'.$id4;
 		
 		$t1=$_POST['t1'];
  		$t2=$_POST['t2'];
 		$date=date('Y-m-d', strtotime($t4));
 		$t3=$_POST['t3'];
 		
-		$t5=$_POST['t5'];
-
-		$pa_qry="insert into reciept(p_id,c_id,b_id,r_date,r_mode,r_no,r_amt,m_id) values('".$id4."','".$c."','".$t1."','".$date."','".$t5."','".$t6."','".$t7."','".$m_id."')";
+		$num=$_POST['t7'];
+		$t8=strtoupper(convertNumber($num));
+		
+		$pa_qry="insert into reciept(p_id,c_id,b_id,r_date,r_mode,r_no,r_amt,r_word) values('".$p_id."','".$c."','".$t1."','".$date."','".$t5."','".$t6."','".$t7."','".$t8."')";
 		
 		$pa_res=mysql_query($pa_qry);
 		
@@ -70,6 +71,162 @@ $res_r=mysql_query($qry_r);
 	
 	$d=date('d-m-Y');
 ?>
+<?php
+function convertNumber($num)
+{
+   list($num, $dec) = explode(".", $num);
+
+   $output = "";
+
+   if($num{0} == "-")
+   {
+      $output = "negative ";
+      $num = ltrim($num, "-");
+   }
+   else if($num{0} == "+")
+   {
+      $output = "positive ";
+      $num = ltrim($num, "+");
+   }
+   
+   if($num{0} == "0")
+   {
+      $output .= "zero";
+   }
+   else
+   {
+      $num = str_pad($num, 36, "0", STR_PAD_LEFT);
+      $group = rtrim(chunk_split($num, 3, " "), " ");
+      $groups = explode(" ", $group);
+
+      $groups2 = array();
+      foreach($groups as $g) $groups2[] = convertThreeDigit($g{0}, $g{1}, $g{2});
+
+      for($z = 0; $z < count($groups2); $z++)
+      {
+         if($groups2[$z] != "")
+         {
+            $output .= $groups2[$z].convertGroup(11 - $z).($z < 11 && !array_search('', array_slice($groups2, $z + 1, -1))
+             && $groups2[11] != '' && $groups[11]{0} == '0' ? " and " : ", ");
+         }
+      }
+
+      $output = rtrim($output, ", ");
+   }
+
+   if($dec > 0)
+   {
+      $output .= " point";
+      for($i = 0; $i < strlen($dec); $i++) $output .= " ".convertDigit($dec{$i});
+   }
+
+   return $output;
+}
+
+function convertGroup($index)
+{
+   switch($index)
+   {
+      case 11: return " decillion";
+      case 10: return " nonillion";
+      case 9: return " octillion";
+      case 8: return " septillion";
+      case 7: return " sextillion";
+      case 6: return " quintrillion";
+      case 5: return " quadrillion";
+      case 4: return " trillion";
+      case 3: return " billion";
+      case 2: return " million";
+      case 1: return " thousand";
+      case 0: return "";
+   }
+}
+
+function convertThreeDigit($dig1, $dig2, $dig3)
+{
+   $output = "";
+
+   if($dig1 == "0" && $dig2 == "0" && $dig3 == "0") return "";
+
+   if($dig1 != "0")
+   {
+      $output .= convertDigit($dig1)." hundred";
+      if($dig2 != "0" || $dig3 != "0") $output .= " and ";
+   }
+
+   if($dig2 != "0") $output .= convertTwoDigit($dig2, $dig3);
+   else if($dig3 != "0") $output .= convertDigit($dig3);
+
+   return $output;
+}
+
+function convertTwoDigit($dig1, $dig2)
+{
+   if($dig2 == "0")
+   {
+      switch($dig1)
+      {
+         case "1": return "ten";
+         case "2": return "twenty";
+         case "3": return "thirty";
+         case "4": return "forty";
+         case "5": return "fifty";
+         case "6": return "sixty";
+         case "7": return "seventy";
+         case "8": return "eighty";
+         case "9": return "ninety";
+      }
+   }
+   else if($dig1 == "1")
+   {
+      switch($dig2)
+      {
+         case "1": return "eleven";
+         case "2": return "twelve";
+         case "3": return "thirteen";
+         case "4": return "fourteen";
+         case "5": return "fifteen";
+         case "6": return "sixteen";
+         case "7": return "seventeen";
+         case "8": return "eighteen";
+         case "9": return "nineteen";
+      }
+   }
+   else
+   {
+      $temp = convertDigit($dig2);
+      switch($dig1)
+      {
+         case "2": return "twenty-$temp";
+         case "3": return "thirty-$temp";
+         case "4": return "forty-$temp";
+         case "5": return "fifty-$temp";
+         case "6": return "sixty-$temp";
+         case "7": return "seventy-$temp";
+         case "8": return "eighty-$temp";
+         case "9": return "ninety-$temp";
+      }
+   }
+}
+      
+function convertDigit($digit)
+{
+   switch($digit)
+   {
+      case "0": return "zero";
+      case "1": return "one";
+      case "2": return "two";
+      case "3": return "three";
+      case "4": return "four";
+      case "5": return "five";
+      case "6": return "six";
+      case "7": return "seven";
+      case "8": return "eight";
+      case "9": return "nine";
+   }
+}
+?>
+
 <html>
 <head>
 <title>Chaturang Tours Pvt Ltd</title>
@@ -100,15 +257,7 @@ $res_r=mysql_query($qry_r);
 		{
 			echo "<tr class='pagi'>";
 			echo "<td class='print'>";
-			$row_r=mysql_fetch_array($res_r);
-			if($row_r[1]==$row_d[0])
-			{
-				echo "<a href='viewreciept.php?id=$row_d[0]'>&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;</a>";
-			}
-			else
-			{
-				echo "<a href='viewreciept.php?id=$row_d[0]&&id2=$id2'>&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;</a>";
-			}
+			echo "<a href='transreciept.php?id=$row_d[0]'>&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;</a>";
 			echo "</td>";
 			echo "<td>";
 			echo $row_d[4];

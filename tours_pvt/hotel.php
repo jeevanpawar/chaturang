@@ -7,6 +7,7 @@ if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
 	header("location:../index.php");
 	}
 	include("../include/database.php");
+	
 	$hotel="select * from hotel";
 	$hotel_res=mysql_query($hotel);
 ?>
@@ -234,8 +235,7 @@ else
 				echo "</td>";
 				echo "<td class='link'>";
 				echo '<a href=# alt=Image Tooltip rel=tooltip content="<table class=tool><tr><td id=con>Registration No:</td><td>'.$row_hotel[4].'</td></tr><tr><td id=con>Hotel Name:</td><td>'.$row_hotel[2].'</td></tr><tr><td id=con>Address</td><td>'.$row_hotel[3].'</td></tr><tr><td id=con>Concern Person:</td><td>'.$row_hotel[5].'</td></tr><tr><td id=con>Contact No:</td><td>'.$row_hotel[6].'</td></tr><tr><td id=con>Email:</td><td>'.$row_hotel[8].'</td></tr><tr><td id=con>Bank Name:</td><td>'.$row_hotel[10].'</td></tr><tr><td id=con>Bank Account No:</td><td>'.$row_hotel[11].'</td></tr></table>">'.$row_hotel['2'].'</a>'.'<br>';
-  
-				echo "</td>";
+  				echo "</td>";
 				echo "<td>";
 				echo $row_hotel[3];
 				echo "</td>";

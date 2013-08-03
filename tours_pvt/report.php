@@ -7,8 +7,15 @@ $c=$_SESSION['com'];
 if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
 	header("location:../index.php");
 	}
+
+$qry_c="select * from company where comp_id='$c'";
+$res_c=mysql_query($qry_c);
+$row_c=mysql_fetch_array($res_c);
+	
 $p=$_REQUEST['id'];
+
 $d=$_REQUEST['id2'];
+
 $qry="select * from invoice where i_no=".$p;
 $res=mysql_query($qry);
 $row=mysql_fetch_array($res);
@@ -33,7 +40,7 @@ $balance=$row_t[0]-$row[6];
 <div class="add">
 <table>
 <tr>
-<td>Chaturang Tours Pvt Ltd</td>
+<td><?php echo $row_c[1]; ?></td>
 </tr>
 <tr>
 <td>Shop No.4, Tirupati Tower-2, Ananad Nagar, Next to Akashwani Tower,</td>
@@ -52,7 +59,7 @@ $balance=$row_t[0]-$row[6];
 <td>Invoice No :</td><td> <label><?php echo $row[1]; ?></label></td>
 </tr>
 <tr>
-<td>Date&nbsp;:&nbsp;</td><td><label><?php echo $row[1]; ?></label></td>
+<td>Date&nbsp;:&nbsp;</td><td><label><?php echo date('d-m-Y', strtotime($row[8])); ?></label></td>
 </tr>
 </table>
 </div>

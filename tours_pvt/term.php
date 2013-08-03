@@ -55,8 +55,8 @@ if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
         <table class="emp_tab">
         <tr class="menu_header">
         <td width="100">Term No.</td>
-        <td>Terms & Conditions</td>
-        <td width="140">Action</td>        
+        <td>Title</td>
+        <td width="200">Action</td>        
         </tr>
         <?php
 		while($e_row=mysql_fetch_array($e_res_f))

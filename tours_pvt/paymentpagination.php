@@ -16,6 +16,8 @@ if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
 	$c_qry_f="select * from booking_form where c_id='$c' order by b_id desc limit $start,$per_page";
 	$c_res_f=mysql_query($c_qry_f);
 	$row=mysql_num_rows($c_res_f);
+	
+	
 ?>
         <table class="emp_tab">
         <tr class="menu_header">
@@ -24,8 +26,8 @@ if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
         <td>SE</td>
         <td width="150">Total Amt</td>
         <td width="90">Clients</td>
-        <td width="145">Hotel/Vendor</td>
-        <td width="165">Transport</td>
+        <td width="90">Hotel/Vendor</td>
+        <td width="90">Transport</td>
         </tr>
         <?php
 		while($c_row=mysql_fetch_array($c_res_f))
@@ -43,16 +45,56 @@ if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
 		echo "<td>";
 		echo $c_row[8];
 		echo "</td>";
+		$qry_p="select SUM(p_amt) from partial_payment where b_id='$c_row[0]'";
+		$res_p=mysql_query($qry_p);
+		$row_p=mysql_fetch_array($res_p);
+
+		if($c_row[8]==$row_p[0])
+		{
 		echo "<td class='print'>";
 		echo "<a href='pay.php?id=$c_row[0]'>Payment</a>";
 		echo "</td>";
-		echo "<td class='print'>";
-		echo "<a href='hoteldetail.php?id=$c_row[0]'>Hotel/Vendor</a>";
+		}
+		else
+		{
+		echo "<td class='insert'>";
+		echo "<a href='pay.php?id=$c_row[0]'>Payment</a>";
 		echo "</td>";
+		}
+		$qry_h="select * from hotel_pay where b_id='$c_row[0]'";
+		$res_h=mysql_query($qry_h);
+		$hotel=mysql_num_rows($res_h);
+		
+		$row_h=mysql_fetch_array($res_h);
+		if($hotel > 0)
+		{
 		echo "<td class='print'>";
-		echo "<a href='transdetail.php?id=$c_row[0]'>Transportation</a>";
+		echo "<a href='hoteldetail.php?id=$c_row[0]'>Payment</a>";
+		echo "</td>";
+		}
+		else
+		{
+		echo "<td class='insert'>";
+		echo "<a href='hoteldetail.php?id=$c_row[0]'>Payment</a>";
+		echo "</td>";
+		}
+		$qry_h="select * from trans_pay where b_id='$c_row[0]'";
+		$res_h=mysql_query($qry_h);
+		$trans=mysql_num_rows($res_h);
+		if($trans>0)
+		{
+		echo "<td class='print'>";
+		echo "<a href='transdetail.php?id=$c_row[0]'>Payment</a>";
 		echo "</td>";
 		echo "</tr>";
+		}
+		else
+		{
+		echo "<td class='insert'>";
+		echo "<a href='transdetail.php?id=$c_row[0]'>Payment</a>";
+		echo "</td>";
+		echo "</tr>";	
+		}
 		}
 		?>
       
