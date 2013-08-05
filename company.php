@@ -6,12 +6,9 @@ if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
 	header("location:index.php");
 	}
 ?>
-
 <?php
-
 $qry="select * from company";
 $res=mysql_query($qry);
-
 if(isset($_REQUEST['go']))
 {
 	$b=$_POST['t1'];
@@ -28,11 +25,8 @@ if(isset($_REQUEST['go']))
 	{
 		header("location:holidays/home.php");
 	}
-	
 }
-
 ?>
-
 <html>
 <head>
 <title>Chaturang</title>
@@ -57,24 +51,17 @@ if(isset($_REQUEST['go']))
 }
 </style>
 </head>
-
 <body>
-
-
 <div style="padding: 130px 0 0 0;" align="center">
 <form action="" method="post">
-
 <div id="login-box">
-
 <H2 align="left"><span class="main">CHATURANG</span><br /><span class="tour">Group of Companies</span></H2>
 <div class="welcome">
 <?php
-echo "Welcome:$a";
+	echo "Welcome:$a";
 ?>
 </div>
-<br />
-<br />
-
+<br /><br />
 <div id="login-box-field" style="margin-top:20px;"><label id="select">Select Company</label></div>
 <div id="login-box-field-select">
 <select name="t1">
@@ -90,19 +77,11 @@ while($row=mysql_fetch_array($res))
 </div>
 <br />
 <span class="login-box-options"></span>
-<br />
-<br />
+<br /><br />
 <div><input class="logcom" name="go" type="submit" value="Go" /></div>
-
-
-
 </form>
-
-
 </div>
-
 </div>
 <div class="reference">Copyright @ 2013 Chaturang Tours Pvt. Ltd. Powered By: Wave TechLine India Pvt. Ltd.</div>
-
 </body>
 </html>

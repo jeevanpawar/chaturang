@@ -24,6 +24,7 @@ if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
         <td width="150">Bkg No</td>
         <td width="150">Bkg Date</td>
         <td>SE</td>
+        <td>Client Name</td>
         <td width="150">Total Amt</td>
         <td width="90">Clients</td>
         <td width="90">Hotel/Vendor</td>
@@ -41,6 +42,9 @@ if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
 		echo "</td>";
 		echo "<td>";
 		echo $c_row[3];
+		echo "</td>";
+		echo "<td>";
+		echo $c_row[4];
 		echo "</td>";
 		echo "<td>";
 		echo $c_row[8];

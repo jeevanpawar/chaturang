@@ -164,7 +164,7 @@ $row_d=mysql_fetch_array($res_d);
 			echo "<b>Reciept No:$row[0]</b>";
 			echo "</td>";
 			echo "<td>";
-			echo "<span class='date'><b>Date:".date('d-m-Y')."</b></span>";
+			echo "<b>Date:".date('d-m-Y')."</b>";
 			echo "</td>";
 			echo "</tr>";
 			echo "<tr>";

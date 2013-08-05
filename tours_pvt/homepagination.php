@@ -25,10 +25,10 @@ $res_u=mysql_query($qry_u);
         <td width="150">B.No</td>
         <td width="150">B.Date</td>
         <td>SE</td>
-        <td>Office</td>
-        <td width="70">Pax</td>
+        <td>Client Name</td>
         <td width="70">Adult</td>
         <td width="70">Child</td>
+        <td width="70">Pax</td>
         <td width="130">View Details</td>
         </tr>
 
@@ -49,13 +49,14 @@ $res_u=mysql_query($qry_u);
 		echo $row_u[4];
 		echo "</td>";
 		echo "<td>";
-		echo $row_u[5];
-		echo "</td>";
-		echo "<td>";
 		echo $row_u[6];
 		echo "</td>";
 		echo "<td>";
 		echo $row_u[7];
+		echo "<td>";
+		echo $row_u[5];
+		echo "</td>";
+
 		echo "</td>";
 		echo "<td class='print'>";
 		echo "<a href='viewdetail.php?id=$row_u[0]'>View Details</a>";

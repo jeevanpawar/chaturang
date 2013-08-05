@@ -11,6 +11,10 @@ include("../include/database.php");
 $id=$_REQUEST['id'];
 $id2=$_REQUEST['id2'];
 
+$qry_c="select * from company where comp_id='$c'";
+$res_c=mysql_query($qry_c);
+$row_c=mysql_fetch_array($res_c);
+
 $qry_n="select * from booking_form where b_id='$id'";
 $res_n=mysql_query($qry_n);
 $row_n=mysql_fetch_array($res_n);
@@ -66,7 +70,7 @@ $r_meal=mysql_fetch_array($ep);
 HOTEL CONFIRMATION FORM
 </div>
 <br><br><br><br>
-<div><b><u>Ref No:&nbsp;<?php echo $id; ?></u></b>
+<div><b><u>Ref No:&nbsp;<?php echo $id.'/'.$c_row['cnt']; ?></u></b>
 <span class="date">Date:&nbsp;<?php echo date('d-m-Y'); ?></span></div>
 <br><br>
 <div>To,
@@ -82,7 +86,7 @@ HOTEL CONFIRMATION FORM
 </div>
 <br>
 <br><br>
-<div><b><u>Booked to stay with you from  </u></b><span class="detail">: C/in on <?php echo $c_row[8];?> to C/ out on C/in on <?php echo $c_row[9];?></span>
+<div><b><u>Booked to stay with you from  </u></b><span class="detail">: C/in on <?php echo date('d-M-Y', strtotime($c_row[8]));?> to C/ out on C/in on <?php echo date('d-M-Y', strtotime($c_row[9]));?></span>
 </div>
 <br>
 <br><br>
@@ -107,7 +111,7 @@ Prepaid by Chaturang Tours for Accommodation and Selected Services.
 </div>
 <br>
 <br><br>
-<div><b>For Chaturang Tours Pvt Ltd-Nasik</b>
+<div><b>For <?php echo $row_c[1]; ?>-Nasik</b>
 </div>
 <br>
 <br><br>

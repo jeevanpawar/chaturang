@@ -343,14 +343,18 @@ function convertDigit($digit)
         echo "<td class='l_form'>Amount:</td>";
         echo "<td><input id='i_amt' type='text' class='q_in' name='t5' value='$bal'></td>";
         echo "</tr>";
-		}
+		echo "<tr>";
+        echo "<td colspan='2'>";
+        echo "<div class='pay_button'>";
+        echo "<input name='e_add' class='formbutton' value=' Add ' type='submit' onClick='javascript:return validateMyForm();'/>&nbsp;";
+        echo "<input name='e_can' class='formbutton' value='Cancel' type='submit' />";
+        echo "</div>";
+        echo "</td>";
+        echo "</tr>";
+        }
 		?>
-        </table>
-        <div class="pay_button">
-         <input name="e_add" class="formbutton" value=" Add " type="submit" onClick="javascript:return validateMyForm();" />
-         <input name="e_can" class="formbutton" value="Cancel" type="submit" />
-        </div>
-         </form>
+		</table>
+        </form>
     </div>
     </div>
         

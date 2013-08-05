@@ -6,6 +6,17 @@ body {
 	font-size: 13px;
 	color: #000;
 }
+.home
+{
+	width:1285px;
+	height:500px;
+	margin-left:15px;
+}
+.home tr td
+{
+	width:20%;
+
+}
 .info
 {
 	text-align:center;
@@ -112,22 +123,6 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 
 {
 	
 	padding:2px 4px 2px 4px;
-	color:#000;
-	text-decoration:none;
-	font-size:15px;
-	
-}
-.pdfhead
-{
-	font-size:20px;
-	letter-spacing:1px;
-}
-.print3 a
-{
-	
-	padding:5px 10px 5px 10px;
-	margin-left:10px;
-	background-color:#09C;
 	color:#000;
 	text-decoration:none;
 	font-size:15px;
@@ -506,7 +501,7 @@ div#sub-header {
 	margin-left:-180px;
 	width:1315px;
 	height:1000px;
-	background-color:#CCC;
+	background-color:#F2F2F2;
 	opacity:0.9;
 	
 }
@@ -1035,15 +1030,8 @@ div#footer-links p {
 {
 	margin-left:12px;
 	width:1290px;
-}
-.emp_pdf
-{
-	margin-left:12px;
-	width:1225px;
-}
-.emp_pdf tr td
-{
-	border:1px solid #000;
+	
+	
 }
 .emp_tab1
 {
@@ -1139,25 +1127,27 @@ div#footer-links p {
 }
 .pay
 {
-	background-color:#CCC;
+	background-color:#E3E3E3;
 	width:400px;
-	height:450px;
+	height:510px;
 	position:relative;
 	top:0;
 	color:#000;
-	border-bottom:1px solid #CCC;
 	margin-top:-15px;
-	margin-left:880px;
+	border-radius:5px;
+	margin-left:900px;
 }
+
 .pay td
 {
 	padding-left:20px;
 	color:#000;
 	font-size:18px;
+	
 }
 .detail
 {
-	width:860px;
+	width:880px;
 	position:absolute;
 	margin-top:-15px;
 	margin-left:10px;
@@ -1229,7 +1219,7 @@ div#footer-links p {
 .pay_button
 {
 	margin-top:20px;
-	margin-left:1040px;
+	margin-left:125px;
 }
 
 .q_clients
@@ -1368,20 +1358,6 @@ option
 	text-align:center;
 	color:#FFF;
 }
-.pdf_header
-{
-	background-color:#333;
-	height:30px;
-	font-size:14px;
-	font-weight:bold;
-	text-align:center;
-	color:#000;
-}
-.pdf_header td
-{
-	border:1px solid #000;
-	
-}
 .menu_header td
 {
 	 background:#09C;
@@ -1460,8 +1436,4 @@ option
 	border:1px solid #000;
 	width:600px;
 	height:380px;
-}
-.reciept
-{
-	font-size:25px;
 }

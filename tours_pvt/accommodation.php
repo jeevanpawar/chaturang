@@ -20,6 +20,7 @@ include("../include/database.php");
 		$b = count($d);
 		for($i=0; $i<$b; $i++)
 		{
+			$cnt=$i+1;
 			$id=$_REQUEST['id_a'];
 		    $h1=$_POST['v_name'][$i];
 			$h2=$_POST['h_name'][$i];
@@ -30,7 +31,7 @@ include("../include/database.php");
 			$d6=date('Y-m-d', strtotime($h6));
 			$h7=$_POST['cout1'][$i];
 			$d7=date('Y-m-d', strtotime($h7));
-			$qry_hotel="insert into hotel_acomodation(c_id,b_id,h_vendor,h_hotel,h_place,h_room,h_meal,h_cin,h_cout) values('".$c."','".$id."','".$h1."','".$h2."','".$h3."','".$h4."','".$h5."','".$d6."','".$d7."')";
+			$qry_hotel="insert into hotel_acomodation(c_id,b_id,h_vendor,h_hotel,h_place,h_room,h_meal,h_cin,h_cout,cnt) values('".$c."','".$id."','".$h1."','".$h2."','".$h3."','".$h4."','".$h5."','".$d6."','".$d7."','".$cnt."')";
 			$res_hotel=mysql_query($qry_hotel);
 		
 			if($res_hotel)

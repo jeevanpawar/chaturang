@@ -21,7 +21,7 @@ $res_u=mysql_query($qry_u);
         <td width="150">B.No</td>
         <td width="150">B.Date</td>
         <td>SE</td>
-        <td>Office</td>
+        <td>Client Name</td>
         <td width="70">Pax</td>
         <td width="70">Adult</td>
         <td width="70">Child</td>

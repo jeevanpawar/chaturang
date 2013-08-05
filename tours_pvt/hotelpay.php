@@ -332,12 +332,15 @@ function convertDigit($digit)
         <td><input id="ename" type="text" class="q_in" name="t7" ></td>
         </tr>
         
-        </table>
+      	<tr>
+        <td colspan="2">
         <div class="pay_button">
          <input name="e_add" class="formbutton" value=" Add " type="submit"/>
          <input name="e_can" class="formbutton" value="Cancel" type="submit" />
         </div>
-        
+          </td>
+          </tr>
+          </table>
         </form>
     </div>
     </div>

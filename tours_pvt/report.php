@@ -37,31 +37,22 @@ $balance=$row_t[0]-$row[6];
 <link rel="stylesheet" href="../print.css" type="text/css" />
 </head>
 <body>
-<div class="add">
-<table>
+<div class="inv">INVOICE</div>
+<br><br>
+<table class="add">
 <tr>
-<td><?php echo $row_c[1]; ?></td>
+<td width="370"><b><?php echo $row_c[1]; ?></b></td><td>Invoice No :</td><td> <label><?php echo $row[1]; ?></label></td>
+
 </tr>
 <tr>
-<td>Shop No.4, Tirupati Tower-2, Ananad Nagar, Next to Akashwani Tower,</td>
+<td>Shop No.4, Tirupati Tower-2,<br> Ananad Nagar, Next to Akashwani Tower,</td><td>Date:</td><td><?php echo $row[8]; ?></td>
 </tr>
 <tr>
-<td>Ganagpur Road, Nashik-13. Ph: 0253-2579795.</td>
-</tr>
-</table>
-</div>
-<div class="no">
-<table>
-<tr>
-<td colspan="2"></td>
-</tr>
-<tr>
-<td>Invoice No :</td><td> <label><?php echo $row[1]; ?></label></td>
-</tr>
-<tr>
-<td>Date&nbsp;:&nbsp;</td><td><label><?php echo date('d-m-Y', strtotime($row[8])); ?></label></td>
+<td>Ganagpur Road, Nashik-13. <br>Ph: 0253-2579795.</td>
 </tr>
 </table>
+<br><br><br>
+
 </div>
 <div class="detail">
 <table>
@@ -75,7 +66,7 @@ $balance=$row_t[0]-$row[6];
 </div>
 <table class="tab">
 <tr>
-<td>M/s: </td><td><label><?php echo $row[3]; ?></label></td>
+<td width="100">M/s: </td><td><label><?php echo $row[3]; ?></label></td>
 </tr>
 <tr>
 <td>Address:</td><td> <label><?php echo $row[4]; ?></label></td>
@@ -131,7 +122,29 @@ while($row_d=mysql_fetch_array($res_detail))
 </tr>
 </table>
 
-
+<div style="page-break-after:always"></div>
+<table >
+<tr>
+<td>Terms and Conditions</td>
+</tr>
+<?php
+$q_term="select * from terms";
+$r_term=mysql_query($q_term);
+while($row_term=mysql_fetch_array($r_term))
+{
+	echo "<tr>";
+	echo "<td>";
+	echo "<b>".$row_term[1]."</b>";
+	echo "</td>";
+	echo "</tr>";
+	echo "<tr>";
+	echo "<td>";
+	echo $row_term[2]."<br><br>";
+	echo "</td>";
+	echo "</tr>";
+}
+?>
+</table>
 
 
 </body>

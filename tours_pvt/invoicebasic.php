@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
@@ -34,7 +33,7 @@ if(isset($_REQUEST['submit']))
 	$t6=$_REQUEST['i_tax'];
 	$qry="insert into invoice(i_id,c_id,i_name,i_address,i_word,i_advance,i_tax,i_date) values('".$t1."','".$c."','".$t2."','".$t3."','".$t4."','".$t5."','".$t6."','".$t0."')";
 	$res=mysql_query($qry);
-	
+	$i_id=mysql_insert_id();
 	$h=$_POST['s'];
 	$d = count($h);
 	for($i=0; $i<$d; $i++)
@@ -51,7 +50,7 @@ if(isset($_REQUEST['submit']))
 	
 	if($res)
 	{
-		header("location:invoicedetails.php");
+		header("location:report.php?id=$i_id");
 	}
 	else
 	{
@@ -59,6 +58,7 @@ if(isset($_REQUEST['submit']))
 	}
 	
 }
+
 if(isset($_REQUEST['cancel']))
 {
 	header("location:invoicedetails.php");
@@ -175,8 +175,7 @@ function addRow(tableID) {
                 <table class="des">
                 <tr class="menu_header">
                 <td width="2%">S</td>
-                <td width="7%">Sr.No.</td>
-                <td width="61%">Particulars</td>
+                <td width="68%">Particulars</td>
                 <td width="15%">Rate</td>
                 <td width="15%">Amount</td>
                 </tr>
@@ -188,10 +187,8 @@ function addRow(tableID) {
                 <table class="des" id="dataTable">
                 <tr>
                 <td width="2%"><input class="ch" type="checkbox" name="chk[]"/></td>
-                <td width="7%">
-                 <input class="des_sr" type="text" name="s[]" id="0"><br>
-                </td>
-                <td width="61%">
+                
+                <td width="68%">
                  <input class="des_in" type="text" name="d[]" id="0"><br>
                 </td>
                 <td width="15%">
@@ -208,13 +205,6 @@ function addRow(tableID) {
                  <div id="phone">
                 
                 </div>
-                <table class="word">
-                <tr>
-                <td>Amount In a Word</td>
-              
-                <td><input type="text" class="i_in" name="i_word"></td>
-                </tr>
-                </table>
                 <div class="invoice_b">
             	<input name="submit" class="formbutton" value=" Submit " type="submit"/>
                 <input name="cancel" class="formbutton" value="Cancel" type="submit"/>
