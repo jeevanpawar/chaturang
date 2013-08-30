@@ -1,3 +1,48 @@
+
+.searchform {
+position: absolute;
+right: 15px;
+top: 6px;
+display: inline-block;
+zoom: 1;
+*display: inline;
+border: 0;
+padding: 0;
+}
+.searchform input {
+font: normal 12px/100% Arial, Helvetica, sans-serif;
+}
+.searchform .searchfield {
+height: 27px;
+line-height: 27px;
+padding-left: 10px;
+padding-right: 10px;
+width: 150px;
+border: 2px solid #333;
+outline: none;
+-webkit-border-radius: 2em;
+-moz-border-radius: 2em;
+border-radius: 2em;
+-moz-box-shadow: inset 1px 1px 2px #A1A1A1;
+-webkit-box-shadow: inset 1px 1px 2px #A1A1A1;
+box-shadow: inner 1px 1px 2px #A1A1A1;
+}
+
+.searchfield:focus{
+font-weight: 700;
+width: 220px;
+}
+
+.searchfield:not(:focus){
+width: 150px;
+}
+
+.searchfield:focus,
+.searchfield:not(:focus){
+-webkit-transition-property:width; 
+-webkit-transition-duration: 0.5s, 0.5s; 
+-webkit-transition-timing-function: linear, ease-out;
+}
 #navigation, 
 #nav li ul li, 
 #nav li ul li a{
@@ -10,25 +55,19 @@ background: #000;
 #nav li ul li,
 #nav li ul li a,
 #nav li ul li a:hover  {
-color: #fff; 
+color: #000;
 }
 
 /* Menu Item background color on hover */
 #nav li a:hover, 
 #nav li ul li a:hover  {
-background:#09C;
-   background:#09C;
-   box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+background:#FA8529;
 }
 
 /* Text Shadow */
 #nav li a, 
 #nav li a:hover, 
 #nav li ul li a:hover  {
-text-shadow: 0 1px 1px #333; 
 }
 
 
@@ -57,6 +96,7 @@ width: 1315px;
 #navigation:hover,
 #nav li a:hover, #nav li ul a 
 {
+	color:#FFF;
 	
 } 
 
@@ -66,8 +106,7 @@ width: 1315px;
 #menu_div:not(:hover), 
 #navigation:not(:hover)
 {
-	height:55px;
-	margin-top:-8px;
+	margin-top:5px;
 /* Menu transparency on mouse out */
 }
 
@@ -78,22 +117,16 @@ margin:0 auto; /*center the menu*/
 padding:0;}
 
 #nav{
-background-color:#09C;
-height:55px;
 margin:0;
 padding:0;
+
 position: relative;
 color:#FFF;
 letter-spacing:2px;
 font-family: 'Arial', Helvetica, sans-serif;
-
-border: 1px solid rgba(0,0,0,0.5);
-   background:#09C;
-   box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+background:#FFF;
 }
+
 
 #nav li a,#nav li {
 
@@ -101,17 +134,15 @@ float:left;
 }
 
 #nav li {
-	
 list-style:none;
 position:relative;
 }
 
 #nav li a {
-line-height: 55px;
-padding:0 21px;
+padding:15 15px;
 text-decoration:none;
 margin:0;
-font-size:15px;
+font-size:12px;
 font-weight:700;
 text-transform:uppercase;
 }
@@ -125,6 +156,7 @@ position:absolute;
 left:0;
 top:100%;
 padding:0;
+
 margin:0;
 } /* hide submenu */
 
@@ -133,13 +165,13 @@ display:block;
 } /* show submenu on hover */
 
 #nav li ul li,#nav li ul li a {
-background-color:#CCC;
+background-color:#FFF;
+
 float:none;
-height: 35px; /* submenu item height */
 min-width: 150px; /* submenu item minimal width */
-line-height: 35px;
 border-right: 0;
 text-shadow: none;
+
 display:block;
 font-size:13px;
 font-weight:400;

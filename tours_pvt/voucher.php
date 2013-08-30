@@ -1,11 +1,6 @@
 <?php
-session_start();
+include("../session/session.php");
 error_reporting(0);
-$a=$_SESSION['user'];
-$c=$_SESSION['com'];
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header("location:../index.php");
-	}
 include("../include/database.php");
 
 $id=$_REQUEST['id'];

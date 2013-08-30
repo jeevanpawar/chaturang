@@ -33,13 +33,13 @@ $rsd = mysql_query($sql);
 		{		
         	echo "<tr class='pagi'>";
                 echo "<td>";
-                echo $row[0];
+                echo $row[1];
                 echo "</td>";
                 echo "<td>";
                 echo $row[3];
                 echo "</td>";
                 echo "<td>";
-                echo $row[1];
+                echo $row['i_date'];
                 echo "</td>";
                 echo "<td>";
                 echo $row[4];

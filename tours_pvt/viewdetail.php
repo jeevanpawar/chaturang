@@ -1,12 +1,6 @@
 <?php
-session_start();
-
+include("../session/session.php");
 error_reporting(0);
-$a=$_SESSION['user'];
-$c=$_SESSION['com'];
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header("location:../index.php");
-	}
 include("../include/database.php");
 
 if(isset($_REQUEST['id2']))
@@ -17,7 +11,7 @@ if(isset($_REQUEST['id2']))
 
 <?php
 	$id=$_REQUEST['id'];
-	$qry="select * from booking_form where b_id='$id' and c_id=".$c;
+	$qry="select * from booking_form where b_id='$id' and c_id='$c'";
 	$res=mysql_query($qry);
 	$row=mysql_fetch_array($res);
 ?>
@@ -81,10 +75,10 @@ if(isset($_REQUEST['id2']))
 	?>
         <div>
 		<br>
-        <div class="quotation"><center>Booking Information</center></div>
-
-		<table class="emp_tab">
-        <tr class="menu_header">
+        
+        <div class="headline">Booking Information</div>
+        <table class="emp_tab">
+        <tr class="information">
         <td width="150">B.No</td>
         <td width="150">B.Date</td>
         <td>SE</td>
@@ -95,8 +89,8 @@ if(isset($_REQUEST['id2']))
         <td width="50">Room's</td>
         </tr>
         <tr class="pagi">
-        <td width="150"><?php echo $row[0]; ?></td>
-        <td width="150"><?php echo date('d-m-Y', strtotime ($row[2])); ?></td>
+        <td width="150"><?php echo $id; ?></td>
+        <td width="150"><?php echo $row[2]; ?></td>
         <td><?php echo $row[3]; ?></td>
         <td><?php echo $row[4]; ?></td>
         <td width="70"><?php echo $row[5]; ?></td>
@@ -111,8 +105,9 @@ if(isset($_REQUEST['id2']))
 		 if(($count=mysql_num_rows($res_p))>0)
 		 { 
 		 echo "<br>";
+		 echo "<div class='headline'>Tourists Information</div>";
          echo "<table class='emp_tab'>";
-         echo "<tr class='menu_header'>";
+         echo "<tr class='information'>";
          echo "<td>Tourists Name</td>";
          echo "<td>M/F</td>";
          echo "<td>DOB</td>";
@@ -153,8 +148,9 @@ if(isset($_REQUEST['id2']))
 		 if(($count=mysql_num_rows($res_h))>0)
 		 {
 			  echo "<br>";
+			  echo "<div class='headline'>Hotel Accommodation</div>";
          echo "<table class='emp_tab'>";
-         echo "<tr class='menu_header'>";
+         echo "<tr class='information'>";
          echo "<td>Vendor's Name</td>";
          echo "<td>Hotel Name</td>";
          echo "<td>Place</td>";
@@ -199,8 +195,9 @@ if(isset($_REQUEST['id2']))
 		 if(($count=mysql_num_rows($res_v)))
 		 {
 		 echo "<br>";
+		 echo "<div class='headline'>Vehicle Transportation</div>";
          echo "<table class='emp_tab'>";
-         echo "<tr class='menu_header'>";
+         echo "<tr class='information'>";
          echo "<td>Vendor's Name</td>";
          echo "<td>Vehicle Type</td>";
          echo "<td>Pick Up</td>";
@@ -240,9 +237,9 @@ if(isset($_REQUEST['id2']))
 		 ?>
          </table>	 
          <br>
-         <div class="quotation"><center>Profit/Expense Details</center></div>
+        <div class="headline">Profit/Expense Details</div>
         <table class="emp_tab">
-        <tr class="menu_header">
+        <tr class="information">
         <td width="150">Package Cost</td>
         <td width="150">Client Payment</td>
         <td width="150">Client Balance</td>
@@ -253,31 +250,35 @@ if(isset($_REQUEST['id2']))
        
         </tr>
         <tr class="pagi">
-        <td width="150"><b><?php echo $row[8].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="150"><b><?php echo $row_cpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td><b><?php echo $balance.'&nbsp;'.'Rs/-'; ?></b></td>
-        <td><b><?php echo $row_hpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="70"><b><?php echo $row_tpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="70"><b><?php echo $expense.'&nbsp;'.'Rs/-'; ?></b></td>
-        <td width="70"><b><?php echo $profit.'&nbsp;'.'Rs/-'; ?></b></td>
+        <td width="150"><b><?php echo "<span style='font-family:rupee;font-size:14px'>".'R'.$row[8].'&nbsp;'; ?></b></td>
+        <td width="150"><b><?php echo "<span style='font-family:rupee;font-size:14px'>".'R'.$row_cpay[0].'&nbsp;'; ?></b></td>
+        <td><b><?php echo "<span style='font-family:rupee;font-size:14px'>".'R'.$balance.'&nbsp;'; ?></b></td>
+        <td><b><?php echo "<span style='font-family:rupee;font-size:14px'>".'R'.$row_hpay[0].'&nbsp;'; ?></b></td>
+        <td width="70"><b><?php echo "<span style='font-family:rupee;font-size:14px'>".'R'.$row_tpay[0].'&nbsp;'; ?></b></td>
+        <td width="70"><b><?php echo "<span style='font-family:rupee;font-size:14px'>".'R'.$expense.'&nbsp;'; ?></b></td>
+        <td width="70"><b><?php echo "<span style='font-family:rupee;font-size:14px'>".'R'.$profit.'&nbsp;'; ?></b></td>
         </tr>
         </table>
-         <div id="phone">
-                
-         </div>     
+        <div id="phone">
+        </div>     
         <div class="addclients_b">
         <form>
-       	<div class="print3">
+       	<table class="pdf">
         <?php 
-         echo "<a href='viewpdf.php?id=$id'>Print</a>";
-         echo "<a href='?id2'>Cancel</a>";
+        echo "<tr>";
+		echo "<td>";
+		echo "<a href='viewpdf.php?id=$id'>Print</a>";
+        echo "</td>";
+		echo "<td>"; 
+		echo "<a href='?id2'>Cancel</a>";
+		echo "</td>"; 
+		echo "</tr>";
         ?>
-		</div>
+        </table>
         </form>
         </div>
-    </div>
-    </div>
-           
+    	</div>
+    	</div>
     	<div class="clear"></div>
     </div>
 </div>

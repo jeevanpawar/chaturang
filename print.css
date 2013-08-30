@@ -1,11 +1,23 @@
+.tabpdf
+{
+
+	width:725px;
+}
+.tabpdf td
+{
+	font-size:14px;
+	text-align:center;
+	border:1px solid #EEE;
+}
 .inv
 {
+	margin-top:20px;
 	text-align:center;
 	font-size:25px;
 	letter-spacing:2px;
 	font-weight:bold;
-	color:#FFF;
-	background-color:#000;
+	color:#000;
+	background-color:#EEE;
 }
 .invoice
 {
@@ -13,6 +25,7 @@
 }
 .add
 {
+	
 	width:100%;
 	height:120px;
 	margin-top:15px;
@@ -36,10 +49,17 @@
 {
 	margin-top:5px;
 	width:725px;
-	border:1px solid #000;
-	background-color:#000;
-	color:#FFF;
+	color:#000;
 	text-align:center;
+}
+.detail table td
+{
+	border:1px solid #FFF;
+	background-color:#EEE;
+}
+.address
+{
+	font-size:12px;
 }
 .heading
 {
@@ -74,25 +94,50 @@
 }
 .report
 {
+
 	width:720px;
 	margin-top:15px;
 }
 .report td
 {
-		border:1px solid #000;
-		text-align:center;
-		height:25px;
+	background-color:#EEE;
+	text-align:center;
+	height:25px;
 }
+.r_details
+{
+	width:720px;
+	background-color:#FFF;
+	text-align:center;
+	height:300px;
+}
+.r_details td
+{
+	padding:20px 0px 20px 0px;
+	border:1px solid #FFF;
+	background-color:#EEE;
+	text-align:center;
+
+}
+
 .advance
 {
-	width:615px;
-	margin-left:310px;
+	margin-top:10px;
+	width:625px;
+	margin-left:275px;
 }
 .advance td
 {
-	border:1px solid #000;
+	background-color:#EEE;
 	text-align:center;
-	height:25px;
+	height:50px;
+}
+.conditions
+{
+
+	background-color:#EEE;
+	text-align:justify;
+
 }
 .total
 {
@@ -111,7 +156,7 @@
 }
 .tab
 {
-	margin-top:5px;
+	margin-top:15px;
 	width:725px;
-	border:1px solid #000;	
+	background-color:#EEE;
 }

@@ -24,7 +24,6 @@ error_reporting(0);
 <html>
 <head>
 <title>Chaturang</title>
-
 <link href="login-box.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 
@@ -34,34 +33,60 @@ error_reporting(0);
 	width:100%;
 	left:-1px;
 	right:-1px;
+	font-size:14px;
 	text-align:center;
 	height:20px;
-	opacity:0.5;
-	color:#FFF;
-	background-color:#000;
-	letter-spacing:1px;
-	padding-left:5px;
+	opacity:1;
+	color:#000;
+	display: inline-block;
+  *display: inline;
+  padding: 2px 2px 2px;
+  margin-bottom: 0;
+  font-size: 12px;
+  
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  *background-color: #e6e6e6;
+  background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+  background-repeat: repeat-x;
+  border: 1px solid #cccccc;
+  *border: 0;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-bottom-color: #b3b3b3;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
 	bottom:0px;
 }
 </style>
 </head>
-
-<body>
-
-
+<body class="fade-in">
 <div style="padding: 130px 0 0 0;" align="center">
-
 <form action="" method="post">
 <div id="login-box">
-
 <H2 align="left"><span class="main">CHATURANG</span><br /><span class="tour">Group of Companies</span></H2>
-
 <div class="all">
-<div id="login-box-name" style="margin-top:20px;">User:</div><div id="login-box-field" style="margin-top:20px;"><input name="username" class="form-login" title="Username" placeholder="Enter User Name" size="30" maxlength="2048" /></div>
-<div id="login-box-name">Password:</div><div id="login-box-field"><input name="password" type="password" class="form-login" title="Password" placeholder="Enter Password" size="30" maxlength="2048" /></div>
-<br />
-<span class="login-box-options"><input type="checkbox" name="1" value="1"> Remember Me <a href="#" style="margin-left:30px;">Forgot password?</a></span>
-<br />
+<table class="user">
+<tr>
+<td>
+<label>User Name:</label><br><input name="username" class="form-login" title="Username" placeholder="Enter User Name" size="30" maxlength="2048" /></div>
+</td>
+</tr>
+<tr>
+<td>
+<label>Password:</label><br><input name="password" type="password" class="form-login" title="Password" placeholder="Enter Password" size="30" maxlength="2048" /></div>
+</td>
+</tr>
+</table>
 <br />
 <div><input  class="log" type="submit" value="Login" name="login" /></div>
 </form>

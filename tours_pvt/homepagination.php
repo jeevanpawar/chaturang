@@ -7,7 +7,7 @@ $c=$_SESSION['com'];
 if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
 	header("location:../index.php");
 	}
-$per_page = 25; 
+$per_page =19; 
 if($_GET)
 {
  $page=$_GET['page'];

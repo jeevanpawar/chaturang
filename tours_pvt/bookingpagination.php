@@ -1,18 +1,14 @@
 <?php
-session_start();
-
+include("../session/session.php");
 error_reporting(0);
 include("../include/database.php");
-$a=$_SESSION['user'];
-$c=$_SESSION['com'];
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header("location:../index.php");
-	}
-$per_page = 25; 
+$per_page = 19; 
 if($_GET)
 {
- $page=$_GET['page'];
+$page=$_GET['page'];
+
 }
+
 include("../include/database.php");
 	
 $start = ($page-1)*$per_page;
@@ -22,9 +18,7 @@ $res_u=mysql_query($qry_u);
 $qry_a="select * from booking_form";
 $res_a=mysql_query($qry_a);
 $row_a=mysql_fetch_array($res_a);
-
 ?>
-
         <table class="emp_tab">
         <tr class="menu_header">
         <td width="110">B.No</td>
@@ -38,12 +32,13 @@ $row_a=mysql_fetch_array($res_a);
         <td width="95">Passenger</td>
         <td width="95">Hotel</td>
         <td width="95">Vehicle</td>
-        <td width="130">View Details</td>
+        <td width="95">View</td>
         </tr>
 
         <?php
 		while($row_u=mysql_fetch_array($res_u))
 		{
+			
 		echo "<tr class='pagi'>";
         echo "<td>";
 		echo $row_u[0]; 
@@ -69,10 +64,11 @@ $row_a=mysql_fetch_array($res_a);
 		echo "<td>";
 		echo $row_u[12];
 		echo "</td>";
+
 		if($row_u[9]==1)
 		{
 			echo "<td class='print'>";
-			echo "<a href='uppassenger.php?id_p=$row_u[0]'>&nbsp;Update&nbsp;</a>";
+			echo "<a href='passenger.php?id_p=$row_u[0]'>&nbsp;Update&nbsp;</a>";
 			echo "</td>";
 		}
 		else
@@ -107,10 +103,12 @@ $row_a=mysql_fetch_array($res_a);
 			echo "</td>";
 		}
 		echo "<td class='print'>";
-		echo "<a href='viewdetail.php?id=$row_u[0]'>View Details</a>";
+		echo "<a href='viewdetail.php?id=$row_u[0]'>View</a>";
 		echo "</td>";
 		echo "</tr>";
 		}
 		?>
         
         </table>
+        
+      

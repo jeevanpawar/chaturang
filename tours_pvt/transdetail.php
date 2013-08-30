@@ -1,11 +1,6 @@
 <?php
-	session_start();
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header("location:../index.php");
-	}
+	include("../session/session.php");
 	error_reporting(0);
-	$a=$_SESSION['user'];
-	$c=$_SESSION['com'];
 	$id=$_REQUEST['id'];
 	include("../include/database.php");
 	$qry="select * from vehicle_transportation where b_id='$id'";

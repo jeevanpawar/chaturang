@@ -1,12 +1,12 @@
 <?php
-session_start();
+include("../session/session.php");
 error_reporting(0);
-$a=$_SESSION['user'];
-$c=$_SESSION['com'];
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header("location:../index.php");
-	}
 include("../include/database.php");
+$i=$_REQUEST['id_a'];
+
+$qry_booking="select * from booking_form where b_id='$i' and c_id='$c'";
+$res_booking=mysql_query($qry_booking);
+
 ?>
 
 <?php
@@ -59,6 +59,8 @@ $res_rs=mysql_query("select * from room_type");
 $res_m=mysql_query("select * from meal");
 $res_ms=mysql_query("select * from meal");
 
+$qry_aco="select * from hotel_acomodation where c_id='$c' and b_id='$i'";
+$res_aco=mysql_query($qry_aco);
 ?>
 
 <html>
@@ -127,15 +129,98 @@ function addRow(tableID) {
     <?php
 		include("include/p_header.php");	
 	?>
+    <div>
+        <table class="pre">
+        <tr class="menu_header">
+        <td width="110">B.No</td>
+        <td width="110">B.Date</td>
+        <td width="300">SE</td>
+        <td>Client Name</td>
+        <td width="50">Adult</td>
+        <td width="50">Child</td>
+        <td width="50">Pax</td>
+        <td width="50">Room</td>
+        <td width="50">Bed</td>
+        <td width="100">Total Amt</td>
+        </tr>
+        <?php
+		while($row_booking=mysql_fetch_array($res_booking))
+		{
+			echo "<tr class='pagi'>";
+			echo "<td>";
+			echo $row_booking['b_id'];
+			echo "</td>";
+			echo "<td>";
+			echo date('d-m-Y', strtotime($row_booking['bkg_date']));
+			echo "</td>";
+			echo "<td>";
+			echo $row_booking['b_se'];
+			echo "</td>";
+			echo "<td>";
+			echo $row_booking['b_office'];
+			echo "</td>";
+			echo "<td>";
+			echo $row_booking['b_adult'];
+			echo "</td>";
+			echo "<td>";
+			echo $row_booking['b_child'];
+			echo "</td>";
+			echo "<td>";
+			echo $row_booking['b_pax'];
+			echo "</td>";
+			echo "<td>";
+			echo $row_booking['b_room'];
+			echo "</td>";
+			echo "<td>";
+			echo $row_booking['b_bed'];
+			echo "</td>";
+			echo "<td>";
+			echo $row_booking['b_total_amt'];
+			echo "</td>";
+			echo "</tr>";
+		}
+		?>
+        </table>
+        <table class="emp_tab">
+         <tr class="menu_header">
+         <td width="22%">Vendor's Name</td>
+         <td width="15%">Hotel Name</td>
+         <td width="10%">Place</td>
+         <td width="10%">Room</td>
+         <td width="10%">Meal PLN</td>
+         <td width="15%">C/I</td>
+         <td width="15%">C/O</td>
+         <td>Update</td>
+         </tr>
+         </table>
+         <table class="emp_tab">
+         <?php
+		 while($row_aco=mysql_fetch_array($res_aco))
+		 {
+         echo "<tr>";
+         echo "<td width='22%'><input class='name' type='text' value='$row_aco[3]'></td>";
+         echo "<td width='15%'><input type='text' class='mf' value='$row_aco[4]'></td>";
+         echo "<td width='10%'><input class='amt' type='text' value='$row_aco[5]'></td>";
+         echo "<td width='10%'><input class='amt' type='text' value='$row_aco[6]'></td>";
+         echo "<td width='10%'><input class='contact' type='text' value='$row_aco[7]'></td>";
+         echo "<td width='15%'><input class='email' type='text' value='$row_aco[9]'></td>";
+		 echo "<td width='15%'><input class='email' type='text' value='$row_aco[10]'></td>";
+		 echo "<td class='insert'><a href=''>Update</a></td>";
+         echo "</tr>";
+		 }
+		 ?>
+         </table>
+        </div>
     <br />
+    <form action="" method="post">
 	<div class="quotation"><center>Hotel Accommodation Detail</center></div>
-		 <div class="adddel">
+		 <div class="adddel1">
          <input type="button" value="+" class="add" onClick="addRow('dataTable')" >&nbsp;
 		 <input type="button" value="-" class="add" onClick="deleteRow('dataTable')" >
          </div>
 
         <div>
-        <form action="" method="post">
+        
          <table class="emp_tab">
          <tr class="menu_header">
          <td width="2%">S</td>
@@ -204,7 +289,7 @@ function addRow(tableID) {
            
     	<div class="clear"></div>
     </div>
-</div>
+</div>	
  <div id="footer">
      <div class="clear"></div> 
     </div>

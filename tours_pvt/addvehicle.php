@@ -1,12 +1,6 @@
 <?php
-session_start();
-$a=$_SESSION['user'];
-$c=$_SESSION['com'];
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header("location:../index.php");
-	}
+include("../session/session.php");
 error_reporting(0);
-
 include("../include/database.php");
 
 $qry_d="select * from vehicle";
@@ -40,7 +34,7 @@ $count=mysql_num_rows($res_d);
 	
 	if(isset($_REQUEST['e_can']))
 	{
-		header("location:home.php");
+		header("location:addvehicle.php");
 	}
 	
 ?>
@@ -49,6 +43,8 @@ $count=mysql_num_rows($res_d);
 <title>Chaturang Tours Pvt Ltd</title>
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="custom.js"></script>
 </head>
 <body>
 <div id="container">
@@ -56,8 +52,13 @@ $count=mysql_num_rows($res_d);
     	<?php
 			include("include/p_header.php");
 		?>
-       	<br />
-		<div class="quotation"><center>Vehicle Details</center></div>
+       	<table class="emp_tab">
+        <tr class="search_res">
+        <td class="info">
+         <center>Vehicle Details</center>
+        </td>        </tr>
+        </table>
+		<span class="bank"><a href="#" rel="popuprel" class="popup new">New</a> </span>
         <div>
         <br />
         <table class="detail">
@@ -83,9 +84,11 @@ $count=mysql_num_rows($res_d);
 		}
 		?>
         </table>
-        <form name="form1" action="" method="post">
+        <div class="popupbox_small" id="popuprel">
+		<div id="intabdiv">
+        <form name="" action="" method="post">
         <table class="pay">
-        <tr class="menu_header"><td colspan="2">Add New Vehicle</td></tr>
+        <tr><td colspan="2"><center>Add New Vehicle</center></td></tr>
         <tr>
         <td class="l_form">No:</td>
         <td><input id="ename" type="text" readonly class="q_in" value="<?php echo $count+1; ?>"></td>
@@ -95,20 +98,18 @@ $count=mysql_num_rows($res_d);
         <td><input type="text" name="t1" class="q_in"></td>
         </tr>
         
-        <tr>
-        <td colspan="2">
-        <div class="pay_button">
-         <input name="e_add" class="formbutton" value=" Add " type="submit" onClick="javascript:return validateMyForm();" />
-         <input name="e_can" class="formbutton" value="Cancel" type="submit" />
-        </div>
-        </td>
-        </tr>
         </table>
+        <div class="bank_b">
+         <input name="e_add" value=" Add " type="submit"/>
+         <input name="e_can" value="Cancel" type="submit" />
+        </div>
         </form>
+        </div>
+        </div>
     </div>
     </div>
         
-    
+    <div id="fade"></div>
     	<div class="clear"></div>
     </div>
 </div>

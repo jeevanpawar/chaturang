@@ -1,31 +1,29 @@
 <?php
-session_start();
-$a=$_SESSION['user'];
-$c=$_SESSION['com'];
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) 
-{
-	header("location:../index.php");
-}
+include("../session/session.php");
 error_reporting(0);
-
 include("../include/database.php");
+$id2=$_REQUEST['id'];
+$qry_com="select * from company where comp_id='$c'";
+$res_com=mysql_query($qry_com);
+$row_com=mysql_fetch_array($res_com);
 
-$id2=$_REQUEST['id2'];
-$id=$_REQUEST['id'];
-$qry="select * from hotel_acomodation where h_id=".$id2;
+$qry="select * from hotel_acomodation where b_id='$id2'";
 $res=mysql_query($qry);
 $row=mysql_fetch_array($res);
 
-$qry_d="select * from hotel_pay where p_id='$id2' and b_id='$id'";
+$qry1="select * from hotel_acomodation where b_id='$id2'";
+$res1=mysql_query($qry1);
+
+$qry_d="select * from hotel_pay where b_id='$id2'";
 $res_d=mysql_query($qry_d);
 
-$qry_sum="select SUM(h_amt) from hotel_pay where p_id='$id2'";
+$qry_sum="select SUM(h_amt) from hotel_pay where b_id='$id2'";
 $res_sum=mysql_query($qry_sum);
 $row_sum=mysql_fetch_array($res_sum);
 
 $bal=$row[8]-$row_sum[0];
 
-$qry_r="select * from reciept where b_id='$id'";
+$qry_r="select * from reciept where b_id='$id2'";
 $res_r=mysql_query($qry_r);
 	if(isset($_REQUEST['e_add']))
 	{
@@ -38,10 +36,10 @@ $res_r=mysql_query($qry_r);
 		$t6=$_POST['t6'];
 		$t7=$_POST['t7'];
 		
-		$pa_qry="insert into hotel_pay(c_id,b_id,h_name,h_vendor,h_date,h_mode,h_no,h_amt,p_id) values('".$c."','".$t1."','".$t2."','".$t3."','".$date."','".$t5."','".$t6."','".$t7."','".$id2."')";
+		$pa_qry="insert into hotel_pay(c_id,b_id,h_name,h_vendor,h_date,h_mode,h_no,h_amt) values('".$c."','".$t1."','".$t2."','".$t3."','".$date."','".$t5."','".$t6."','".$t7."')";
 		$pa_res=mysql_query($pa_qry);
 		$id4 = mysql_insert_id();
-		$p_id='CH'.$c.'_'.$id4;
+		$p_id=$row_com[2].'_'.$id4;
 		
 		$t1=$_POST['t1'];
  		$t2=$_POST['t2'];
@@ -56,7 +54,7 @@ $res_r=mysql_query($qry_r);
 		$pa_res=mysql_query($pa_qry);
 		if($pa_res)
 		{
-			header("location:hotelpay.php?id2=$id2&&id=$id");
+			header("location:hotelpay.php?id=$id2");
 		}
 		else
 		{
@@ -66,7 +64,7 @@ $res_r=mysql_query($qry_r);
 	
 	if(isset($_REQUEST['e_can']))
 	{
-		header("location:payment.php");
+		header("location:hotelpay.php?id=$id2");
 	}
 	
 	$d=date('d-m-Y');
@@ -226,12 +224,13 @@ function convertDigit($digit)
    }
 }
 ?>
-
 <html>
 <head>
 <title>Chaturang Tours Pvt Ltd</title>
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="custom.js"></script>
 </head>
 <body>
 <div id="container">
@@ -239,17 +238,23 @@ function convertDigit($digit)
     	<?php
 			include("include/p_header.php");
 		?>
-       	<br />
-		<div class="quotation"><center>Hotels/Vendor Payments Details</center></div>
+        <table class="emp_tab">
+        <tr class="search_res">
+        <td class="info">
+         <center>Hotels/Vendor Payments Details</center>
+        </td>
+        </tr>
+        </table>
+        <span class="bank"><a href="#" rel="popuprel" class="popup new">New Payment</a> </span>
+        <br>
         <div>
-        <br />
         <table class="detail">
         <tr class="menu_header">
         <td width="90">Reciept</td>
         <td>Hotel</td>
         <td>Vendor</td>
         <td width="80">Date</td>
-        <td width="180">Payment Mode</td>
+        <td width="180">Payment Mode (<span style="font-family:rupee;font-size:13px">R)</td>
         <td>Check No</td>
         <td width="120">Amount</td>
         </tr>
@@ -281,7 +286,7 @@ function convertDigit($digit)
 			echo "</tr>";
 		}
 		?>
-        <tr class="menu_header">
+        <tr class="pagi">
         <td></td>
         <td></td>
         <td></td>
@@ -290,22 +295,45 @@ function convertDigit($digit)
         <td>Total Amount</td>
         <td><?php echo $row_sum[0].'&nbsp;'.'Rs/-'; ?></td>
         </tr>
-        
         </table>
-        <form name="form1" action="" method="post">
+        <div class="popupbox_pay" id="popuprel">
+		<div id="intabdiv">
+	    <form name="" action="" method="post">
         <table class="pay">
-        <tr class="menu_header"><td colspan="2">Hotel/Vendor Payments</td></tr>
+        <tr><td colspan="2"><center>Hotel/Vendor Payments</center></td></tr>
         <tr>
         <td class="l_form">Bkg No:</td>
         <td><input id="ename" type="text" readonly class="q_in" name="t1" value="<?php echo $row[2]; ?>"></td>
         </tr>
         <tr>
         <td class="l_form">Hotel Name:</td>
-        <td><input id="ename" type="text" class="q_in" name="t2" value="<?php echo $row[4]; ?>"></td>
+        <td>
+        <select class="a" name="t2">
+        <?php
+		while($row1=mysql_fetch_array($res1))
+		{
+			echo "<option>";
+			echo $row1[4];
+			echo "</option>";
+		}
+		?>
+		</select>	        
+        </td>
         </tr>
         <tr>
         <td class="l_form">Vendor Name:</td>
-        <td><input id="ename" type="text" class="q_in" name="t3" value="<?php echo $row[3]; ?>"></td>
+        <td>
+        <select class="a" name="t3">
+        <?php
+		while($row1=mysql_fetch_array($res1))
+		{
+			echo "<option>";
+			echo $row1[3];
+			echo "</option>";
+		}
+		?>
+		</select>
+        </td>
         </tr>
         
         <tr>
@@ -331,21 +359,18 @@ function convertDigit($digit)
         <td class="l_form">Pay Amount:</td>
         <td><input id="ename" type="text" class="q_in" name="t7" ></td>
         </tr>
-        
-      	<tr>
-        <td colspan="2">
-        <div class="pay_button">
-         <input name="e_add" class="formbutton" value=" Add " type="submit"/>
-         <input name="e_can" class="formbutton" value="Cancel" type="submit" />
+        </table>
+        <div class="pay_b">
+         <input name="e_add" value=" Add " type="submit"/>
+         <input name="e_can" value="Cancel" type="submit" />
         </div>
-          </td>
-          </tr>
-          </table>
-        </form>
+         </form>
+        </div>
+        </div>
     </div>
     </div>
         
-    
+   <div id="fade"></div> 
     	<div class="clear"></div>
     </div>
 </div>

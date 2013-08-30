@@ -1,7 +1,5 @@
 <?php
 session_start();
-
-error_reporting(0);
 $a=$_SESSION['user'];
 $c=$_SESSION['com'];
 if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
@@ -65,14 +63,14 @@ $row_c=mysql_fetch_array($res_c);
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
 </head>
-<body bgcolor="#FFF">
-	
-        <div>
+		<body bgcolor="#FFF">
+	    <div>
 		<br>
         <br>
         <div class="pdfhead"><center><?php echo $row_c['comp_name']; echo "&nbsp;Booking Form No-$id"; ?></center></div>
-
-		<table class="emp_pdf">
+		<br>
+        <br>
+        <table class="emp_pdf">
         <tr class="pdf_header">
         <td width="150">B.No</td>
         <td width="150">B.Date</td>
@@ -94,7 +92,7 @@ $row_c=mysql_fetch_array($res_c);
         <td width="50"><?php echo $row[12]; ?></td>
         </tr>
         </table>
-       
+       <br>
          <?php
 		 
 		 if(($count=mysql_num_rows($res_p))>0)
@@ -139,7 +137,7 @@ $row_c=mysql_fetch_array($res_c);
 		 }
 		 ?>
          </table>
-         
+         <br>
          <?php
 		
 		 if(($count=mysql_num_rows($res_h))>0)
@@ -189,7 +187,7 @@ $row_c=mysql_fetch_array($res_c);
 		 ?>
          
          </table>
-         
+         <br>
          <?php
 		 if(($count=mysql_num_rows($res_v)))
 		 {
@@ -253,13 +251,13 @@ $row_c=mysql_fetch_array($res_c);
         <td width="150">Gross Profit</td>
         </tr>
         <tr class="pagi">
-        <td><b><?php echo $row[8].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td><b><?php echo $row_cpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td><b><?php echo $balance.'&nbsp;'.'Rs/-'; ?></b></td>
-        <td><b><?php echo $row_hpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td><b><?php echo $row_tpay[0].'&nbsp;'.'Rs/-'; ?></b></td>
-        <td><b><?php echo $expense.'&nbsp;'.'Rs/-'; ?></b></td>
-        <td><b><?php echo $profit.'&nbsp;'.'Rs/-'; ?></b></td>
+        <td><b><?php echo "<img src='images/indian.png' width='5' height='8'>".'&nbsp;'.$row[8]; ?></b></td>
+        <td><b><?php echo $row_cpay[0]; ?></b></td>
+        <td><b><?php echo $balance; ?></b></td>
+        <td><b><?php echo $row_hpay[0]; ?></b></td>
+        <td><b><?php echo $row_tpay[0]; ?></b></td>
+        <td><b><?php echo $expense; ?></b></td>
+        <td><b><?php echo $profit; ?></b></td>
         </tr>
         </table>
     </div>

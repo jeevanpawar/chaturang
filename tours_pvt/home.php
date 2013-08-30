@@ -1,14 +1,8 @@
 <?php
-session_start();
+include("../session/session.php");
 error_reporting(0);
 include("../include/database.php");
-$a=$_SESSION['user'];
-$c=$_SESSION['com'];
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header("location:../index.php");
-	}
-$per_page = 25;
-
+$per_page = 19;
 $sql = "select * from booking_form where c_id='$c'";
 $rsd = mysql_query($sql);
 $count = mysql_num_rows($rsd);
@@ -79,58 +73,10 @@ if(isset($_REQUEST['go']))
 });
 	</script>
 	
-<style>
-a
-{
-text-decoration:none;
-color:#B2b2b2;
 
-}
-
-a:hover
-{
-color:#DF3D82;
-text-decoration:underline;
-
-}
-#loading { 
-width: 100%; 
-position: absolute;
-}
-
-#pagination
-{
-text-align:center;
-color:#6F0;
-margin-left:10px;
-margin-top:0px;
-}
-#pagination li {	
-list-style: none; 
-float: left; 
-margin-right: 16px; 
-padding:5px;3 
-color:#FFF;
-margin-left:2px;
-background-color:#00a1d2;
-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-
-}
-#pagination li:hover
-{ 
-color:#FF0084; 
-cursor: pointer; 
-
-}
-
-
-</style>
 
 </head>
-<body>
+<body class="fade-in">
 <div id="container">
 <div id="sub-header">
 		<?php
@@ -139,11 +85,10 @@ cursor: pointer;
         <form action="" method="post">
        	<table class="emp_tab">
         <tr class="search_res">
-        <td class="info">Booking Information</td>
-        
-        <td width="305">
-        <input class="result" name="result" type="text">
+        <td class="info">
+        <input class="searchfield" type="text" value="Search..." onFocus="if (this.value == 'Search...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Search...';}" name="result" />
         <input class="go" name="go" type="submit" value="Search">
+        Booking Information
         </td>
         </tr>
         </table>

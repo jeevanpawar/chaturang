@@ -1,8 +1,7 @@
 <?php
-	session_start();
+include("../session/session.php");
+
 	error_reporting(0);
-	$a=$_SESSION['user'];
-	$c=$_SESSION['com'];
 	$id=$_REQUEST['id'];
 	include("../include/database.php");
 	$hotel="select * from hotel_acomodation where b_id='$id'";

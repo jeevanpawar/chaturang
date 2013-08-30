@@ -1,12 +1,6 @@
 <?php
-session_start();
-$a=$_SESSION['user'];
-$c=$_SESSION['com'];
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header("location:../index.php");
-	}
+include("../session/session.php");
 error_reporting(0);
-
 include("../include/database.php");
 $id=$_REQUEST['id'];
 
@@ -81,9 +75,8 @@ $row_d=mysql_fetch_array($res_d);
 </style>
 </head>
 <body>
-		
         <?php
-		$p='CP'.$c.'_'.$id;
+		$p=$row_c[2].$c.'_'.$id;
 
 		$qry_r="select * from reciept where p_id='$p'";
 		$res_r=mysql_query($qry_r);

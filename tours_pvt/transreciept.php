@@ -1,12 +1,6 @@
 <?php
-session_start();
-$a=$_SESSION['user'];
-$c=$_SESSION['com'];
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header("location:../index.php");
-	}
+include("../session/session.php");
 error_reporting(0);
-
 include("../include/database.php");
 $id=$_REQUEST['id'];
 
@@ -83,7 +77,7 @@ $row_d=mysql_fetch_array($res_d);
 <body>
 		
         <?php
-		$p='CT'.$c.'_'.$id;
+		$p=$row_c[2].'_'.$id;
 
 		$qry_r="select * from trans_pay where t_id='$id' and c_id='$c'";
 		$res_r=mysql_query($qry_r);

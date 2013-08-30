@@ -1,14 +1,13 @@
 <?php
-session_start();
-$a=$_SESSION['user'];
-$c=$_SESSION['com'];
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header("location:../index.php");
-	}
+include("../session/session.php");
 error_reporting(0);
-
 include("../include/database.php");
 $id=$_REQUEST['id'];
+
+$qry_com="select * from company where comp_id='$c'";
+$res_com=mysql_query($qry_com);
+$row_com=mysql_fetch_array($res_com);
+
 $qry="select * from booking_form where b_id='$id'";
 $res=mysql_query($qry);
 $row=mysql_fetch_array($res);
@@ -36,7 +35,7 @@ $res_r=mysql_query($qry_r);
 		$pa_qry="insert into partial_payment(c_id,b_id,p_date,p_mode,p_check,p_amt) values('".$c."','".$t1."','".$date."','".$t3."','".$t4."','".$t5."')";
 		$pa_res=mysql_query($pa_qry);
 		$id4 = mysql_insert_id();
-		$p_id='CP'.$c.'_'.$id4;
+		$p_id=$row_com[2].'_'.$id4;
 
 		$t1=$_POST['t1'];
  		$t2=$_POST['t2'];
@@ -62,7 +61,7 @@ $res_r=mysql_query($qry_r);
 	
 	if(isset($_REQUEST['e_can']))
 	{
-		header("location:payment.php");
+		header("location:pay.php?id=$id");
 	}
 	
 	$d=date('d-m-Y');
@@ -227,6 +226,8 @@ function convertDigit($digit)
 <title>Chaturang Tours Pvt Ltd</title>
 <link rel="stylesheet" href="../styles2.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="custom.js"></script>
 </head>
 <body>
 <div id="container">
@@ -234,10 +235,17 @@ function convertDigit($digit)
     	<?php
 			include("include/p_header.php");
 		?>
-       	<br />
-		<div class="quotation"><center>Payment Made By Client</center></div>
-        <div>
-        <br />
+       	<div>
+        
+        <table class="emp_tab">
+        <tr class="search_res">
+        <td class="info">
+         <center>Payment Made By Client</center>
+        </td>
+        </tr>
+        </table>
+        <span class="bank"><a href="#" rel="popuprel" class="popup new">New Payment</a> </span>
+        <br>
         <table class="detail">
         <tr class="menu_header">
         <td width="90">Reciept</td>
@@ -285,7 +293,7 @@ function convertDigit($digit)
         <?php
 		if($bal!= '0')
 		{
-			echo "<tr class='menu_header'>";
+			echo "<tr class='pagi'>";
 			echo "<td></td>";
 			echo "<td width='50'></td>";
 			echo "<td></td>";
@@ -303,9 +311,11 @@ function convertDigit($digit)
 		}
 		?>
         </table>
-        <form name="form1" action="" method="post">
+        <div class="popupbox_pay" id="popuprel">
+		<div id="intabdiv">
+        <form name="" action="" method="post">
         <table class="pay">
-        <tr class="menu_header"><td colspan="2">Client Payment</td></tr>
+        <tr><td colspan="2"><center>Client Payment</center></td></tr>
         <tr>
         <td class="l_form">Bkg No:</td>
         <td><input id="ename" type="text" readonly class="q_in" name="t1" value="<?php echo $id; ?>"></td>
@@ -343,22 +353,26 @@ function convertDigit($digit)
         echo "<td class='l_form'>Amount:</td>";
         echo "<td><input id='i_amt' type='text' class='q_in' name='t5' value='$bal'></td>";
         echo "</tr>";
-		echo "<tr>";
-        echo "<td colspan='2'>";
-        echo "<div class='pay_button'>";
-        echo "<input name='e_add' class='formbutton' value=' Add ' type='submit' onClick='javascript:return validateMyForm();'/>&nbsp;";
-        echo "<input name='e_can' class='formbutton' value='Cancel' type='submit' />";
-        echo "</div>";
-        echo "</td>";
-        echo "</tr>";
-        }
+		}
 		?>
 		</table>
+        <?php
+		if($bal!= '0')
+		{
+		echo "<div class='pay_b'>";
+        echo "<input name='e_add' value=' Add ' type='submit' />&nbsp;";
+        echo "<input name='e_can' value='Cancel' type='submit' />";
+        echo "</div>";
+		}
+		?>
         </form>
+        
+        </div>
+        </div>
     </div>
     </div>
         
-    
+    <div id="fade"></div>
     	<div class="clear"></div>
     </div>
 </div>

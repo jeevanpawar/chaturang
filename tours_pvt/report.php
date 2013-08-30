@@ -1,13 +1,7 @@
 <?php
-session_start();
+include("../session/session.php");
 error_reporting(0);
 include("../include/database.php");
-$a=$_SESSION['user'];
-$c=$_SESSION['com'];
-if(!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header("location:../index.php");
-	}
-
 $qry_c="select * from company where comp_id='$c'";
 $res_c=mysql_query($qry_c);
 $row_c=mysql_fetch_array($res_c);
@@ -38,13 +32,13 @@ $balance=$row_t[0]-$row[6];
 </head>
 <body>
 <div class="inv">INVOICE</div>
-<br><br>
-<table class="add">
+<br><br><br><br>
+<table class="add address">
 <tr>
 <td width="370"><b><?php echo $row_c[1]; ?></b></td><td>Invoice No :</td><td> <label><?php echo $row[1]; ?></label></td>
 
 </tr>
-<tr>
+<tr >
 <td>Shop No.4, Tirupati Tower-2,<br> Ananad Nagar, Next to Akashwani Tower,</td><td>Date:</td><td><?php echo $row[8]; ?></td>
 </tr>
 <tr>
@@ -52,7 +46,7 @@ $balance=$row_t[0]-$row[6];
 </tr>
 </table>
 <br><br><br>
-
+<br><br>
 </div>
 <div class="detail">
 <table>
@@ -63,6 +57,7 @@ $balance=$row_t[0]-$row[6];
 <td>Car Rentals</td>
 </tr>
 </table>
+
 </div>
 <table class="tab">
 <tr>
@@ -82,26 +77,29 @@ $balance=$row_t[0]-$row[6];
 <td width="70">Rate</td>
 <td width="70">Amount</td>
 </tr>
+</table>
+<table class="r_details">
 <?php
 while($row_d=mysql_fetch_array($res_detail))
 {
 	
 	echo "<tr>";
-	echo "<td>";
+	echo "<td width='50'>";
 	echo $row_d[3];
 	echo "</td>";
 	echo "<td>";
 	echo $row_d[4];
-	echo "</td>";
-	echo "<td>";
+	echo "</td >";
+	echo "<td width='70'>";
 	echo $row_d[5];
 	echo "</td>";
-	echo "<td>";
+	echo "<td width='70'>";
 	echo $row_d[6];
 	echo "</td>";
 	echo "</tr>";
 }
 ?>
+
 </table>
 <?php 
 
@@ -111,13 +109,14 @@ while($row_d=mysql_fetch_array($res_detail))
 
 ?>
 </div>
+<br>
 <table class="advance">
 <tr>
-<td width="70">Advance</td><td><?php echo $row[6]; ?></td>
+<td width="40">Advance</td><td><?php echo $row[6]; ?></td>
 <td width="70">S.Tax</td><td><?php echo $row[7]; ?></td>
 </tr>
 <tr>
-<td width="70">Balance</td><td><?php echo $balance; ?></td>
+<td width="40">Balance</td><td><?php echo $balance; ?></td>
 <td width="70">Total</td><td><?php echo $to; ?></td>
 </tr>
 </table>
@@ -134,16 +133,45 @@ while($row_term=mysql_fetch_array($r_term))
 {
 	echo "<tr>";
 	echo "<td>";
-	echo "<b>".$row_term[1]."</b>";
+	echo "<b>".$row_term[1]."</b>"."<br>";
 	echo "</td>";
 	echo "</tr>";
 	echo "<tr>";
-	echo "<td>";
+	echo "<td class='conditions'>";
 	echo $row_term[2]."<br><br>";
 	echo "</td>";
 	echo "</tr>";
 }
 ?>
+<tr>
+<td><b><?php echo $row_c[1]; ?></b></td>
+</tr>
+<tr>
+<td>Shop No.4, Tirupati Tower-2,<br> Ananad Nagar, Next to Akashwani Tower,</td>
+</tr>
+<tr>
+<td>Ganagpur Road, Nashik-13. <br><br></td>
+</tr>
+<tr>
+<td><b>Desk Phone:0253-6693585,586</b></td>
+</tr>
+<tr>
+<td><b>Hand Phone:9890496622</b></td>
+</tr>
+</table>
+<br><br><br><br>
+<table>
+<tr>
+<td width="380"><b>Date:</b></td><td><b>Agreed and Copy Received</b></td><td></td>
+</tr>
+<tr>
+</table>
+<br><br><br><br>
+
+<table>
+<tr>
+<td width="400"><b></b></td><td><b>Customers Signature</b></td><td></td>
+</tr>
 </table>
 
 
