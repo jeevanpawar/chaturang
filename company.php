@@ -29,66 +29,30 @@ if(isset($_REQUEST['go']))
 ?>
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Chaturang</title>
-
-<link href="login-box.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-
-.reference {
-	
-	position:fixed;
-	width:100%;
-	left:-1px;
-	right:-1px;
-	font-size:14px;
-	text-align:center;
-	height:20px;
-	opacity:1;
-	color:#000;
-	display: inline-block;
-  *display: inline;
-  padding: 2px 2px 2px;
-  margin-bottom: 0;
-  font-size: 12px;
-  
-  text-align: center;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-  vertical-align: middle;
-  cursor: pointer;
-  background-color: #f5f5f5;
-  *background-color: #e6e6e6;
-  background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
-  background-repeat: repeat-x;
-  border: 1px solid #cccccc;
-  *border: 0;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
-  border-bottom-color: #b3b3b3;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
-	bottom:0px;
-}
-</style>
+<link rel="stylesheet" href="logincss/reset.css">
+<link rel="stylesheet" href="logincss/animate.css">
+<link rel="stylesheet" href="logincss/styles.css">
 </head>
-<body class="fade-in">
-<div style="padding: 130px 0 0 0;" align="center">
+<body>
+<div id="comp">
+<div class="logo">Chaturang Group of Companies</div>
+</div>
 <form action="" method="post">
-<div id="login-box">
-<H2 align="left"><span class="main">CHATURANG</span><br /><span class="tour">Group of Companies</span></H2>
-<div class="welcome">
+<div id="container2">
+<div class="user">
 <?php
 	echo "Welcome:$a";
 ?>
 </div>
-<br /><br />
-<div id="login-box-field" style="margin-top:20px;"><label id="select">Select Company</label></div>
-<div id="login-box-field-select">
+<br>
+<div>
+<label id="select">Select Company</label>
+</div>
+<br>
+<div class="cname">
 <select name="t1">
 <?php
 while($row=mysql_fetch_array($res))
@@ -100,13 +64,11 @@ while($row=mysql_fetch_array($res))
 ?>
 </select>
 </div>
-<br />
-<span class="login-box-options"></span>
-<br /><br />
-<div><input class="logcom" name="go" type="submit" value="Go" /></div>
+<div class="log">
+<input class="logcom" name="go" type="submit" value="Go" /></div>
+</div>
 </form>
 </div>
-</div>
-<div class="reference">Copyright @ 2013 Chaturang Tours Pvt. Ltd. Powered By: Wave TechLine India Pvt. Ltd.</div>
+<div class="reference">Copyright @ 2013 Chaturang Group of Companies Powered By: Wave TechLine India Pvt. Ltd.</div>
 </body>
 </html>
